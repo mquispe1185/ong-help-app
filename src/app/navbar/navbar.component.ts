@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -11,11 +10,15 @@ export class NavbarComponent implements OnInit {
 
   constructor(public tokenService: AngularTokenService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   login(){
     this.tokenService.signInOAuth('google');
   }
 
+  logout(){
+    this.tokenService.signOut().subscribe(
+      res => { location.reload(); }
+    );
+  }
 }
