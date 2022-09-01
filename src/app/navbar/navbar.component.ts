@@ -10,7 +10,12 @@ export class NavbarComponent implements OnInit {
 
   constructor(public tokenService: AngularTokenService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.tokenService.validateToken().subscribe(
+      res => { console.log('status user signed in?', this.tokenService.userSignedIn())},
+      error => { console.log('User signed out', this.tokenService.userSignedIn()); }
+    )
+  }
 
   login(){
     this.tokenService.signInOAuth('google');
