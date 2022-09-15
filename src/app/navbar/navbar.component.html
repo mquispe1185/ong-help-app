@@ -18,6 +18,12 @@
           <a class="nav-link" routerLink="/new-ong">New Ong</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" routerLink="/new-campaign">New Campaign</a>
+        </li>
+        <li class="nav-item" *ngIf="tokenService.currentUserData != undefined && tokenService.currentUserData?.role == 'admin'">
+          <a class="nav-link" routerLink="/users">Users</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
         </li>
         <li class="nav-item">

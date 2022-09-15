@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-8 col-xl-5 card p-4 mx-2 my-4 shadow">
+      <h1 class="text-center">Datos de la Organizacion</h1>
+      <form (ngSubmit)="onSubmit(ongForm)" #ongForm="ngForm">
+        <div class="form-group mt-4">
+          <label class="form-label" for="name">Nombre</label>
+          <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            Name is required
+          </div>
+        </div><!-- Nombre -->
+
+        <div class="form-group mt-4">
+          <label for="description" class="form-label">Descripcion</label>
+          <textarea [(ngModel)]='model.description' class="form-control" rows="3" name="description">
+          </textarea>
+        </div><!-- Descripcion -->
+
+        <div class="form-group mt-4">
+          <label for="phone">Telefono</label>
+          <input type="text" class="form-control" id="phone" required [(ngModel)]="model.phone" name="phone"
+            #phone="ngModel">
+          <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+            Phone is required
+          </div>
+        </div><!-- Telefono -->
+
+        <div class="form-group mt-4">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email"
+            #email="ngModel">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            Email is required
+          </div>
+        </div><!-- Email -->
+
+        <div class="form-group mt-4">
+          <label for="facebook">Facebook</label>
+          <input type="text" class="form-control" id="facebook" required [(ngModel)]="model.facebook" name="facebook"
+            #facebook="ngModel">
+        </div><!-- Facebook -->
+
+        <div class="form-group mt-4">
+          <label for="instagram">Instagram</label>
+          <input type="text" class="form-control" id="instagram" required [(ngModel)]="model.instagram" name="instagram"
+            #instagram="ngModel">
+        </div><!-- Instagram -->
+
+        <div class="form-group mt-4">
+          <label for="twitter">Twitter</label>
+          <input type="text" class="form-control" id="twitter" required [(ngModel)]="model.twitter" name="twitter"
+            #twitter="ngModel">
+        </div><!-- Twitter -->
+
+        <div class="form-group mt-4">
+          <label for="category">Categoria</label>
+          <select class="form-control" id="category" required [(ngModel)]="model.category_id" name="category"
+            #category="ngModel">
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          </select>
+          <div [hidden]="category.valid || category.pristine" class="alert alert-danger">
+            Category is required
+          </div>
+        </div><!-- Categoria -->
+
+        <div class="form-group mt-4">
+          <label for="city">Ciudad</label>
+          <select class="form-control" id="city" required [(ngModel)]="model.city_id" name="city" #city="ngModel">
+            <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+          </select>
+          <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+            City is required
+          </div>
+        </div><!-- Ciudad -->
+
+        <div class="form-group mt-4">
+          <label for="tags" class="form-label">Tags</label>
+          <textarea [(ngModel)]='model.tags' class="form-control" rows="3" name="tags">
+                  </textarea>
+        </div><!-- Tags -->
+
+        <div class="form-group mt-4">
+          <label for="video_url">Video URL</label>
+          <input type="text" class="form-control" id="video_url" [(ngModel)]="model.video_url" name="video_url">
+        </div><!-- Video URL -->
+
+        <div class="form-group mt-4">
+          <button type="submit" class="btn btn-success" [disabled]="!ongForm.form.valid">Submit</button>
+          <button type="button" class="btn btn-default" (click)="newOng(); ongForm.reset()">New Ong</button>
+          <i>with</i> reset 
+        </div><!-- botones -->
+
+
+      </form>
+    </div>
+  </div>
+</div>
