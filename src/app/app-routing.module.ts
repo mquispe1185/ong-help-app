@@ -20,8 +20,7 @@ const routes: Routes = [
     component: CampaignFormComponent
   },
   { path: 'campaign', loadChildren: () => import('./modules/campaign/campaign.module').then(m => m.CampaignModule) },
-  { path: 'users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) },
-
+  
 ];
 
 @NgModule({
