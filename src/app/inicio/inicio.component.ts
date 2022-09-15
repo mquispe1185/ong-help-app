@@ -9,6 +9,7 @@ import { AngularTokenService } from 'angular-token';
 export class InicioComponent implements OnInit {
 
   response:any;
+
   constructor(public tokenService: AngularTokenService) { }
 
   ngOnInit(): void {
@@ -19,6 +20,6 @@ export class InicioComponent implements OnInit {
       error =>    {console.log(error['statusText']),
                     this.response = error['statusText']}
     )
-  }
+  }  
 
 }
