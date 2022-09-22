@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
+import { Ong } from '../models/ong.model';
+import { OngService } from '../services/ong.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,13 +10,22 @@ import { AngularTokenService } from 'angular-token';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public tokenService: AngularTokenService) { }
+  user:any;
+  ong_list:Ong[] = []
+
+  constructor(public tokenService: AngularTokenService,
+              public ongService: OngService) { }
 
   ngOnInit(): void {
     this.tokenService.validateToken().subscribe(
-      res => { console.log('status user signed in?', this.tokenService.userSignedIn())},
-      error => { console.log('User signed out', this.tokenService.userSignedIn()); }
+      res =>      {console.log(res)
+                   this.user = res['data'];
+                   this.getOngs();
+                  },
+      error =>    {console.log(error['statusText']),
+                    this.user = error['statusText']}
     )
+    
   }
 
   login(){
@@ -25,5 +36,11 @@ export class NavbarComponent implements OnInit {
     this.tokenService.signOut().subscribe(
       res => { location.reload(); }
     );
+  }
+
+  getOngs(){
+    this.ongService.getOngs().subscribe(
+      res_ongs => { this.ong_list = res_ongs}
+    )
   }
 }
