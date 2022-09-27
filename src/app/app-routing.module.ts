@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CampaignFormComponent } from './modules/campaign/campaign-form/campaign-form.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { OngFormComponent } from './modules/ong/ong-form/ong-form.component';
+import { OngDashboardComponent } from './modules/ong/ong-dashboard/ong-dashboard.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'new-campaign',
     component: CampaignFormComponent
+  },
+  {
+    path: 'dashboard',
+    component: OngDashboardComponent
   },
   { path: 'campaign', loadChildren: () => import('./modules/campaign/campaign.module').then(m => m.CampaignModule) },
   
