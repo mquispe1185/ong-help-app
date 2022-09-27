@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
+import { Subscription } from 'rxjs';
 import { Ong } from '../models/ong.model';
 import { OngService } from '../services/ong.service';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +12,18 @@ import { OngService } from '../services/ong.service';
 })
 export class NavbarComponent implements OnInit {
 
+  reloadEventsubscription:Subscription;
   user:any;
   ong_list:Ong[] = []
 
   constructor(public tokenService: AngularTokenService,
-              public ongService: OngService) { }
+              public ongService: OngService,
+              private sharedService: SharedService) {
+                this.reloadEventsubscription = 
+                this.sharedService.getReloadEvent().subscribe(()=>{
+                  this.getOngs();
+                  })
+               }
 
   ngOnInit(): void {
     this.tokenService.validateToken().subscribe(
