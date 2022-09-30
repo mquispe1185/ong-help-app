@@ -16,4 +16,8 @@ export class OngService {
   addOng(ong: Ong): Observable<any> {
     return this.http.post<Ong>(this.BASE_URL,ong);
   }
+
+  getOngs(): Observable<Ong[]> {
+    return this.http.get<Ong[]>(this.BASE_URL);
+  }
 }

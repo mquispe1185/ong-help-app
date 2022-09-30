@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-inicio',
@@ -10,7 +11,8 @@ export class InicioComponent implements OnInit {
 
   response:any;
 
-  constructor(public tokenService: AngularTokenService) { }
+  constructor(public tokenService: AngularTokenService,
+              private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.tokenService.validateToken().subscribe(
@@ -20,6 +22,7 @@ export class InicioComponent implements OnInit {
       error =>    {console.log(error['statusText']),
                     this.response = error['statusText']}
     )
+    this.sharedService.sendReloadEvent()
   }  
 
 }
