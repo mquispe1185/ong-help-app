@@ -14,24 +14,18 @@ export class OngDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.tokenService.validateToken().subscribe(
-      res => {console.log(res)
-              this.reponse = res ['data']['name'];
-             },
-      error => {console.log(error['statusText']),
-                this.reponse = error['statusText'] }       
+      res => { this.reponse = res['data']['name'] },
+      error => { this.reponse = error['statusText'] }
     )
   }
 
-  show (){
-    if(this.dash.nativeElement.classList.contains('d-none')){
+  show() {
+    if (this.dash.nativeElement.classList.contains('d-none')) {
       this.dash.nativeElement.classList.add('d-block');
       this.dash.nativeElement.classList.remove('d-none')
-    }else{
+    } else {
       this.dash.nativeElement.classList.add('d-none');
       this.dash.nativeElement.classList.remove('d-block')
     }
   }
-
 }
-
-
