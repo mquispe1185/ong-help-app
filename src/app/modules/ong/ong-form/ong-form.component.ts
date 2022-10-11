@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AngularTokenService } from 'angular-token';
 import { Category } from 'src/app/models/category.model';
 import { City } from 'src/app/models/city.model';
@@ -22,10 +23,10 @@ export class OngFormComponent implements OnInit {
   constructor(public tokenService: AngularTokenService, 
               public categoriesService: CategoriesService,
               public citiesService: CitiesService,
-              public ongService: OngService) { }
+              public ongService: OngService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    console.log('holaaa estoy cargando')
     this.tokenService.validateToken().subscribe(
       res => { this.getCategories();
                this.getCities() }
@@ -41,8 +42,9 @@ export class OngFormComponent implements OnInit {
     }
     this.ongService.addOng(this.model).subscribe(
       res => { ongForm.reset()},
-      error => { console.log(error)}); 
-    console.log('nueva ong', this.model)
+      error => { console.log(error)});
+    localStorage.setItem('ongSelected', JSON.stringify(this.model));
+    this.router.navigate(['/dashboard']);
   }
 
 

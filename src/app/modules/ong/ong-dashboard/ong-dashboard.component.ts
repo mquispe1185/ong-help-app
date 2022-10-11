@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
+import { Subscription } from 'rxjs';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-ong-dashboard',
@@ -10,13 +12,24 @@ export class OngDashboardComponent implements OnInit {
   @ViewChild('dash') dash: ElementRef<HTMLInputElement>;
   reponse: any;
 
-  constructor(public tokenService: AngularTokenService) { }
+  name: string = "";
+  reloadEventsubscription: Subscription;
+
+  constructor(public tokenService: AngularTokenService,
+    private sharedService: SharedService) {
+      this.reloadEventsubscription =
+      this.sharedService.getReloadEvent().subscribe(() => {
+        this.name = JSON.parse(localStorage.getItem('ongSelected') ?? "Default").name;
+      })
+     }
 
   ngOnInit(): void {
     this.tokenService.validateToken().subscribe(
       res => { this.reponse = res['data']['name'] },
       error => { this.reponse = error['statusText'] }
     )
+    this.name = JSON.parse(localStorage.getItem('ongSelected') ?? "Default").name
+    this.sharedService.sendReloadEvent()
   }
 
   show() {

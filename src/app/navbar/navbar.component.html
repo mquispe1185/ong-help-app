@@ -17,19 +17,10 @@
           </li>
         </ng-template>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/new-ong">New Ong</a>
+          <a class="nav-link" routerLink="/ong">New Ong</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/new-campaign">New Campaign</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard">Dash</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link" routerLink="/campaign">New Campaign</a>
         </li>
         <div class="dropdown" *ngIf="tokenService.currentUserData != undefined">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -38,9 +29,10 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li *ngFor="let ong of ong_list">
-              <a class="dropdown-item" href="#">{{ong.name}}</a>              
+              <a class="dropdown-item" href="#" routerLink="/dashboard" (click)="reloadOngSidebar(ong)">{{ong.name}}</a>
             </li>
-            <li *ngIf="tokenService.currentUserData != undefined"><a class="dropdown-item" (click)="logout()" href="#">Cerrar Sesión</a></li>
+            <li *ngIf="tokenService.currentUserData != undefined"><a class="dropdown-item" (click)="logout()"
+                href="#">Cerrar Sesión</a></li>
           </ul>
         </div>
       </ul>

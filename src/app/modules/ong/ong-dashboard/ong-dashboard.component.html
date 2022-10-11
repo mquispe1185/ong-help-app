@@ -7,29 +7,26 @@
       <div class="sidebar mb-5">
         <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
           <h1 class="fs-4">
-            <span class="bg-white text-dark rounded shadow px-2 me-2">Name</span>
-            <span class="text-white">Camp o ONG</span>
+            <span class="bg-white text-dark rounded shadow px-2 me-2">{{name}}</span>
           </h1>
         </div>
         <ul class="navbar-nav scroll">
           <ul class="list-unstyled px-2">
             <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
-                <i class="fas fa-file-plus"></i> Nueva campaña
-              </a>
-            </li>
-            <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
+              [routerLink]="['/dashboard', {outlets: {ong: ['editar']}}]">
                 <i class="fas fa-edit"></i> Editar
               </a>
             </li>
             <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
+              [routerLink]="['/dashboard', {outlets: {ong: ['costos-fijos']}}]">
                 <i class="fas fa-sack-dollar"></i> Costos fijos
               </a>
             </li>
             <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
+              [routerLink]="['/dashboard', {outlets: {ong: ['solicitar-donaciones']}}]">
                 <i class="far fa-hand-holding-usd"></i> Solicitar donaciones
               </a>
             </li>
@@ -53,5 +50,7 @@
       </div>
     </div>
   </div>
-  <div class="content"></div>
+  <div class="content">    
+    <router-outlet name="ong"></router-outlet>
+  </div>
 </div>
