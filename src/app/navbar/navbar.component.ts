@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
 
 
   constructor(public tokenService: AngularTokenService,
-    public ongService: OngService,
+              public ongService: OngService,
     private sharedService: SharedService) {
     this.reloadEventsubscription =
       this.sharedService.getReloadEvent().subscribe(() => {
@@ -50,8 +50,9 @@ export class NavbarComponent implements OnInit {
 
   getOngs() {
     this.ongService.getOngs().subscribe(
-      res_ongs => { this.ong_list = res_ongs }
-    )
+      res_ongs => { this.ong_list = res_ongs;
+        localStorage.setItem('ongSelected', JSON.stringify(res_ongs[0])) }
+    );
   }
 
   reloadOngSidebar(ong: Ong) {

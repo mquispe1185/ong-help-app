@@ -16,12 +16,12 @@ export class OngDashboardComponent implements OnInit {
   reloadEventsubscription: Subscription;
 
   constructor(public tokenService: AngularTokenService,
-    private sharedService: SharedService) {
-      this.reloadEventsubscription =
+              private sharedService: SharedService) {
+    this.reloadEventsubscription =
       this.sharedService.getReloadEvent().subscribe(() => {
         this.name = JSON.parse(localStorage.getItem('ongSelected') ?? "Default").name;
       })
-     }
+  }
 
   ngOnInit(): void {
     this.tokenService.validateToken().subscribe(
