@@ -12,44 +12,51 @@ import { SharedService } from '../services/shared.service';
 })
 export class NavbarComponent implements OnInit {
 
-  reloadEventsubscription:Subscription;
-  user:any;
-  ong_list:Ong[] = []
+  reloadEventsubscription: Subscription;
+  user: any;
+  ong_list: Ong[] = [];
+
 
   constructor(public tokenService: AngularTokenService,
               public ongService: OngService,
-              private sharedService: SharedService) {
-                this.reloadEventsubscription = 
-                this.sharedService.getReloadEvent().subscribe(()=>{
-                  this.getOngs();
-                  })
-               }
+    private sharedService: SharedService) {
+    this.reloadEventsubscription =
+      this.sharedService.getReloadEvent().subscribe(() => {
+        this.getOngs();
+      })
+  }
 
   ngOnInit(): void {
     this.tokenService.validateToken().subscribe(
-      res =>      {console.log(res)
-                   this.user = res['data'];
-                   this.getOngs();
-                  },
-      error =>    {console.log(error['statusText']),
-                    this.user = error['statusText']}
+      res => {
+        this.user = res['data'];
+        this.getOngs();
+      },
+      error => {
+          this.user = error['statusText']
+      }
     )
-    
   }
 
-  login(){
+  login() {
     this.tokenService.signInOAuth('google');
   }
 
-  logout(){
+  logout() {
     this.tokenService.signOut().subscribe(
       res => { location.reload(); }
     );
   }
 
-  getOngs(){
+  getOngs() {
     this.ongService.getOngs().subscribe(
-      res_ongs => { this.ong_list = res_ongs}
-    )
+      res_ongs => { this.ong_list = res_ongs;
+        localStorage.setItem('ongSelected', JSON.stringify(res_ongs[0])) }
+    );
+  }
+
+  reloadOngSidebar(ong: Ong) {
+    localStorage.setItem('ongSelected', JSON.stringify(ong))
+    this.sharedService.sendReloadEvent()
   }
 }

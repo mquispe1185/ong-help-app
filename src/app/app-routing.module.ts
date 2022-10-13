@@ -4,28 +4,30 @@ import { CampaignFormComponent } from './modules/campaign/campaign-form/campaign
 import { InicioComponent } from './inicio/inicio.component';
 import { OngFormComponent } from './modules/ong/ong-form/ong-form.component';
 import { OngDashboardComponent } from './modules/ong/ong-dashboard/ong-dashboard.component';
+import { OngFixedCostsComponent } from './modules/ong/ong-fixed-costs/ong-fixed-costs.component';
+import { OngDonationsComponent } from './modules/ong/ong-donations/ong-donations.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   {
-    path: 'ongs',
+    path: 'ong',
     loadChildren: () => import('./modules/ong/ong.module').then(m => m.OngModule)
   },
   {
-    path: 'new-ong',
-    component: OngFormComponent,
+    path: 'campaign',
+    loadChildren: () => import('./modules/campaign/campaign.module').then(m => m.CampaignModule)
   },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   {
-    path: 'new-campaign',
-    component: CampaignFormComponent
-  },
-  {
     path: 'dashboard',
-    component: OngDashboardComponent
-  },
-  { path: 'campaign', loadChildren: () => import('./modules/campaign/campaign.module').then(m => m.CampaignModule) },
-  
+    component: OngDashboardComponent,
+    children: [
+      { path: 'costos-fijos', component: OngFixedCostsComponent, outlet: 'ong' },
+      { path: 'solicitar-donaciones', component: OngDonationsComponent, outlet: 'ong' },
+      { path: 'editar', component: OngFormComponent, outlet: 'ong' }
+    ]
+  } 
+
 ];
 
 @NgModule({
