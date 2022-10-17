@@ -20,4 +20,9 @@ export class OngService {
   getOngs(): Observable<Ong[]> {
     return this.http.get<Ong[]>(this.BASE_URL);
   }
+
+  myOngs(): Observable<Ong[]> {
+    let url = `${this.BASE_URL}/user_ongs`;
+    return this.http.get<Ong[]>(url);
+  }
 }

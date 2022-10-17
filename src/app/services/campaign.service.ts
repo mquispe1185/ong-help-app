@@ -16,4 +16,9 @@ export class CampaignService {
   addCampaign(campaign: Campaign): Observable<any> {
     return this.http.post<Campaign>(this.BASE_URL,campaign);
   }
+
+  myCampaigns(): Observable<Campaign[]> {
+    let url = `${this.BASE_URL}/user_campaigns`;
+    return this.http.get<Campaign[]>(url);
+  }
 }

@@ -43,7 +43,7 @@ export class OngFormComponent implements OnInit {
     this.ongService.addOng(this.model).subscribe(
       res => { ongForm.reset()},
       error => { console.log(error)});
-    localStorage.setItem('ongSelected', JSON.stringify(this.model));
+    localStorage.setItem('entitySelected', JSON.stringify(this.model));
     this.router.navigate(['/dashboard']);
   }
 
