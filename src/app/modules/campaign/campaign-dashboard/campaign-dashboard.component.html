@@ -1,57 +1,56 @@
 <div class="container-fluid h-100">
-    <button #btn class="d-block d-sm-none btn nav-toggler" type="button" (click)="show()"><i class="fas fa-stream"></i>
-      <span class="navbar-toogler-icon"></span>
-    </button>
-    <div class="row h-100">
-      <div #dash class="col-sm-3 d-none d-sm-block bg-info side-nav">
-        <div class="sidebar mb-5">
-          <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
-            <h1 class="fs-4">
-              <span class="bg-white text-dark rounded shadow px-2 me-2">{{name}}</span>
-            </h1>
-          </div>
-          <ul class="navbar-nav scroll">
-            <ul class="list-unstyled px-2">
-              <li class="">
-                <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
-                [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['editar']}}]">
-                  <i class="fas fa-edit"></i> Editar
-                </a>
-              </li>
-              <li class="">
-                <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
-                  <i class="fas fa-sack-dollar"></i> Costos fijos
-                </a>
-              </li>
-              <li class="">
-                <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
-                [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['solicitar-donaciones']}}]">
-                  <i class="far fa-hand-holding-usd"></i> Solicitar donaciones
-                </a>
-              </li>
-              <li class="">
-                <a href="#" id="main-title" class="text-decoration-none px-3 py-2 d-block item-hover">
-                  <i class="far fa-box-usd"></i> Ver donaciones
-                </a>
-              </li>
-              <li class="">
-                <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
-                  <i class="fas fa-hands-heart"></i> Voluntarios
-                </a>
-              </li>
-              <li class="">
-                <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
-                [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['estadisticas']}}]">
-                  <i class="fas fa-wave-triangle"></i> Estadisticas
-                </a>
-              </li>
-            </ul>
-          </ul>
+  <button #btn class="d-block d-sm-none btn nav-toggler" type="button" (click)="show()"><i class="fas fa-stream"></i>
+    <span class="navbar-toogler-icon"></span>
+  </button>
+  <div class="row h-100">
+    <div #dash class="col-sm-3 d-none d-sm-block bg-info side-nav">
+      <div class="sidebar mb-5">
+        <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
+          <h1 class="fs-4">
+            <span class="bg-white text-dark rounded shadow px-2 me-2">{{name}}</span>
+          </h1>
         </div>
+        <ul class="navbar-nav scroll">
+          <ul class="list-unstyled px-2">
+            <li class="">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
+                [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['editar']}}]">
+                <i class="fas fa-edit"></i> Editar
+              </a>
+            </li>
+            <li class="">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
+                <i class="fas fa-sack-dollar"></i> Costos fijos
+              </a>
+            </li>
+            <li class="">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
+                [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['solicitar-donaciones']}}]">
+                <i class="far fa-hand-holding-usd"></i> Solicitar donaciones
+              </a>
+            </li>
+            <li class="">
+              <a href="#" id="main-title" class="text-decoration-none px-3 py-2 d-block item-hover">
+                <i class="far fa-box-usd"></i> Ver donaciones
+              </a>
+            </li>
+            <li class="">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
+                <i class="fas fa-hands-heart"></i> Voluntarios
+              </a>
+            </li>
+            <li class="">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
+                [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['estadisticas']}}]">
+                <i class="fas fa-wave-triangle"></i> Estadisticas
+              </a>
+            </li>
+          </ul>
+        </ul>
       </div>
     </div>
-    <div class="content">    
-      <router-outlet name="campaign"></router-outlet>
-    </div>
   </div>
-  
+  <div class="content">
+    <router-outlet name="campaign"></router-outlet>
+  </div>
+</div>
