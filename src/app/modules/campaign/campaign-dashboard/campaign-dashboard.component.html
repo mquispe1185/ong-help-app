@@ -14,19 +14,18 @@
           <ul class="list-unstyled px-2">
             <li class="">
               <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
-              [routerLink]="['/ong-dashboard', {outlets: {ong: ['editar']}}]">
+                [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['editar']}}]">
                 <i class="fas fa-edit"></i> Editar
               </a>
             </li>
             <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
-              [routerLink]="['/ong-dashboard', {outlets: {ong: ['costos-fijos']}}]">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
                 <i class="fas fa-sack-dollar"></i> Costos fijos
               </a>
             </li>
             <li class="">
               <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
-              [routerLink]="['/ong-dashboard', {outlets: {ong: ['solicitar-donaciones']}}]">
+                [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['solicitar-donaciones']}}]">
                 <i class="far fa-hand-holding-usd"></i> Solicitar donaciones
               </a>
             </li>
@@ -41,7 +40,8 @@
               </a>
             </li>
             <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
+              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
+                [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['estadisticas']}}]">
                 <i class="fas fa-wave-triangle"></i> Estadisticas
               </a>
             </li>
@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <div class="content">    
-    <router-outlet name="ong"></router-outlet>
+  <div class="content">
+    <router-outlet name="campaign"></router-outlet>
   </div>
 </div>
