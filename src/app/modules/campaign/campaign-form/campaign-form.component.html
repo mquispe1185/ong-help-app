@@ -1,98 +1,118 @@
 <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col col-md-8 col-xl-5 card p-4 mx-2 my-4 shadow">
-        <h1 class="text-center">Datos de la Campaña</h1>
-        <form (ngSubmit)="onSubmit(campaignForm)" #campaignForm="ngForm">
-          <div class="form-group mt-4">
-            <label class="form-label" for="name">Nombre</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="campaign.name" name="name" #name="ngModel">
-            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-              Name is required
-            </div>
-          </div><!-- Nombre -->
-  
-          <div class="form-group mt-4">
-            <label for="description" class="form-label">Descripcion</label>
-            <textarea [(ngModel)]='campaign.description' class="form-control" rows="3" name="description">
-            </textarea>
-          </div><!-- Descripcion -->
-  
-          <div class="form-group mt-4">
-            <label for="phone">Telefono</label>
-            <input type="text" class="form-control" id="phone" required [(ngModel)]="campaign.phone" name="phone"
-              #phone="ngModel">
-            <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
-              Phone is required
-            </div>
-          </div><!-- Telefono -->
-  
-          <div class="form-group mt-4">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" required [(ngModel)]="campaign.email" name="email"
-              #email="ngModel">
-            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-              Email is required
-            </div>
-          </div><!-- Email -->
-  
-          <div class="form-group mt-4">
-            <label for="facebook">Facebook</label>
-            <input type="text" class="form-control" id="facebook" required [(ngModel)]="campaign.facebook" name="facebook"
-              #facebook="ngModel">
-          </div><!-- Facebook -->
-  
-          <div class="form-group mt-4">
-            <label for="instagram">Instagram</label>
-            <input type="text" class="form-control" id="instagram" required [(ngModel)]="campaign.instagram" name="instagram"
-              #instagram="ngModel">
-          </div><!-- Instagram -->
-  
-          <div class="form-group mt-4">
-            <label for="twitter">Twitter</label>
-            <input type="text" class="form-control" id="twitter" required [(ngModel)]="campaign.twitter" name="twitter"
-              #twitter="ngModel">
-          </div><!-- Twitter -->
-  
-          <div class="form-group mt-4">
-            <label for="category">Categoria</label>
-            <select class="form-control" id="category" required [(ngModel)]="campaign.category_id" name="category"
-              #category="ngModel">
-              <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-            </select>
-            <div [hidden]="category.valid || category.pristine" class="alert alert-danger">
-              Category is required
-            </div>
-          </div><!-- Categoria -->
-  
-          <div class="form-group mt-4">
-            <label for="city">Ciudad</label>
-            <select class="form-control" id="city" required [(ngModel)]="campaign.city_id" name="city" #city="ngModel">
-              <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
-            </select>
-            <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
-              City is required
-            </div>
-          </div><!-- Ciudad -->
-  
-          <div class="form-group mt-4">
-            <label for="tags" class="form-label">Tags</label>
-            <textarea [(ngModel)]='campaign.tags' class="form-control" rows="3" name="tags">
-                    </textarea>
-          </div><!-- Tags -->
-  
-          <div class="form-group mt-4">
-            <label for="video_url">Video URL</label>
-            <input type="text" class="form-control" id="video_url" [(ngModel)]="campaign.video_url" name="video_url">
-          </div><!-- Video URL -->
-  
-          <div class="form-group mt-4">
-            <button type="submit" class="btn btn-success" [disabled]="!campaignForm.form.valid">Submit</button>
-            <button type="button" class="btn btn-default" (click)="newCampaign(); campaignForm.reset()">New Campaign</button>
-            <i>with</i> reset 
-          </div><!-- botones -->
-  
-  
-        </form>
-      </div>
+  <div class="row justify-content-md-center">
+    <div class="col col-md-10 col-xl-8 card p-4 mx-2 my-4 shadow font1">
+      <h1 class="formtittle2">Nueva Campaña</h1>
+      <form (ngSubmit)="onSubmit(campaignForm)" #campaignForm="ngForm">
+        <div class="form-floating mt-4">
+          <input type="text" class="form-control c1" id="name" placeholder="Nombre" required [(ngModel)]="campaign.name"
+            name="name" #name="ngModel">
+          <label class="form-label" for="floatingName">Nombre</label>
+          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            Name is required
+          </div>
+        </div><!-- Nombre -->
+
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mt-4">
+              <input type="text" class="form-control c2" id="email" placeholder="name@example.com" required
+                [(ngModel)]="campaign.email" name="email" #email="ngModel">
+              <label for="floatingEmail">Email</label>
+              <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                Email is required
+              </div>
+            </div><!-- Email -->
+          </div>
+          <div class="col-md">
+            <div class="form-floating mt-4">
+              <input type="text" class="form-control c2" id="phone" placeholder="Telefono" required
+                [(ngModel)]="campaign.phone" name="phone" #phone="ngModel">
+              <label for="floatingPhone">Telefono</label>
+              <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+                Phone is required
+              </div>
+            </div><!-- Telefono -->
+          </div>
+        </div>
+
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mt-4">
+              <select class="form-control c2" id="category" placeholder="Categoria" required
+                [(ngModel)]="campaign.category_id" name="category" #category="ngModel">
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+              </select>
+              <label for="category">Categoria</label>
+              <div [hidden]="category.valid || category.pristine" class="alert alert-danger">
+                Category is required
+              </div>
+            </div><!-- Categoria -->
+          </div>
+
+          <div class="col-md">
+            <div class="form-floating mt-4">
+              <select class="form-control c2" id="city" required [(ngModel)]="campaign.city_id" name="city"
+                #city="ngModel">
+                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+              </select>
+              <label for="city">Ciudad</label>
+              <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+                City is required
+              </div>
+            </div><!-- Ciudad -->
+          </div>
+        </div>
+
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mt-4">
+              <input type="text" class="form-control c3" id="facebook" placeholder="Facebook" required
+                [(ngModel)]="campaign.facebook" name="facebook" #facebook="ngModel">
+              <label for="floatingFacebook">Facebook</label>
+            </div><!-- Facebook -->
+          </div>
+          <div class="col-md">
+            <div class="form-floating mt-4">
+              <input type="text" class="form-control c3" id="instagram" placeholder="Instagram" required
+                [(ngModel)]="campaign.instagram" name="instagram" #instagram="ngModel">
+              <label for="instagram">Instagram</label>
+            </div><!-- Instagram -->
+          </div>
+        </div>
+
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mt-4">
+              <input type="text" class="form-control c3" id="twitter" placeholder="Twitter" required
+                [(ngModel)]="campaign.twitter" name="twitter" #twitter="ngModel">
+              <label for="twitter">Twitter</label>
+            </div><!-- Twitter -->
+          </div>
+          <div class="col-md">
+            <div class="form-floating mt-4">
+              <input type="text" class="form-control c3" id="video_url" placeholder="VideoURL" [(ngModel)]="campaign.video_url" name="video_url">
+              <label for="video_url">Video URL</label>
+            </div><!-- Video URL -->
+          </div>
+        </div>
+
+        <div class="form-floating mt-4">
+          <textarea [(ngModel)]='campaign.description' class="form-control c4" rows="3" placeholder="Descripcion" style="height: 100px" name="description">
+          </textarea>
+          <label for="description" class="form-label">Descripcion</label>
+        </div><!-- Descripcion -->
+
+        <div class="form-floating mt-4">
+          <textarea [(ngModel)]='campaign.tags' class="form-control c4" rows="3" placeholder="Tags" style="height: 100px" name="tags">
+                  </textarea>
+          <label for="tags" class="form-label">Tags</label>
+        </div><!-- Tags -->
+
+        <div class="form-floating mt-4">
+          <button type="submit" class="btn btn-success btn1" [disabled]="!campaignForm.form.valid">Enviar</button>
+        </div><!-- botones -->
+
+      </form>
     </div>
   </div>
+</div>
