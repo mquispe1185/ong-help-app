@@ -15,4 +15,9 @@ export class SearchService {
   getEntities(name: string): Observable<any[]> {
     return this.http.get<any[]>(this.BASE_URL + "?q=" + name);
   }
+
+  getInitEntities(): Observable<any[]> {
+    let url = `${this.BASE_URL}/init_entities`;
+    return this.http.get<any[]>(url);
+  }
 }
