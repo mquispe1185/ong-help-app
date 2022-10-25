@@ -17,8 +17,16 @@ const routes: Routes = [
     loadChildren: () => import('./modules/ong/ong.module').then(m => m.OngModule)
   },
   {
+    path: 'ong-form',
+    component: OngFormComponent
+  },
+  {
     path: 'campaign',
     loadChildren: () => import('./modules/campaign/campaign.module').then(m => m.CampaignModule)
+  },
+  {
+    path: 'campaign-form',
+    component: CampaignFormComponent
   },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   {

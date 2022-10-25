@@ -26,11 +26,11 @@ export class NavbarComponent implements OnInit {
   public entitySelected: any;
 
   constructor(public tokenService: AngularTokenService,
-    public ongService: OngService,
-    public campaignService: CampaignService,
-    private sharedService: SharedService,
-    public searchService: SearchService,
-    private router: Router) {
+              public ongService: OngService,
+              public campaignService: CampaignService,
+              private sharedService: SharedService,
+              public searchService: SearchService,
+              private router: Router) {
     this.reloadEventsubscription =
       this.sharedService.getReloadEvent().subscribe(() => {
         this.getOngs();
@@ -84,6 +84,11 @@ export class NavbarComponent implements OnInit {
     this.sharedService.sendReloadEvent()
   }
 
+  reloadPage(entity: any) {
+    localStorage.setItem('entitySelected', JSON.stringify(entity))
+    this.sharedService.sendReloadEvent()
+  }
+
   search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(300),
@@ -110,5 +115,6 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['./campaign']);
     }
     localStorage.setItem('entitySelected', JSON.stringify(event.item))
+    this.reloadPage(event.item)
   }
 }
