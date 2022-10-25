@@ -8,7 +8,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item" *ngIf="tokenService.currentUserData == undefined">
-          <button type="button" (click)="login()" class="menu-boton btn btn-link">Login with Google <i class="arrow"></i></button>
+          <button type="button" (click)="login()" class="menu-boton btn btn-link">Login with Google <i
+              class="arrow"></i></button>
+        </li>
+        <li class="nav-item">
+          <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="entitySelected"
+            [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter"
+            (selectItem)="redirect($event)" />
+          <small *ngIf="isSearching" class="form-text text-muted">buscando...</small>
+          <div class="invalid-feedback" *ngIf="isFailedSearch">Sorry, suggestions could not be loaded.</div>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/ong">Nueva Ong</a>
@@ -26,7 +34,8 @@
               <span class="dropdown-item fw-bold ml-2">ONGs</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let ong of ong_list">
-                  <a class="dropdown-item" href="#" routerLink="/ong-dashboard" (click)="reloadOngSidebar(ong)">{{ong.name}}</a>
+                  <a class="dropdown-item" href="#" routerLink="/ong-dashboard"
+                    (click)="reloadSidebar(ong)">{{ong.name}}</a>
                 </li>
               </ul>
             </li>
@@ -34,7 +43,8 @@
               <span class="dropdown-item fw-bold ml-2">Campañas</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let campaign of campaign_list">
-                  <a class="dropdown-item" href="#" routerLink="/campaign-dashboard" (click)="reloadOngSidebar(campaign)">{{campaign.name}}</a>
+                  <a class="dropdown-item" href="#" routerLink="/campaign-dashboard"
+                    (click)="reloadSidebar(campaign)">{{campaign.name}}</a>
                 </li>
               </ul>
             </li>
