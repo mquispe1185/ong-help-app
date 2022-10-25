@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
+import { SearchService } from '../services/search.service';
 import { SharedService } from '../services/shared.service';
 
 @Component({
@@ -10,9 +11,11 @@ import { SharedService } from '../services/shared.service';
 export class InicioComponent implements OnInit {
 
   response:any;
+  init_entities: any[] = [];
 
   constructor(public tokenService: AngularTokenService,
-              private sharedService: SharedService) { }
+              private sharedService: SharedService,
+              private searchService: SearchService) { }
 
   ngOnInit(): void {
     this.tokenService.validateToken().subscribe(
@@ -23,6 +26,19 @@ export class InicioComponent implements OnInit {
                     this.response = error['statusText']}
     )
     this.sharedService.sendReloadEvent()
-  }  
+    this.getInitEntities()
+  }
+
+  getInitEntities() {
+    this.searchService.getInitEntities().subscribe(
+      res_initEntities => {
+        this.init_entities = res_initEntities;
+      }
+    );
+  }
+
+  displayJSON() {
+    return JSON.stringify(this.init_entities, null, 4)
+  }
 
 }

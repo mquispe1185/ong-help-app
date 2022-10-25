@@ -21,4 +21,9 @@ export class CampaignService {
     let url = `${this.BASE_URL}/user_campaigns`;
     return this.http.get<Campaign[]>(url);
   }
+
+  getCampaign(id: string): Observable<Campaign> {
+    let url = `${this.BASE_URL}/${id}`;
+    return this.http.get<Campaign>(url);
+  }
 }

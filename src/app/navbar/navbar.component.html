@@ -13,11 +13,18 @@
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png" alt="" style="width:25px;height:25px;">
           <button type="button" (click)="login()" class="menu-boton btn btn-link text">Ingresá con Google <i class="arrow"></i></button>
         </li>
-        <li class="nav-item" *ngIf="tokenService.currentUserData != undefined">
-          <a class="nav-link" routerLink="/ong">Nueva Ong</a>
+        <li class="nav-item">
+          <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="entitySelected"
+            [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter"
+            (selectItem)="redirect($event)" />
+          <small *ngIf="isSearching" class="form-text text-muted">buscando...</small>
+          <div class="invalid-feedback" *ngIf="isFailedSearch">Sorry, suggestions could not be loaded.</div>
         </li>
         <li class="nav-item" *ngIf="tokenService.currentUserData != undefined">
-          <a class="nav-link" routerLink="/campaign">Nueva Campaña</a>
+          <a class="nav-link" routerLink="/ong-form">Nueva Ong</a>
+        </li>
+        <li class="nav-item" *ngIf="tokenService.currentUserData != undefined">
+          <a class="nav-link" routerLink="/campaign-form">Nueva Campaña</a>
         </li>
         <div class="dropdown" *ngIf="tokenService.currentUserData != undefined">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -29,7 +36,8 @@
               <span class="dropdown-item fw-bold ml-2">ONGs</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let ong of ong_list">
-                  <a class="dropdown-item" href="#" routerLink="/ong-dashboard" (click)="reloadOngSidebar(ong)">{{ong.name}}</a>
+                  <a class="dropdown-item" href="#" routerLink="/ong-dashboard"
+                    (click)="reloadSidebar(ong)">{{ong.name}}</a>
                 </li>
               </ul>
             </li>
@@ -37,7 +45,8 @@
               <span class="dropdown-item fw-bold ml-2">Campañas</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let campaign of campaign_list">
-                  <a class="dropdown-item" href="#" routerLink="/campaign-dashboard" (click)="reloadOngSidebar(campaign)">{{campaign.name}}</a>
+                  <a class="dropdown-item" href="#" routerLink="/campaign-dashboard"
+                    (click)="reloadSidebar(campaign)">{{campaign.name}}</a>
                 </li>
               </ul>
             </li>
