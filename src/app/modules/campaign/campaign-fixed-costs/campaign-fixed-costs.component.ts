@@ -3,11 +3,11 @@ import { FixedCost } from 'src/app/models/fixed-cost.model';
 import { FixedCostsService } from 'src/app/services/fixed-costs.service';
 
 @Component({
-  selector: 'app-ong-fixed-costs',
-  templateUrl: './ong-fixed-costs.component.html',
-  styleUrls: ['./ong-fixed-costs.component.scss']
+  selector: 'app-campaign-fixed-costs',
+  templateUrl: './campaign-fixed-costs.component.html',
+  styleUrls: ['./campaign-fixed-costs.component.scss']
 })
-export class OngFixedCostsComponent implements OnInit {
+export class CampaignFixedCostsComponent implements OnInit {
 
   fixedcost_list: FixedCost[] = [];
 
@@ -19,7 +19,7 @@ export class OngFixedCostsComponent implements OnInit {
 
   getFixedCosts() {
     let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
-    this.fixedcostsService.getFixedCosts('Ong', obj.id).subscribe(
+    this.fixedcostsService.getFixedCosts('Campaign', obj.id).subscribe(
       res_fixedcosts => { this.fixedcost_list = res_fixedcosts }
     )
   }

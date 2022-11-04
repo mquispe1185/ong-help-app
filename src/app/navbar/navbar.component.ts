@@ -26,15 +26,17 @@ export class NavbarComponent implements OnInit {
   public entitySelected: any;
 
   constructor(public tokenService: AngularTokenService,
-              public ongService: OngService,
-              public campaignService: CampaignService,
+              private ongService: OngService,
+              private campaignService: CampaignService,
               private sharedService: SharedService,
-              public searchService: SearchService,
+              private searchService: SearchService,
               private router: Router) {
     this.reloadEventsubscription =
-      this.sharedService.getReloadEvent().subscribe(() => {
-        this.getOngs();
-        this.getCampaigns()
+      this.sharedService.getReloadEvent().subscribe((res) => {
+        if (res === true) {
+          this.getOngs();
+          this.getCampaigns()
+        }        
       })
   }
 
@@ -64,8 +66,7 @@ export class NavbarComponent implements OnInit {
   getOngs() {
     this.ongService.myOngs().subscribe(
       res_ongs => {
-        this.ong_list = res_ongs;
-        localStorage.setItem('entitySelected', JSON.stringify(res_ongs[0]))
+        this.ong_list = res_ongs
       }
     );
   }
@@ -73,20 +74,21 @@ export class NavbarComponent implements OnInit {
   getCampaigns() {
     this.campaignService.myCampaigns().subscribe(
       res_campaigns => {
-        this.campaign_list = res_campaigns;
-        localStorage.setItem('entitySelected', JSON.stringify(res_campaigns[0]))
+        this.campaign_list = res_campaigns
       }
     );
   }
 
-  reloadSidebar(entity: any) {
-    localStorage.setItem('entitySelected', JSON.stringify(entity))
-    this.sharedService.sendReloadEvent()
+  reloadSidebarOng(ong: Ong) {
+    this.router.navigate(['./ong-dashboard']);
+    localStorage.setItem('entitySelected', JSON.stringify(ong))
+    this.sharedService.sendReloadEvent(false)
   }
 
-  reloadPage(entity: any) {
-    localStorage.setItem('entitySelected', JSON.stringify(entity))
-    this.sharedService.sendReloadEvent()
+  reloadSidebarCampaign(campaign: Campaign) {
+    this.router.navigate(['./campaign-dashboard']);
+    localStorage.setItem('entitySelected', JSON.stringify(campaign))
+    this.sharedService.sendReloadEvent(false)
   }
 
   search = (text$: Observable<string>) =>
@@ -115,6 +117,6 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['./campaign']);
     }
     localStorage.setItem('entitySelected', JSON.stringify(event.item))
-    this.reloadPage(event.item)
+    this.sharedService.sendReloadEvent(false)
   }
 }

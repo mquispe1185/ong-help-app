@@ -36,8 +36,8 @@
               <span class="dropdown-item fw-bold ml-2">ONGs</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let ong of ong_list">
-                  <a class="dropdown-item" href="#" routerLink="/ong-dashboard"
-                    (click)="reloadSidebar(ong)">{{ong.name}}</a>
+                  <a class="dropdown-item" role="button"
+                    (click)="reloadSidebarOng(ong)">{{ong.name}}</a>
                 </li>
               </ul>
             </li>
@@ -45,8 +45,8 @@
               <span class="dropdown-item fw-bold ml-2">Campañas</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let campaign of campaign_list">
-                  <a class="dropdown-item" href="#" routerLink="/campaign-dashboard"
-                    (click)="reloadSidebar(campaign)">{{campaign.name}}</a>
+                  <a class="dropdown-item" role="button"
+                    (click)="reloadSidebarCampaign(campaign)">{{campaign.name}}</a>
                 </li>
               </ul>
             </li>

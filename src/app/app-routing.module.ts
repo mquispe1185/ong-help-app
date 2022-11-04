@@ -9,6 +9,7 @@ import { CampaignDashboardComponent } from './modules/campaign/campaign-dashboar
 import { CampaignDonationsComponent } from './modules/campaign/campaign-donations/campaign-donations.component';
 import { CampaignStatisticsComponent } from './modules/campaign/campaign-statistics/campaign-statistics.component';
 import { CampaignFormComponent } from './modules/campaign/campaign-form/campaign-form.component';
+import { CampaignFixedCostsComponent } from './modules/campaign/campaign-fixed-costs/campaign-fixed-costs.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
     component: CampaignDashboardComponent,
     children: [
       { path: 'estadisticas', component: CampaignStatisticsComponent, outlet: 'campaign' },
+      { path: 'costos-fijos', component: CampaignFixedCostsComponent, outlet: 'campaign' },
       { path: 'solicitar-donaciones', component: CampaignDonationsComponent, outlet: 'campaign' },
       { path: 'editar', component: CampaignFormComponent, outlet: 'campaign' }
     ]
