@@ -29,7 +29,6 @@ export class CampaignDashboardComponent implements OnInit {
       error => { this.reponse = error['statusText'] }
     )
     this.campaignSelected = JSON.parse(localStorage.getItem('entitySelected') ?? "Default")
-    this.sharedService.sendReloadEvent()
   }
 
   show() {

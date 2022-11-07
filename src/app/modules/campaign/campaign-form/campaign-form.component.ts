@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AngularTokenService } from 'angular-token';
 import { Campaign } from 'src/app/models/campaign.model';
 import { Category } from 'src/app/models/category.model';
@@ -7,6 +8,7 @@ import { City } from 'src/app/models/city.model';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { CitiesService } from 'src/app/services/cities.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-campaign-form',
@@ -15,51 +17,57 @@ import { CitiesService } from 'src/app/services/cities.service';
 })
 export class CampaignFormComponent implements OnInit {
 
-  categories:Category[] = []
-  cities:City[] = []
+  categories: Category[] = []
+  cities: City[] = []
   campaign = new Campaign();
   submitted = false;
 
-  constructor(public tokenService: AngularTokenService, 
-    public categoriesService: CategoriesService,
-    public citiesService: CitiesService,
-    public campaignService: CampaignService) { }
+  constructor(public tokenService: AngularTokenService,
+              private categoriesService: CategoriesService,
+              private citiesService: CitiesService,
+              private campaignService: CampaignService,
+              private router: Router,
+              private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    console.log('holaaa estoy cargando')
     this.tokenService.validateToken().subscribe(
-      res => { this.getCategories();
-               this.getCities() }
+      res => {
+        this.getCategories();
+        this.getCities()
+      }
     )
-
   }
 
-  onSubmit(campaignForm:NgForm) {
+  onSubmit(campaignForm: NgForm) {
     this.submitted = true;
     let city = this.cities.find(c => c.id == this.campaign.city_id);
-    if (city){
+    if (city) {
       this.campaign.province_id = city.province.id
     }
     this.campaignService.addCampaign(this.campaign).subscribe(
-      res => { campaignForm.reset()},
-      error => { console.log(error)}); 
-    console.log('nueva campania', this.campaign)
+      res => {
+        campaignForm.reset();
+        localStorage.setItem('entitySelected', JSON.stringify(res));
+        this.sharedService.sendReloadEvent(true);
+        this.router.navigate(['/campaign-dashboard']);
+      },
+      error => { console.log(error) }
+    );
   }
-
 
   newCampaign() {
     this.campaign = new Campaign();
   }
 
-  getCategories(){
+  getCategories() {
     this.categoriesService.getCategories().subscribe(
-      res_categories => { this.categories = res_categories}
+      res_categories => { this.categories = res_categories }
     )
   }
 
-  getCities(){
+  getCities() {
     this.citiesService.getCities().subscribe(
-      res_cities => { this.cities = res_cities}
+      res_cities => { this.cities = res_cities }
     )
   }
 

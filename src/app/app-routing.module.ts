@@ -9,6 +9,7 @@ import { CampaignDashboardComponent } from './modules/campaign/campaign-dashboar
 import { CampaignDonationsComponent } from './modules/campaign/campaign-donations/campaign-donations.component';
 import { CampaignStatisticsComponent } from './modules/campaign/campaign-statistics/campaign-statistics.component';
 import { CampaignFormComponent } from './modules/campaign/campaign-form/campaign-form.component';
+import { CampaignFixedCostsComponent } from './modules/campaign/campaign-fixed-costs/campaign-fixed-costs.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'estadisticas', component: CampaignStatisticsComponent, outlet: 'campaign' },
+      { path: 'costos-fijos', component: CampaignFixedCostsComponent, outlet: 'campaign' },
       { path: 'solicitar-donaciones', component: CampaignDonationsComponent, outlet: 'campaign' },
       { path: 'editar', component: CampaignFormComponent, outlet: 'campaign' }
     ]
