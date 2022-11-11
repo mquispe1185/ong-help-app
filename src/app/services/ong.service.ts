@@ -26,7 +26,7 @@ export class OngService {
     return this.http.get<Ong[]>(url);
   }
 
-  getOng(id: string): Observable<Ong> {
+  getOng(id: number): Observable<Ong> {
     let url = `${this.BASE_URL}/${id}`;
     return this.http.get<Ong>(url);
   }
