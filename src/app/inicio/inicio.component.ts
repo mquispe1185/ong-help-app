@@ -25,7 +25,7 @@ export class InicioComponent implements OnInit {
       error =>    {console.log(error['statusText']),
                     this.response = error['statusText']}
     )
-    this.sharedService.sendReloadEvent()
+    this.sharedService.sendReloadEvent(true)
     this.getInitEntities()
   }
 

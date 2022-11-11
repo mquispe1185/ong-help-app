@@ -48,7 +48,7 @@ export class OngEditComponent implements OnInit {
     this.ongService.updateOng(this.ong).subscribe((res) => {
       this.ong = res;
       localStorage.setItem('entitySelected', JSON.stringify(this.ong));
-      this.sharedService.sendReloadEvent();
+      this.sharedService.sendReloadEvent(true);
     });
   }
 }

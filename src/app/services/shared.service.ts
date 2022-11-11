@@ -10,11 +10,11 @@ export class SharedService {
 
   constructor() { }
 
-  sendReloadEvent() {
-    this.subject.next(true);
+  sendReloadEvent(reload: boolean) {
+    this.subject.next(reload);
   }
-  
-  getReloadEvent(): Observable<any>{ 
+
+  getReloadEvent(): Observable<any> {
     return this.subject.asObservable();
   }
 

@@ -10,6 +10,8 @@ import { CampaignDonationsComponent } from './modules/campaign/campaign-donation
 import { CampaignStatisticsComponent } from './modules/campaign/campaign-statistics/campaign-statistics.component';
 import { CampaignFormComponent } from './modules/campaign/campaign-form/campaign-form.component';
 import { OngEditComponent } from './modules/ong/ong-edit/ong-edit.component';
+import { CampaignFixedCostsComponent } from './modules/campaign/campaign-fixed-costs/campaign-fixed-costs.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -33,6 +35,7 @@ const routes: Routes = [
   {
     path: 'ong-dashboard',
     component: OngDashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'costos-fijos', component: OngFixedCostsComponent, outlet: 'ong' },
       { path: 'solicitar-donaciones', component: OngDonationsComponent, outlet: 'ong' },
@@ -42,8 +45,10 @@ const routes: Routes = [
   {
     path: 'campaign-dashboard',
     component: CampaignDashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'estadisticas', component: CampaignStatisticsComponent, outlet: 'campaign' },
+      { path: 'costos-fijos', component: CampaignFixedCostsComponent, outlet: 'campaign' },
       { path: 'solicitar-donaciones', component: CampaignDonationsComponent, outlet: 'campaign' },
       { path: 'editar', component: CampaignFormComponent, outlet: 'campaign' }
     ]

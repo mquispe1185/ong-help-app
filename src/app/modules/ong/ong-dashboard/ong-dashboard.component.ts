@@ -29,7 +29,6 @@ export class OngDashboardComponent implements OnInit {
       error => { this.reponse = error['statusText'] }
     )
     this.ongSelected = JSON.parse(localStorage.getItem('entitySelected') ?? "Default")
-    this.sharedService.sendReloadEvent()
   }
 
   show() {

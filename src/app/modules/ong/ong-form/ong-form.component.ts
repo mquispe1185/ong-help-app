@@ -8,6 +8,7 @@ import { Ong } from 'src/app/models/ong.model';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { CitiesService } from 'src/app/services/cities.service';
 import { OngService } from 'src/app/services/ong.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-ong-form',
@@ -16,51 +17,57 @@ import { OngService } from 'src/app/services/ong.service';
 })
 export class OngFormComponent implements OnInit {
 
-  categories:Category[] = []
-  cities:City[] = []
-  model = new Ong();
+  categories: Category[] = []
+  cities: City[] = []
+  ong = new Ong();
   submitted = false;
-  constructor(public tokenService: AngularTokenService, 
-              public categoriesService: CategoriesService,
-              public citiesService: CitiesService,
-              public ongService: OngService,
-              private router: Router) { }
+  
+  constructor(public tokenService: AngularTokenService,
+              private categoriesService: CategoriesService,
+              private citiesService: CitiesService,
+              private ongService: OngService,
+              private router: Router,
+              private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.tokenService.validateToken().subscribe(
-      res => { this.getCategories();
-               this.getCities() }
+      res => {
+        this.getCategories();
+        this.getCities()
+      }
     )
-    
   }
 
-  onSubmit(ongForm:NgForm) {
+  onSubmit(ongForm: NgForm) {
     this.submitted = true;
-    let city = this.cities.find(c => c.id == this.model.city_id);
-    if (city){
-      this.model.province_id = city.province.id
+    let city = this.cities.find(c => c.id == this.ong.city_id);
+    if (city) {
+      this.ong.province_id = city.province.id
     }
-    this.ongService.addOng(this.model).subscribe(
-      res => { ongForm.reset()},
-      error => { console.log(error)});
-    localStorage.setItem('entitySelected', JSON.stringify(this.model));
-    this.router.navigate(['/dashboard']);
+    this.ongService.addOng(this.ong).subscribe(
+      res => {
+        ongForm.reset();
+        localStorage.setItem('entitySelected', JSON.stringify(res));
+        this.sharedService.sendReloadEvent(true);
+        this.router.navigate(['/ong-dashboard']);
+      },
+      error => { console.log(error) }
+    );
   }
-
 
   newOng() {
-    this.model = new Ong();
+    this.ong = new Ong();
   }
 
-  getCategories(){
+  getCategories() {
     this.categoriesService.getCategories().subscribe(
-      res_categories => { this.categories = res_categories}
+      res_categories => { this.categories = res_categories }
     )
   }
 
-  getCities(){
+  getCities() {
     this.citiesService.getCities().subscribe(
-      res_cities => { this.cities = res_cities}
+      res_cities => { this.cities = res_cities }
     )
   }
 

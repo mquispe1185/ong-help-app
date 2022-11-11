@@ -7,6 +7,7 @@ export class User {
     email: string;
     last_name: string;
     first_name: string;
+    role: string;
 
     constructor(data?:any){
         Object.assign(this, data)

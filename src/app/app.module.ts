@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { AngularTokenModule } from 'angular-token';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
+import { AuthHandlerInterceptor } from './interceptor/auth-handler.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +46,7 @@ import { InicioComponent } from './inicio/inicio.component';
          oAuthBase:                  environment.API_URL,
          oAuthPaths: {
              github:                 'auth/github',
-             google:                'auth/google_oauth2',
+             google:                 'auth/google_oauth2',
          },
          oAuthCallbackPath:          'inicio',
          oAuthWindowType:            'sameWindow',
@@ -57,7 +57,13 @@ import { InicioComponent } from './inicio/inicio.component';
 
   }),
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthHandlerInterceptor, 
+      multi: true 
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

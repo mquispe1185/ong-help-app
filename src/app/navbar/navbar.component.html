@@ -1,27 +1,34 @@
-<nav class="navbar navbar-expand-lg bg-white font2 ">
+<nav class="navbar navbar-expand-lg navbar-light nav-bg fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand " href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    <a class="navbar-brand" href="#">
+      <i class="fas fa-home-lg-alt"></i>
+    </a>
+    <button class="navbar-toggler bor" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <i class="far fa-cog"></i>
     </button>
+    <form inline="true" class="d-sm-inline-block">
+      <div class="nav-item">
+        <input id="typeahead-basic" type="text" class="form-control format" placeholder="Buscar ONG"
+          [(ngModel)]="entitySelected" [ngbTypeahead]="search" [inputFormatter]="formatter" name="entitySelected"
+          [resultFormatter]="formatter" (selectItem)="redirect($event)" />
+        <small *ngIf="isSearching" class="form-text text-muted">buscando...</small>
+        <div class="invalid-feedback" *ngIf="isFailedSearch">Sorry, suggestions could not be loaded.</div>
+      </div>
+    </form>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item" *ngIf="tokenService.currentUserData == undefined">
-          <button type="button" (click)="login()" class="menu-boton btn btn-link">Login with Google <i
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"
+            alt="" style="width:25px;height:25px;">
+          <button type="button" (click)="login()" class="menu-boton btn btn-link text">Ingresá con Google <i
               class="arrow"></i></button>
         </li>
-        <li class="nav-item">
-          <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="entitySelected"
-            [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter"
-            (selectItem)="redirect($event)" />
-          <small *ngIf="isSearching" class="form-text text-muted">buscando...</small>
-          <div class="invalid-feedback" *ngIf="isFailedSearch">Sorry, suggestions could not be loaded.</div>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="tokenService.currentUserData != undefined">
           <a class="nav-link" routerLink="/ong-form">Nueva Ong</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="tokenService.currentUserData != undefined">
           <a class="nav-link" routerLink="/campaign-form">Nueva Campaña</a>
         </li>
         <div class="dropdown" *ngIf="tokenService.currentUserData != undefined">
@@ -34,8 +41,8 @@
               <span class="dropdown-item fw-bold ml-2">ONGs</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let ong of ong_list">
-                  <a class="dropdown-item" href="#" routerLink="/ong-dashboard"
-                    (click)="reloadSidebar(ong)">{{ong.name}}</a>
+                  <a class="dropdown-item" role="button"
+                    (click)="reloadSidebarOng(ong)">{{ong.name}}</a>
                 </li>
               </ul>
             </li>
@@ -43,8 +50,8 @@
               <span class="dropdown-item fw-bold ml-2">Campañas</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let campaign of campaign_list">
-                  <a class="dropdown-item" href="#" routerLink="/campaign-dashboard"
-                    (click)="reloadSidebar(campaign)">{{campaign.name}}</a>
+                  <a class="dropdown-item" role="button"
+                    (click)="reloadSidebarCampaign(campaign)">{{campaign.name}}</a>
                 </li>
               </ul>
             </li>
