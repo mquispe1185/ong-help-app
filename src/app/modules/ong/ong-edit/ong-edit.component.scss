@@ -1,0 +1,35 @@
+@import 'src/styles.scss';
+
+.font1{
+  color:$color-tex;
+  font-family: $app-font;
+}
+
+.font2{
+  color: $color-ti;
+  font-family:$app-font;
+}
+.c1{
+  background-color: $col-input;
+  border-color: $col-borde-input;
+}
+
+.body{
+  background-color: $backg-col;
+}
+
+.edit-tittle{
+  text-align: center;
+  font-weight: 700;
+}
+
+.btn1{
+  float:center;
+  width: 120px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+}

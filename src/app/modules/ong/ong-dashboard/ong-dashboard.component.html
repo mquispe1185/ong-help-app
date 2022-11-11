@@ -12,36 +12,36 @@
         </div>
         <ul class="navbar-nav scroll">
           <ul class="list-unstyled px-2">
-            <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
-              [routerLink]="['/ong-dashboard', {outlets: {ong: ['editar']}}]">
+            <li class="nav-item">
+              <a href="#" class="dashboard-link px-3 py-4 d-block"
+              [routerLink]="['/ong-dashboard', {outlets: {ong: ['editar']}}]" routerLinkActive="active">
                 <i class="fas fa-edit"></i> Editar
               </a>
             </li>
-            <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
-              [routerLink]="['/ong-dashboard', {outlets: {ong: ['costos-fijos']}}]">
+            <li class="nav-item">
+              <a href="#" class="dashboard-link px-3 py-4 d-block"
+              [routerLink]="['/ong-dashboard', {outlets: {ong: ['costos-fijos']}}]" routerLinkActive="active">
                 <i class="fas fa-sack-dollar"></i> Costos fijos
               </a>
             </li>
-            <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover"
-              [routerLink]="['/ong-dashboard', {outlets: {ong: ['solicitar-donaciones']}}]">
+            <li class="nav-item">
+              <a href="#" class="dashboard-link px-3 py-4 d-block"
+              [routerLink]="['/ong-dashboard', {outlets: {ong: ['solicitar-donaciones']}}]" routerLinkActive="active">
                 <i class="far fa-hand-holding-usd"></i> Solicitar donaciones
               </a>
             </li>
-            <li class="">
-              <a href="#" id="main-title" class="text-decoration-none px-3 py-2 d-block item-hover">
+            <li class="nav-item">
+              <a href="#" id="main-title" class="dashboard-link px-3 py-4 d-block" routerLinkActive="active">
                 <i class="far fa-box-usd"></i> Ver donaciones
               </a>
             </li>
-            <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
+            <li class="nav-item">
+              <a href="#" class="dashboard-link px-3 py-4 d-block" routerLinkActive="active">
                 <i class="fas fa-hands-heart"></i> Voluntarios
               </a>
             </li>
-            <li class="">
-              <a href="#" class="text-decoration-none px-3 py-2 d-block item-hover">
+            <li class="nav-item">
+              <a href="#" class="dashboard-link px-3 py-4 d-block" routerLinkActive="active">
                 <i class="fas fa-wave-triangle"></i> Estadisticas
               </a>
             </li>
@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <div class="content">    
+  <div class="content">
     <router-outlet name="ong"></router-outlet>
   </div>
 </div>

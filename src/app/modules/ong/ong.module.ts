@@ -7,6 +7,7 @@ import { OngFormComponent } from './ong-form/ong-form.component';
 import { OngDashboardComponent } from './ong-dashboard/ong-dashboard.component';
 import { OngFixedCostsComponent } from './ong-fixed-costs/ong-fixed-costs.component';
 import { OngDonationsComponent } from './ong-donations/ong-donations.component';
+import { OngEditComponent } from './ong-edit/ong-edit.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { OngDonationsComponent } from './ong-donations/ong-donations.component';
     OngDashboardComponent,
     OngFixedCostsComponent,
     OngDonationsComponent,
+    OngEditComponent
   ],
   imports: [
     CommonModule,
