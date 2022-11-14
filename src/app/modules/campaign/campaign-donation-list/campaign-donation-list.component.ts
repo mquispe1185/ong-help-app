@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Contribution } from 'src/app/models/contribution.model';
 import { Donation } from 'src/app/models/donation.model';
+import { ContributionsService } from 'src/app/services/contributions.service';
 import { DonationsService } from 'src/app/services/donations.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class CampaignDonationListComponent implements OnInit {
   donation_list: Donation[] = [];
   contribution_list: Contribution[] = [];
 
-  constructor(private donationsService: DonationsService) { }
+  constructor(private donationsService: DonationsService,
+              private contributionsService: ContributionsService) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +33,7 @@ export class CampaignDonationListComponent implements OnInit {
 
   getContributions() {
     let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
-    this.donationsService.getContributions('Ong', obj.id).subscribe(
+    this.contributionsService.getContributions('Ong', obj.id).subscribe(
       res_contributions => { this.contribution_list = res_contributions }
     )
   }

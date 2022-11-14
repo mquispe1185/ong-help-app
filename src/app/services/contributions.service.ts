@@ -2,20 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Donation } from '../models/donation.model';
+import { Contribution } from '../models/contribution.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DonationsService {
+export class ContributionsService {
 
-  BASE_URL = `${environment.API_URL}/donations`;
+  BASE_URL = `${environment.API_URL}/contributions`;
 
   constructor(private http: HttpClient) { }
 
-  getDonations(type: string, id: number): Observable<Donation[]> {
+  getContributions(type: string, id: number): Observable<Contribution[]> {
     let url = `${this.BASE_URL}?type=${type}&id=${id}`;
-    return this.http.get<Donation[]>(url);
+    return this.http.get<Contribution[]>(url);
   }
 
 }

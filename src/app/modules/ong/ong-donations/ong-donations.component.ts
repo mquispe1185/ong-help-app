@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemDonation } from 'src/app/models/item-donation.model';
-import { DonationsService } from 'src/app/services/donations.service';
+import { ItemDonationsService } from 'src/app/services/item-donations.service';
 
 @Component({
   selector: 'app-ong-donations',
@@ -13,7 +13,7 @@ export class OngDonationsComponent implements OnInit {
   itemDonation_list: ItemDonation[] = [];
   closeResult = '';
 
-  constructor(private donationsService: DonationsService,
+  constructor(private itemDonationsService: ItemDonationsService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class OngDonationsComponent implements OnInit {
 
   getItemDonations() {
     let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
-    this.donationsService.getItemDonations('Ong', obj.id).subscribe(
+    this.itemDonationsService.getItemDonations('Ong', obj.id).subscribe(
       res_itemDonations => { this.itemDonation_list = res_itemDonations }
     )
   }
