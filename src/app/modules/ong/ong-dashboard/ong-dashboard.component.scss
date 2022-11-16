@@ -12,4 +12,6 @@
   margin-bottom: 50px;
   overflow-y: auto;
   font-family: $app-font;
+  z-index:100;
+  position: absolute;
 }

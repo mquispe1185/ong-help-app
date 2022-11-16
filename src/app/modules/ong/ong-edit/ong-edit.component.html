@@ -1,11 +1,9 @@
-  <div class="container" style="width: 40rem">
-  <div class="row justify-content-md-left">
-    <div class="col col-md-10 col-xl-8 card p-4 mx-2 my-4 shadow font2">
+  <div class="container md" >
+  <div class="row justify float-md-end">
+    <div class=" col-lg-6 col-md-8 col-sm-10 card p-4 mx-2 my-4 shadow font2">
       <h1 class="edit-tittle">Editar</h1>
       <form (ngSubmit)="updateOng()" #ongForm="ngForm">
         <label for="floatingInput" class="form-label">Nombre</label>
-
-
           <input type="text" class="form-control form-control-sm c1" id="Nombre" placeholder="Nombre" required [(ngModel)]="ong.name"
             name="name" #name="ngModel">
           <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
@@ -15,7 +13,6 @@
         <div class="row g-2">
           <div class="col-md">
             <label for="floatingEmail" class="form-label">Email</label>
-
               <input type="text" class="form-control form-control-sm c1" id="Email" placeholder="name@example.com" required
                 [(ngModel)]="ong.email" name="email" #email="ngModel">
               <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
