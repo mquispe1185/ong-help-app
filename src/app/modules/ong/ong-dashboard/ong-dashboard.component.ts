@@ -19,7 +19,7 @@ export class OngDashboardComponent implements OnInit {
               private sharedService: SharedService) {
     this.reloadEventsubscription =
       this.sharedService.getReloadEvent().subscribe(() => {
-        this.ongSelected = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
+        this.ongSelected = JSON.parse(localStorage.getItem('entitySelected') || '{}');
       })
   }
 
@@ -28,7 +28,7 @@ export class OngDashboardComponent implements OnInit {
       res => { this.reponse = res['data']['name'] },
       error => { this.reponse = error['statusText'] }
     )
-    this.ongSelected = JSON.parse(localStorage.getItem('entitySelected') ?? "Default")
+    this.ongSelected = JSON.parse(localStorage.getItem('entitySelected') || '{}')
   }
 
   show() {

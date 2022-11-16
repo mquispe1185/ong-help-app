@@ -21,7 +21,7 @@ export class CampaignDonationsComponent implements OnInit {
   }
 
   getItemDonations() {
-    let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
+    let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.itemDonationsService.getItemDonations('Campaign', obj.id).subscribe(
       res_itemDonations => { this.itemDonation_list = res_itemDonations }
     )

@@ -19,7 +19,7 @@ export class CampaignDashboardComponent implements OnInit {
               private sharedService: SharedService) {
     this.reloadEventsubscription =
       this.sharedService.getReloadEvent().subscribe(() => {
-        this.campaignSelected = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
+        this.campaignSelected = JSON.parse(localStorage.getItem('entitySelected') || '{}');
       })
   }
 
@@ -28,7 +28,7 @@ export class CampaignDashboardComponent implements OnInit {
       res => { this.reponse = res['data']['name'] },
       error => { this.reponse = error['statusText'] }
     )
-    this.campaignSelected = JSON.parse(localStorage.getItem('entitySelected') ?? "Default")
+    this.campaignSelected = JSON.parse(localStorage.getItem('entitySelected') || '{}')
   }
 
   show() {

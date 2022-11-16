@@ -21,7 +21,7 @@ export class CampaignDonationListComponent implements OnInit {
   }
 
   getDonations() {
-    let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
+    let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.donationsService.getDonations('Ong', obj.id).subscribe(
       res_donations => { this.donation_list = res_donations }
     )
@@ -32,7 +32,7 @@ export class CampaignDonationListComponent implements OnInit {
   }
 
   getContributions() {
-    let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
+    let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.contributionsService.getContributions('Ong', obj.id).subscribe(
       res_contributions => { this.contribution_list = res_contributions }
     )
