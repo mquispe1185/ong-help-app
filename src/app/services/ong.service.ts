@@ -33,6 +33,6 @@ export class OngService {
 
   updateOng(ong:Ong):Observable<any>{
     const url= `${this.BASE_URL}/${ong.id}`;
-    return this.http.put(url,ong);
+    return this.http.put(url, ong);
   }
 }
