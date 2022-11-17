@@ -8,6 +8,7 @@ import { CampaignDashboardComponent } from './campaign-dashboard/campaign-dashbo
 import { CampaignDonationsComponent } from './campaign-donations/campaign-donations.component';
 import { CampaignStatisticsComponent } from './campaign-statistics/campaign-statistics.component';
 import { CampaignFixedCostsComponent } from './campaign-fixed-costs/campaign-fixed-costs.component';
+import { CampaignDonationListComponent } from './campaign-donation-list/campaign-donation-list.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CampaignFixedCostsComponent } from './campaign-fixed-costs/campaign-fix
     CampaignDashboardComponent,
     CampaignDonationsComponent,
     CampaignStatisticsComponent,
-    CampaignFixedCostsComponent
+    CampaignFixedCostsComponent,
+    CampaignDonationListComponent
   ],
   imports: [
     CommonModule,

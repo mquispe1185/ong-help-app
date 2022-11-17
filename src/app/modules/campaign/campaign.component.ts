@@ -27,7 +27,7 @@ export class CampaignComponent implements OnInit {
   }
 
   getCampaign() {
-    let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
+    let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.campaignService.getCampaign(obj ? obj.id.toString() : '0').subscribe(
       res_campaign => { this.campaign = res_campaign }
     )
