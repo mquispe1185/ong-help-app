@@ -18,7 +18,7 @@ export class CampaignFixedCostsComponent implements OnInit {
   }
 
   getFixedCosts() {
-    let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
+    let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.fixedcostsService.getFixedCosts('Campaign', obj.id).subscribe(
       res_fixedcosts => { this.fixedcost_list = res_fixedcosts }
     )

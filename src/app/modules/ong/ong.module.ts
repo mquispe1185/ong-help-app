@@ -8,6 +8,7 @@ import { OngDashboardComponent } from './ong-dashboard/ong-dashboard.component';
 import { OngFixedCostsComponent } from './ong-fixed-costs/ong-fixed-costs.component';
 import { OngDonationsComponent } from './ong-donations/ong-donations.component';
 import { OngEditComponent } from './ong-edit/ong-edit.component';
+import { OngDonationListComponent } from './ong-donation-list/ong-donation-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { OngEditComponent } from './ong-edit/ong-edit.component';
     OngDashboardComponent,
     OngFixedCostsComponent,
     OngDonationsComponent,
-    OngEditComponent
+    OngEditComponent,
+    OngDonationListComponent,
   ],
   imports: [
     CommonModule,

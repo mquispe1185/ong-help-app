@@ -32,7 +32,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" id="main-title" class="dashboard-link  px-3 py-4 d-block" routerLinkActive="active">
+              <a href="#" id="main-title" class="dashboard-link  px-3 py-4 d-block" routerLinkActive="active"
+              [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['ver-donaciones']}}]">
                 <i class="far fa-box-usd"></i> Ver donaciones
               </a>
             </li>
