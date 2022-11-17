@@ -30,4 +30,9 @@ export class OngService {
     let url = `${this.BASE_URL}/${id}`;
     return this.http.get<Ong>(url);
   }
+
+  updateOng(ong:Ong):Observable<any>{
+    const url= `${this.BASE_URL}/${ong.id}`;
+    return this.http.put(url, ong);
+  }
 }
