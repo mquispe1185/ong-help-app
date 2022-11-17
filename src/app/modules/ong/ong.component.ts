@@ -27,8 +27,8 @@ export class OngComponent implements OnInit {
   }
 
   getOng() {
-    let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
-    this.ongService.getOng(obj ? obj.id.toString() : '0').subscribe(
+    let obj = JSON.parse(localStorage.getItem('entitySelected')|| '{}');
+    this.ongService.getOng(obj.id).subscribe(
       res_ong => { this.ong = res_ong }
     )
   }
