@@ -7,6 +7,7 @@ import { Category } from 'src/app/models/category.model';
 import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler';
 import { SearchService } from 'src/app/services/search.service';
 import { SharedService } from 'src/app/services/shared.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-ong-edit',
   templateUrl: './ong-edit.component.html',
@@ -49,6 +50,13 @@ export class OngEditComponent implements OnInit {
       this.ong = res;
       localStorage.setItem('entitySelected', JSON.stringify(this.ong));
       this.sharedService.sendReloadEvent(true);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'ONG Actualizada',
+        showConfirmButton: false,
+        timer: 2000
+      })
     });
   }
 }
