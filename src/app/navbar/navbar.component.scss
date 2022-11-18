@@ -1,9 +1,13 @@
 @import 'src/styles.scss';
+
+.font2 {
+  color: $color-ti;
+  font-family:$app-font;
+}
+
 .nav-bg {
     background: #fff;
     box-shadow: 0 0 2rem 0 rgb(41 48 66 / 10%);
-    position: relative;
-    display: flex;
     align-items: center;
     padding-top: 0.875rem;
     padding-right: 1.25rem;

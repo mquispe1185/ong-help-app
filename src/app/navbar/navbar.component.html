@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light nav-bg">
+<nav class="navbar navbar-expand-lg navbar-light nav-bg fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <i class="fas fa-home-lg-alt"></i>
@@ -10,7 +10,7 @@
     <form inline="true" class="d-sm-inline-block">
       <div class="nav-item">
         <input id="typeahead-basic" type="text" class="form-control format" placeholder="Buscar ONG"
-          [(ngModel)]="entitySelected" [ngbTypeahead]="search" [inputFormatter]="formatter"
+          [(ngModel)]="entitySelected" [ngbTypeahead]="search" [inputFormatter]="formatter" name="entitySelected"
           [resultFormatter]="formatter" (selectItem)="redirect($event)" />
         <small *ngIf="isSearching" class="form-text text-muted">buscando...</small>
         <div class="invalid-feedback" *ngIf="isFailedSearch">Sorry, suggestions could not be loaded.</div>

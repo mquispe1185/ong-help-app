@@ -9,6 +9,7 @@ import { CampaignDashboardComponent } from './modules/campaign/campaign-dashboar
 import { CampaignDonationsComponent } from './modules/campaign/campaign-donations/campaign-donations.component';
 import { CampaignStatisticsComponent } from './modules/campaign/campaign-statistics/campaign-statistics.component';
 import { CampaignFormComponent } from './modules/campaign/campaign-form/campaign-form.component';
+import { OngEditComponent } from './modules/ong/ong-edit/ong-edit.component';
 import { CampaignFixedCostsComponent } from './modules/campaign/campaign-fixed-costs/campaign-fixed-costs.component';
 import { AuthGuard } from './guards/auth.guard';
 import { OngDonationListComponent } from './modules/ong/ong-donation-list/ong-donation-list.component';
