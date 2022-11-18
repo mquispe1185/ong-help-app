@@ -18,4 +18,18 @@ export class ItemDonationsService {
     return this.http.get<ItemDonation[]>(url);
   }
 
+  addItemDonation(itemDonation: ItemDonation): Observable<any> {
+    return this.http.post<ItemDonation>(this.BASE_URL, itemDonation);
+  }
+
+  updateItemDonation(itemDonation: ItemDonation): Observable<any> {
+    let url = `${this.BASE_URL}/${itemDonation.id}`;
+    return this.http.put<ItemDonation>(url, itemDonation);
+  }
+
+  deleteItemDonation(itemDonation: ItemDonation): Observable<any> {
+    let url = `${this.BASE_URL}/${itemDonation.id}`;
+    return this.http.delete<ItemDonation>(url);
+  }
+
 }

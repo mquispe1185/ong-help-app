@@ -1,18 +1,40 @@
 <ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Formulario de solicitud</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-		<form>
-			<div class="mb-3">
-        <p>Aqui va el Form</p>
-			</div>
-		</form>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-	</div>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Formulario de solicitud</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit(itemDonationForm)" #itemDonationForm="ngForm">
+      <div class="form-floating mt-4">
+        <input type="text" class="form-control c1" id="Nombre" placeholder="Nombre" required
+          [(ngModel)]="itemDonation.title" name="name" #name="ngModel">
+        <label class="form-label" for="floatingInput">Título</label>
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+          Title is required
+        </div>
+      </div><!-- Titulo -->
+
+      <div class="form-floating mt-4">
+        <textarea [(ngModel)]='itemDonation.description' class="form-control c4" rows="3" placeholder="Descripcion"
+          style="height: 100px" name="description">
+        </textarea>
+        <label for="description" class="form-label">Descripción</label>
+      </div><!-- Descripcion -->
+
+      <div class="form-floating mt-4">
+        <input type="text" class="form-control c2" id="Phone" placeholder="Telefono" required
+          [(ngModel)]="itemDonation.mount" name="phone" #phone="ngModel">
+        <label for="floatingPhone">Monto</label>
+        <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+          Mount is required
+        </div>
+      </div><!-- Monto -->
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success btn1" [disabled]="!itemDonationForm.form.valid">Guardar</button>
+      </div>
+    </form>
+  </div>  
 </ng-template>
 
 <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Solicitar una donación</button>
@@ -21,7 +43,29 @@
 
 <pre>{{ closeResult }}</pre>
 
-<div class="container">
-  <p align="center">ong-donations works!</p>
-  <p>{{displayItemDonations()}}</p>
+<div>
+  <h1>Angular 13 HTML Table Example</h1>
+  <table class="center">
+    <thead>
+      <tr>
+        <th>#ID</th>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Monto</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of itemDonation_list">
+        <th>{{ item.id }}</th>
+        <td>{{ item.title }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.mount }}</td>
+        <td>
+          <button type="button" (click)="edit(item)">Editar</button>
+          <button type="button" (click)="delete(item)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

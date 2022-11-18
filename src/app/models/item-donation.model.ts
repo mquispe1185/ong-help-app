@@ -7,9 +7,11 @@ export class ItemDonation {
     balance: number;
     raised: number;
     created_by_id: number;
-    month: number;
-    year: number;
     status: number;
+    status_updated_by_id: number;
+    donatable_type: string;
+    donatable_id: number;
+    period_id: number;
 
     constructor(data?:any){
         Object.assign(this, data)
