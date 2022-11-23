@@ -80,14 +80,14 @@ export class NavbarComponent implements OnInit {
   }
 
   reloadSidebarOng(ong: Ong) {
-    this.router.navigate(['./ong-dashboard']);
     localStorage.setItem('entitySelected', JSON.stringify(ong))
+    this.router.navigate(['./ong-dashboard']);    
     this.sharedService.sendReloadEvent(false)
   }
 
   reloadSidebarCampaign(campaign: Campaign) {
-    this.router.navigate(['./campaign-dashboard']);
     localStorage.setItem('entitySelected', JSON.stringify(campaign))
+    this.router.navigate(['./campaign-dashboard']);    
     this.sharedService.sendReloadEvent(false)
   }
 

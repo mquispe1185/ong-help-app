@@ -12,6 +12,8 @@ export class ItemDonation {
     donatable_type: string;
     donatable_id: number;
     period_id: number;
+    //for serializer
+    editable: boolean;
 
     constructor(data?:any){
         Object.assign(this, data)
