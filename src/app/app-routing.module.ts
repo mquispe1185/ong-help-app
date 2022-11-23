@@ -42,7 +42,7 @@ const routes: Routes = [
       { path: 'costos-fijos', component: OngFixedCostsComponent, outlet: 'ong' },
       { path: 'solicitar-donaciones', component: OngDonationsComponent, outlet: 'ong' },
       { path: 'ver-donaciones', component: OngDonationListComponent, outlet: 'ong' },
-      { path: 'editar', component: OngFormComponent, outlet: 'ong' }
+      { path: 'editar', component: OngEditComponent, outlet: 'ong' }
     ]
   },
   {
