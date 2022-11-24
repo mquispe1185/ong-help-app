@@ -4,7 +4,7 @@ import { Province } from "./province.model";
 import { User } from "./user.model";
 
 export class Campaign {
-    
+    id: number;
     name: string;
     description: string;
     city_id: number;
@@ -19,15 +19,12 @@ export class Campaign {
     status: number;
     tags: string;
     video_url: string;
-
     user: User;
     province: Province;
     city: City;
     category: Category;
 
     constructor(data?:any){
-        Object.assign(this, data);
-    
+      Object.assign(this, data);
     }
-
 }
