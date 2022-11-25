@@ -1,3 +1,5 @@
+import { Period } from "./period.model";
+
 export class FixedCost {
 
     id: number;
@@ -7,9 +9,10 @@ export class FixedCost {
     balance: number;
     raised: number;
     created_by_id: number;
-    month: number;
-    year: number;
     status: number;
+    period_id: number;
+    period: Period;
+
 
     constructor(data?:any){
         Object.assign(this, data)
