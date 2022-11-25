@@ -1,3 +1,5 @@
+import { Period } from "./period.model";
+
 export class ItemDonation {
 
     id: number;
@@ -12,6 +14,7 @@ export class ItemDonation {
     donatable_type: string;
     donatable_id: number;
     period_id: number;
+    period: Period;
     //for serializer
     editable: boolean;
 
