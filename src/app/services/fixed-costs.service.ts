@@ -18,4 +18,18 @@ export class FixedCostsService {
     return this.http.get<FixedCost[]>(url);
   }
 
+  addFixedCost(fixedcost: FixedCost): Observable<any> {
+    return this.http.post<FixedCost>(this.BASE_URL, fixedcost);
+  }
+
+  updateFixedCost(fixedcost: FixedCost): Observable<any>{
+    let url = `${this.BASE_URL}/${fixedcost.id}`;
+    return this.http.put<FixedCost>(url, fixedcost);
+  }
+
+  deleteFixedCost(fixedcost: FixedCost): Observable<any>{
+    let url = `${this.BASE_URL}/${fixedcost.id}`;
+    return this.http.delete<FixedCost>(url);
+  }
+
 }

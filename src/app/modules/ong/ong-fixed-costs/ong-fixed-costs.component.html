@@ -1,4 +1,114 @@
-<div class="container">
-  <p align="center">ong-fixed-costs works!</p>
-  <p>{{displayFixedCosts()}}</p>
+<ng-template #createFixedCost let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Costo fijo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit(fixedcostForm)" #fixedcostForm="ngForm">
+      <div class="form-floating mt-4">
+        <input type="text" class="form-control" id="title" placeholder="Title" required [(ngModel)]="fixedcost.title"
+          name="title" #title="ngModel">
+        <label class="form-label" for="floatingInput">Título</label>
+        <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+          Name is required
+        </div>
+      </div><!-- Title -->
+
+      <div class="form-floating mt-4">
+        <input type="text" class="form-control" id="description" placeholder="Description" required
+          [(ngModel)]="fixedcost.description" name="description" #description="ngModel">
+        <label class="form-label" for="floatingInput">Descripción</label>
+        <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+          Name is required
+        </div>
+      </div><!-- Description -->
+
+      <div class="form-floating mt-4">
+        <input type="text" class="form-control" id="mount" placeholder="Mount" required [(ngModel)]="fixedcost.mount"
+          name="mount" #mount="ngModel">
+        <label class="form-label" for="floatingInput">Monto</label>
+        <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
+          Name is required
+        </div>
+      </div><!-- Mount -->
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" [disabled]="!fixedcostForm.form.valid"
+          (click)="modal.close('Save click')">Guardar</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #editFixedCost let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Costo fijo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="updateFixedCost()" #fixedcostForm="ngForm">
+      <div class="form-floating mt-4">
+        <input type="text" class="form-control" id="title" placeholder="Title" required [(ngModel)]="fixedcost.title"
+          name="title" #title="ngModel">
+        <label class="form-label" for="floatingInput">Título</label>
+        <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+          Name is required
+        </div>
+      </div><!-- Title -->
+
+      <div class="form-floating mt-4">
+        <input type="text" class="form-control" id="description" placeholder="Description" required
+          [(ngModel)]="fixedcost.description" name="description" #description="ngModel">
+        <label class="form-label" for="floatingInput">Descripción</label>
+        <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+          Name is required
+        </div>
+      </div><!-- Description -->
+
+      <div class="form-floating mt-4">
+        <input type="text" class="form-control" id="mount" placeholder="Mount" required [(ngModel)]="fixedcost.mount"
+          name="mount" #mount="ngModel">
+        <label class="form-label" for="floatingInput">Monto</label>
+        <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
+          Name is required
+        </div>
+      </div><!-- Mount -->
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" [disabled]="!fixedcostForm.form.valid"
+          (click)="modal.close('Save click')">Guardar</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<div class="ms-auto text-end mt-n1 col-auto">
+  <div class="d-inline me-2 dropdown">
+    <button class="btn btn-lg btn-outline-primary shadow-sm" (click)="open(createFixedCost)">Agregar
+      costo fijo</button>
+  </div>
+</div>
+
+<div>
+  <h1>Costos Fijos</h1>
+  <table class="center">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Monto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fc of fixedcost_list">
+        <th>{{ fc.title }}</th>
+        <td>{{ fc.description }}</td>
+        <td>{{ fc.mount | currency: 'USD' }}</td>
+        <td>
+          <button type="button" (click)="setFixedCost(fc); open(editFixedCost)" *ngIf="fc.editable">Editar</button>
+          <button type="button" (click)="deleteFixedCost(fc)" *ngIf="fc.editable">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
