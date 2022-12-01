@@ -1,6 +1,6 @@
 import { Period } from "./period.model";
 
-export class FixedCost {
+export class ItemDonation {
 
     id: number;
     title: string;
@@ -10,16 +10,16 @@ export class FixedCost {
     raised: number;
     created_by_id: number;
     status: number;
-    chargeable_type: string;
-    chargeable_id: number;
     status_updated_by_id: number;
-    //for serializer
-    editable: boolean;
+    donatable_type: string;
+    donatable_id: number;
     period_id: number;
     period: Period;
+    //for serializer
+    editable: boolean;
 
     constructor(data?:any){
         Object.assign(this, data)
     }
-    
+
 }

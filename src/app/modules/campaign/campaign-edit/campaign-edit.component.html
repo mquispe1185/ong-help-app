@@ -1,0 +1,93 @@
+<div class="container" >
+  <div class="row col-12 col-sm-10 col-md-10 col-lg-8 offset-lg-3 ">
+    <div class="  card p-4 mx-2 my-4 shadow font2">
+      <h1 class="edit-tittle">Editar</h1>
+      <form (ngSubmit)="updateCampaign()" #campaignForm="ngForm">
+        <label for="floatingInput" class="form-label">Nombre</label>
+          <input type="text" class="form-control form-control-sm c1" id="Nombre" placeholder="Nombre" required [(ngModel)]="campaign.name"
+            name="name" #name="ngModel">
+          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            Name is required
+          </div><!-- Nombre -->
+
+        <div class="row g-2">
+          <div class="col-md">
+            <label for="floatingEmail" class="form-label">Email</label>
+              <input type="text" class="form-control form-control-sm c1" id="Email" placeholder="name@example.com" required
+                [(ngModel)]="campaign.email" name="email" #email="ngModel">
+              <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                Email is required
+              </div>
+          </div><!-- Email -->
+
+          <div class="col-md">
+              <label for="floatingPhone" class="form-label">Telefono</label>
+              <input type="text" class="form-control form-control-sm c1" id="Phone" placeholder="Telefono" required
+                [(ngModel)]="campaign.phone" name="phone" #phone="ngModel">
+              <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+                Phone is required
+              </div>
+          </div><!-- Telefono -->
+        </div>
+
+        <div class="row g-2">
+          <div class="col-md">
+            <label for="category" class="form-label">Categoria</label>
+            <select class="form-select form-select-sm c1" id="category" placeholder="Categoria" required
+                [(ngModel)]="campaign.category_id" name="category" #category="ngModel">
+              <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+              <div [hidden]="category.valid || category.pristine" class="alert alert-danger">
+                Category is required
+              </div>
+          </div> <!-- Categoria -->
+
+        </div>
+
+        <div class="row g-2">
+          <div class="col-md">
+            <label for="Facebook" class="form-label">Facebook</label>
+            <input type="text" class="form-control form-control-sm c1" id="facebook" placeholder="Facebook"
+                [(ngModel)]="campaign.facebook" name="facebook" #facebook="ngModel">
+          </div><!-- Facebook -->
+          <div class="col-md">
+            <label for="instagram" class="form-label">Instagram</label>
+            <input type="text" class="form-control form-control-sm c1" id="instagram" placeholder="Instagram"
+                [(ngModel)]="campaign.instagram" name="instagram" #instagram="ngModel">
+            </div>
+          </div>
+          <!-- Instagram -->
+
+        <div class="row g-2">
+          <div class="col-md">
+            <label for="twitter" class="form-label">Twitter</label>
+            <input type="text" class="form-control form-control-sm c1" id="twitter" placeholder="Twitter"
+                [(ngModel)]="campaign.twitter" name="twitter" #twitter="ngModel">
+          </div><!-- Twitter -->
+          <div class="col-md">
+            <label for="video_url" class="form-label">Video URL</label>
+            <input type="text" class="form-control form-control-sm c1" id="video_url" placeholder="VideoURL"
+                [(ngModel)]="campaign.video_url" name="video_url" #video_url="ngModel">
+          </div>
+        </div><!-- Video URL -->
+
+        <label for="description" class="form-label">Descripcion</label>
+        <textarea [(ngModel)]='campaign.description' class="form-control form-control-sm c1" rows="3" placeholder="Descripcion"
+            style="height: 100px" name="description">
+          </textarea>
+        <!-- Descripcion -->
+
+        <label for="tags" class="form-label">Tags</label>
+        <textarea [(ngModel)]='campaign.tags' class="form-control form-control-sm c1" rows="3" placeholder="Tags" style="height: 100px"
+            name="tags">
+          </textarea>
+      <!-- Tags -->
+
+        <div class="text-center mt-3">
+          <button type="submit" class="btn btn-primary btn1" [disabled]="!campaignForm.form.valid" >Enviar</button>
+        </div><!-- botones -->
+      </form>
+    </div>
+  </div>
+</div>
+

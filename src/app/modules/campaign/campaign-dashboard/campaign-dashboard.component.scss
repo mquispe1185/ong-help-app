@@ -1,5 +1,7 @@
+@import 'src/styles.scss';
+
 .sidebar {
-  background: #2f323a;
+  background: $backg-dash;
   padding-top: 30px;
   position: fixed;
   left: 0;
@@ -9,30 +11,6 @@
   transition-property: left;
   margin-bottom: 50px;
   overflow-y: auto;
-}
-
-.sidebar h4 {
-  color: #ccc;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.sidebar a {
-  color: #fff;
-  display: block;
-  width: 100%;
-  line-height: 50px;
-  text-decoration: none;
-  padding-left: 40px;
-  box-sizing: border-box;
-  transition: 0.5s;
-  transition-property: background;
-}
-
-.sidebar a:hover {
-  background: #19B3D3;
-}
-
-.sidebar i {
-  padding-right: 10px;
+  font-family: $app-font;
+  color: brown;
 }

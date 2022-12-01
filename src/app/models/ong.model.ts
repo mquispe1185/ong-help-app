@@ -5,8 +5,9 @@ import { User } from "./user.model";
 
 export class Ong {
 
+    id: number;
     name: string;
-    description:string;
+    description: string;
     street: string;
     city_id: number;
     province_id: number;
@@ -22,15 +23,15 @@ export class Ong {
     status: number
     tags: string;
     video_url:string;
-  
+
     user: User;
     province: Province;
     city: City;
     category: Category;
-  
+
     constructor(data?:any){
       Object.assign(this, data);
-  
+
     }
-  
+
 }

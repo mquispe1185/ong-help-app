@@ -25,7 +25,7 @@ export class OngFixedCostsComponent implements OnInit {
   }
 
   getFixedCosts() {
-    let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
+    let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.fixedcostsService.getFixedCosts('Ong', obj.id).subscribe(
       res_fixedcosts => { this.fixedcost_list = res_fixedcosts }
     )

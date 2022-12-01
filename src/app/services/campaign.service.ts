@@ -26,4 +26,9 @@ export class CampaignService {
     let url = `${this.BASE_URL}/${id}`;
     return this.http.get<Campaign>(url);
   }
+
+  updateCampaign(campaign:Campaign):Observable<any>{
+    const url= `${this.BASE_URL}/${campaign.id}`;
+    return this.http.put(url, campaign);
+  }
 }

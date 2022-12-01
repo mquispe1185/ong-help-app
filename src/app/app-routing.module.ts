@@ -9,8 +9,12 @@ import { CampaignDashboardComponent } from './modules/campaign/campaign-dashboar
 import { CampaignDonationsComponent } from './modules/campaign/campaign-donations/campaign-donations.component';
 import { CampaignStatisticsComponent } from './modules/campaign/campaign-statistics/campaign-statistics.component';
 import { CampaignFormComponent } from './modules/campaign/campaign-form/campaign-form.component';
+import { OngEditComponent } from './modules/ong/ong-edit/ong-edit.component';
 import { CampaignFixedCostsComponent } from './modules/campaign/campaign-fixed-costs/campaign-fixed-costs.component';
 import { AuthGuard } from './guards/auth.guard';
+import { OngDonationListComponent } from './modules/ong/ong-donation-list/ong-donation-list.component';
+import { CampaignDonationListComponent } from './modules/campaign/campaign-donation-list/campaign-donation-list.component';
+import { CampaignEditComponent } from './modules/campaign/campaign-edit/campaign-edit.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -38,7 +42,8 @@ const routes: Routes = [
     children: [
       { path: 'costos-fijos', component: OngFixedCostsComponent, outlet: 'ong' },
       { path: 'solicitar-donaciones', component: OngDonationsComponent, outlet: 'ong' },
-      { path: 'editar', component: OngFormComponent, outlet: 'ong' }
+      { path: 'ver-donaciones', component: OngDonationListComponent, outlet: 'ong' },
+      { path: 'editar', component: OngEditComponent, outlet: 'ong' }
     ]
   },
   {
@@ -49,7 +54,8 @@ const routes: Routes = [
       { path: 'estadisticas', component: CampaignStatisticsComponent, outlet: 'campaign' },
       { path: 'costos-fijos', component: CampaignFixedCostsComponent, outlet: 'campaign' },
       { path: 'solicitar-donaciones', component: CampaignDonationsComponent, outlet: 'campaign' },
-      { path: 'editar', component: CampaignFormComponent, outlet: 'campaign' }
+      { path: 'ver-donaciones', component: CampaignDonationListComponent, outlet: 'campaign' },
+      { path: 'editar', component: CampaignEditComponent, outlet: 'campaign' }
     ]
   }
 ];
