@@ -34,23 +34,27 @@ export class NavbarComponent implements OnInit {
     this.reloadEventsubscription =
       this.sharedService.getReloadEvent().subscribe((res) => {
         if (res === true) {
-          this.getOngs();
-          this.getCampaigns()
-        }        
+          this.ngOnInit();
+        }
       })
   }
 
   ngOnInit(): void {
-    this.tokenService.validateToken().subscribe(
-      res => {
-        this.user = res['data'];
-        this.getOngs();
-        this.getCampaigns()
-      },
-      error => {
-        this.user = error['statusText']
-      }
-    )
+    console.log('navbar', localStorage.getItem("accessToken"))
+    if (this.tokenService.userSignedIn()) {
+      this.tokenService.validateToken().subscribe(
+        res => {
+          console.log('navbar after oninit', localStorage.getItem("accessToken"));
+          this.user = res['data'];
+          this.getOngs();
+          this.getCampaigns()
+        },
+        error => {
+          console.log('navbar error', this)
+          this.user = error['statusText']
+        }
+      )
+    }
   }
 
   login() {
@@ -59,8 +63,9 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.tokenService.signOut().subscribe(
-      res => { location.reload(); }
-    );
+      res => { localStorage.clear(); 
+                this.router.navigate(['inicio']); }
+    );    
   }
 
   getOngs() {

@@ -10,7 +10,6 @@ import { SharedService } from '../services/shared.service';
 })
 export class InicioComponent implements OnInit {
 
-  response:any;
   init_entities: any[] = [];
 
   constructor(public tokenService: AngularTokenService,
@@ -18,15 +17,11 @@ export class InicioComponent implements OnInit {
               private searchService: SearchService) { }
 
   ngOnInit(): void {
-    this.tokenService.validateToken().subscribe(
-      res =>      {console.log(res)
-                   this.response = res['data']['name'];
-                  },
-      error =>    {console.log(error['statusText']),
-                    this.response = error['statusText']}
-    )
-    this.sharedService.sendReloadEvent(true)
-    this.getInitEntities()
+    console.log('inicio', this);
+    
+    this.getInitEntities();
+    this.sharedService.sendReloadEvent(true);
+    
   }
 
   getInitEntities() {
