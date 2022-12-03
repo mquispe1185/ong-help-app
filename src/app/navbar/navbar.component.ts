@@ -40,17 +40,14 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('navbar', localStorage.getItem("accessToken"))
     if (this.tokenService.userSignedIn()) {
       this.tokenService.validateToken().subscribe(
         res => {
-          console.log('navbar after oninit', localStorage.getItem("accessToken"));
           this.user = res['data'];
           this.getOngs();
           this.getCampaigns()
         },
         error => {
-          console.log('navbar error', this)
           this.user = error['statusText']
         }
       )
@@ -58,13 +55,13 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
+    localStorage.clear();
     this.tokenService.signInOAuth('google');
   }
 
   logout() {
     this.tokenService.signOut().subscribe(
-      res => { localStorage.clear(); 
-                this.router.navigate(['inicio']); }
+      res => { this.router.navigate(['inicio']); }
     );    
   }
 

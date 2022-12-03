@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularTokenService } from 'angular-token';
 import { SearchService } from '../services/search.service';
 import { SharedService } from '../services/shared.service';
 
@@ -12,16 +11,12 @@ export class InicioComponent implements OnInit {
 
   init_entities: any[] = [];
 
-  constructor(public tokenService: AngularTokenService,
-              private sharedService: SharedService,
+  constructor(private sharedService: SharedService,
               private searchService: SearchService) { }
 
   ngOnInit(): void {
-    console.log('inicio', this);
-    
     this.getInitEntities();
-    this.sharedService.sendReloadEvent(true);
-    
+    this.sharedService.sendReloadEvent(true);    
   }
 
   getInitEntities() {

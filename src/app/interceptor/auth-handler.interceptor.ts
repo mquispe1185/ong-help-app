@@ -27,10 +27,8 @@ export class AuthHandlerInterceptor implements HttpInterceptor {
         }
       });
     }
-    console.log('request', request)
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log('request 2', request)
         switch (error.status) {
           case 0: {
             Swal.fire({
@@ -39,9 +37,7 @@ export class AuthHandlerInterceptor implements HttpInterceptor {
               text: 'HASTA PRONTO!',
               showConfirmButton: false,
             });
-            localStorage.clear();
-            this.router.navigate(['inicio']);
-            
+            this.router.navigate(['inicio']);            
             break;
           }
           case 401: {
@@ -51,7 +47,6 @@ export class AuthHandlerInterceptor implements HttpInterceptor {
               text: 'NO AUTORIZADO. Inicie sesión por favor.',
               footer: ''
             });
-            localStorage.clear();
             this.router.navigate(['inicio']);
             
             break;
@@ -63,7 +58,6 @@ export class AuthHandlerInterceptor implements HttpInterceptor {
               text: 'Problema en el sistema, comuniquese con el Desarrollador.',
               footer: ''
             });
-            //localStorage.clear();
             break;
           }
           case 500: {
@@ -73,8 +67,6 @@ export class AuthHandlerInterceptor implements HttpInterceptor {
               text: 'PROBLEMAS DE CONEXION. EL SERVIDOR ESTA FUERA DE LINEA',
               footer: ''
             });
-            //this.modalService.dismissAll();
-            //localStorage.clear();
             break;
           }
         }
