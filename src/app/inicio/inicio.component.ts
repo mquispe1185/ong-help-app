@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchService } from '../services/search.service';
 import { SharedService } from '../services/shared.service';
 
@@ -12,11 +13,14 @@ export class InicioComponent implements OnInit {
   init_entities: any[] = [];
 
   constructor(private sharedService: SharedService,
-              private searchService: SearchService) { }
+              private searchService: SearchService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getInitEntities();
-    this.sharedService.sendReloadEvent(true);    
+    if (this.router.url.includes('auth_token')) {
+      this.sharedService.sendReloadEvent(true);
+    }
   }
 
   getInitEntities() {
