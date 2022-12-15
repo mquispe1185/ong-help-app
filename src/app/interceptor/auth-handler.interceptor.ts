@@ -9,41 +9,37 @@ import {
 import { Observable, finalize, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 
 @Injectable()
 export class AuthHandlerInterceptor implements HttpInterceptor {
 
-  constructor(private modalService: NgbModal,
-              private router: Router) { }
+  constructor(private router: Router) { }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = localStorage.getItem('accessToken');
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = localStorage.getItem('accessToken');
+    let request = req;
 
     if (token) {
-      request = request.clone({
+      request = req.clone({
         setHeaders: {
-          'api-token': token
+          authorization: `Bearer ${ token }`
         }
       });
     }
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-
         switch (error.status) {
           case 0: {
             Swal.fire({
-              icon: 'error',
-              title: 'Error: ' + error.status + ' !!!',
-              text: 'PROBLEMAS DE CONEXION. EL SERVIDOR ESTA FUERA DE LINEA',
-              footer: ''
+              icon: 'info',
+              title: 'Sesión cerrada!',
+              text: 'HASTA PRONTO!',
+              showConfirmButton: false,
             });
-            this.router.navigate(['/login']);
-            localStorage.clear();
+            this.router.navigate(['inicio']);            
             break;
           }
-
           case 401: {
             Swal.fire({
               icon: 'error',
@@ -51,8 +47,8 @@ export class AuthHandlerInterceptor implements HttpInterceptor {
               text: 'NO AUTORIZADO. Inicie sesión por favor.',
               footer: ''
             });
-            this.router.navigate(['/ong']);
-            localStorage.clear();
+            this.router.navigate(['inicio']);
+            
             break;
           }
           case 404: {
@@ -62,7 +58,6 @@ export class AuthHandlerInterceptor implements HttpInterceptor {
               text: 'Problema en el sistema, comuniquese con el Desarrollador.',
               footer: ''
             });
-            localStorage.clear();
             break;
           }
           case 500: {
@@ -72,13 +67,9 @@ export class AuthHandlerInterceptor implements HttpInterceptor {
               text: 'PROBLEMAS DE CONEXION. EL SERVIDOR ESTA FUERA DE LINEA',
               footer: ''
             });
-            this.modalService.dismissAll();
-            localStorage.clear();
             break;
           }
         }
-
-
         return throwError(error);
       })) as Observable<HttpEvent<any>>;
   }
