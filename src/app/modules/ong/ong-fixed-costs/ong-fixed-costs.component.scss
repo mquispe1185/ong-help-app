@@ -1,0 +1,28 @@
+.shadow-sm {
+    box-shadow: 0 0.05rem 0.2rem rgb(0 0 0 / 5%) !important;;
+}
+
+.dropdown {
+    position: inherit;
+}
+
+.mt-n1 {
+    margin-top: 0.5rem !important;
+}
+
+.me-2 {
+    margin-right: 0.5rem !important;
+}
+
+.ms-auto {
+    margin-left: auto !important;
+}
+
+.text-end {
+    text-align: right !important;
+}
+
+.col-auto {
+    flex: 0 0 auto;
+    width: auto;
+}
