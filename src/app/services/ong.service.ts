@@ -35,4 +35,15 @@ export class OngService {
     const url= `${this.BASE_URL}/${ong.id}`;
     return this.http.put(url, ong);
   }
+
+  uploadPhotos(photos:File[],ong_id:number):Observable<any> {
+    const formdata: FormData = new FormData();
+    const url = `${this.BASE_URL}/${ong_id}/set_photos`;
+    photos.forEach(
+      photo => formdata.append('photos[]', photo)
+    )
+    formdata.append('id', ong_id.toString());
+    return this.http.put(url, formdata);
+  }
+
 }

@@ -14,6 +14,7 @@ import { CampaignFixedCostsComponent } from './modules/campaign/campaign-fixed-c
 import { AuthGuard } from './guards/auth.guard';
 import { OngDonationListComponent } from './modules/ong/ong-donation-list/ong-donation-list.component';
 import { CampaignDonationListComponent } from './modules/campaign/campaign-donation-list/campaign-donation-list.component';
+import { OngInfoComponent } from './modules/ong/ong-info/ong-info.component';
 import { CampaignEditComponent } from './modules/campaign/campaign-edit/campaign-edit.component';
 
 const routes: Routes = [
@@ -43,7 +44,8 @@ const routes: Routes = [
       { path: 'costos-fijos', component: OngFixedCostsComponent, outlet: 'ong' },
       { path: 'solicitar-donaciones', component: OngDonationsComponent, outlet: 'ong' },
       { path: 'ver-donaciones', component: OngDonationListComponent, outlet: 'ong' },
-      { path: 'editar', component: OngEditComponent, outlet: 'ong' }
+      { path: 'editar', component: OngEditComponent, outlet: 'ong' },
+      { path: 'info', component: OngInfoComponent, outlet: 'ong' }
     ]
   },
   {

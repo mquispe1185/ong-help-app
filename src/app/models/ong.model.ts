@@ -29,6 +29,8 @@ export class Ong {
     city: City;
     category: Category;
 
+    photos: string[];
+
     constructor(data?:any){
       Object.assign(this, data);
 

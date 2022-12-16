@@ -9,6 +9,8 @@ import { OngFixedCostsComponent } from './ong-fixed-costs/ong-fixed-costs.compon
 import { OngDonationsComponent } from './ong-donations/ong-donations.component';
 import { OngEditComponent } from './ong-edit/ong-edit.component';
 import { OngDonationListComponent } from './ong-donation-list/ong-donation-list.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { OngInfoComponent } from './ong-info/ong-info.component';
 
 @NgModule({
   declarations: [
@@ -19,11 +21,13 @@ import { OngDonationListComponent } from './ong-donation-list/ong-donation-list.
     OngDonationsComponent,
     OngEditComponent,
     OngDonationListComponent,
+    OngInfoComponent,
   ],
   imports: [
     CommonModule,
     OngRoutingModule,
-    FormsModule
+    FormsModule,
+    ImageCropperModule
   ],
   exports: []
 })
