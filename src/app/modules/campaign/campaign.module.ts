@@ -10,6 +10,8 @@ import { CampaignStatisticsComponent } from './campaign-statistics/campaign-stat
 import { CampaignFixedCostsComponent } from './campaign-fixed-costs/campaign-fixed-costs.component';
 import { CampaignDonationListComponent } from './campaign-donation-list/campaign-donation-list.component';
 import { CampaignEditComponent } from './campaign-edit/campaign-edit.component';
+import { CampaignInfoComponent } from './campaign-info/campaign-info.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -21,12 +23,14 @@ import { CampaignEditComponent } from './campaign-edit/campaign-edit.component';
     CampaignStatisticsComponent,
     CampaignFixedCostsComponent,
     CampaignDonationListComponent,
-    CampaignEditComponent
+    CampaignEditComponent,
+    CampaignInfoComponent
   ],
   imports: [
     CommonModule,
     CampaignRoutingModule,
-    FormsModule
+    FormsModule,
+    ImageCropperModule
   ],
   exports: []
 })

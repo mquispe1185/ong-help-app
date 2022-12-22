@@ -16,6 +16,7 @@ import { OngDonationListComponent } from './modules/ong/ong-donation-list/ong-do
 import { CampaignDonationListComponent } from './modules/campaign/campaign-donation-list/campaign-donation-list.component';
 import { OngInfoComponent } from './modules/ong/ong-info/ong-info.component';
 import { CampaignEditComponent } from './modules/campaign/campaign-edit/campaign-edit.component';
+import { CampaignInfoComponent } from './modules/campaign/campaign-info/campaign-info.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -57,7 +58,8 @@ const routes: Routes = [
       { path: 'costos-fijos', component: CampaignFixedCostsComponent, outlet: 'campaign' },
       { path: 'solicitar-donaciones', component: CampaignDonationsComponent, outlet: 'campaign' },
       { path: 'ver-donaciones', component: CampaignDonationListComponent, outlet: 'campaign' },
-      { path: 'editar', component: CampaignEditComponent, outlet: 'campaign' }
+      { path: 'editar', component: CampaignEditComponent, outlet: 'campaign' },
+      { path: 'info', component: CampaignInfoComponent, outlet: 'campaign' }
     ]
   }
 ];

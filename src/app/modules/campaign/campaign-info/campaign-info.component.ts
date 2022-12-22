@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { Ong } from 'src/app/models/ong.model';
-import { OngService } from 'src/app/services/ong.service';
+import { Campaign } from 'src/app/models/campaign.model';
+import { CampaignService } from 'src/app/services/campaign.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-ong-info',
-  templateUrl: './ong-info.component.html',
-  styleUrls: ['./ong-info.component.scss']
+  selector: 'app-campaign-info',
+  templateUrl: './campaign-info.component.html',
+  styleUrls: ['./campaign-info.component.scss']
 })
-export class OngInfoComponent implements OnInit {
+export class CampaignInfoComponent implements OnInit {
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
@@ -17,20 +17,20 @@ export class OngInfoComponent implements OnInit {
   photo: File;
   photos: File[] = [];
   photo_added = true;
-  ongSelected: Ong;
-  ong: Ong;
+  campaignSelected: Campaign;
+  campaign: Campaign;
 
-  constructor(private ongService: OngService) { }
+  constructor(private campaignService: CampaignService) { }
 
   ngOnInit(): void {
-    this.getOng()    
+    this.getCampaign()
   }
 
-  getOng() {
+  getCampaign() {
     let obj = JSON.parse(localStorage.getItem('entitySelected')|| '{}');
-    this.ongService.getOng(obj.id).subscribe(
-      res_ong => { 
-        this.ong = res_ong
+    this.campaignService.getCampaign(obj.id).subscribe(
+      res_campaign => { 
+        this.campaign = res_campaign
       }
     )
   }
@@ -53,8 +53,8 @@ export class OngInfoComponent implements OnInit {
   savePhoto() {
     this.addPhoto();
     this.croppedImage=undefined;
-    this.ongSelected = JSON.parse(localStorage.getItem('entitySelected') || '{}');
-    this.ongService.uploadPhotos(this.photos, this.ongSelected.id).subscribe(
+    this.campaignSelected = JSON.parse(localStorage.getItem('entitySelected') || '{}');
+    this.campaignService.uploadPhotos(this.photos, this.campaignSelected.id).subscribe(
       res => {
         Swal.fire(
           '¡Guardado!',
@@ -62,7 +62,7 @@ export class OngInfoComponent implements OnInit {
           'success'
         )
         this.photos.splice(0);
-        this.getOng()
+        this.getCampaign()
       }
     )
   }
@@ -93,15 +93,15 @@ export class OngInfoComponent implements OnInit {
     return new File([u8arr], filename, { type: mime });
   }
 
-  deletePhoto(photo: any, ong: Ong) {
-    this.ongService.deletePhoto(photo[0], ong).subscribe(
+  deletePhoto(photo: any, campaign: Campaign) {
+    this.campaignService.deletePhoto(photo[0], campaign).subscribe(
       res => {
         Swal.fire(
           '¡Eliminado!',
           'Su foto ha sido eliminada.',
           'success'
         )
-        this.getOng()
+        this.getCampaign()
       }
     )
   }
