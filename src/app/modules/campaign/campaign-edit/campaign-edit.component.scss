@@ -1,7 +1,7 @@
 @import 'src/styles.scss';
 
 .font1{
-  color:$color-tex;
+  color:$color-text;
   font-family: $app-font;
 }
 
@@ -13,10 +13,6 @@
 .c1{
   background-color: $col-input;
   border-color: $col-borde-input;
-}
-
-.body{
-  background-color: $backg-col;
 }
 
 .edit-tittle{

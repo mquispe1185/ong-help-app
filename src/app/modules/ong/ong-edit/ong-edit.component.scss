@@ -1,7 +1,7 @@
 @import 'src/styles.scss';
 
 .font1{
-  color:$color-tex;
+  color:$color-text;
   font-family: $app-font;
 }
 
@@ -15,22 +15,26 @@
   border-color: $col-borde-input;
 }
 
-.body{
-  background-color: $backg-col;
-}
-
 .edit-tittle{
   text-align: center;
   font-weight: 700;
 }
 
-.btn1{
-  float:center;
-  width: 120px;
-  height: 40px;
-  font-size: 15px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-radius: 5px;
+.btn{
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.625;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-sm{
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.btn-primary{
+  background-color: #3f80ea;
+  border-color: #3f80ea;
 }

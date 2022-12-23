@@ -3,33 +3,36 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap-utilities';
 @import '~bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
 
 $primary-dark:#568fed;
 $app-font: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-$backg-col:#94eee9;
 $backg-dash:#293042;
 $color-ti: #495057;
+$color-subtitle:#6c757d;
+$color-text:#747d84;
 $col-input:#ffffff;
 $col-borde-input:#ced4da;
 $link-dash:#adb5bd;
 $link-dash-active: #568fed;
 $link-dash-hover:#e9ecef;
-$backbody:#eff2f6;
-$color-tex:#707880;
+$backbody:#f7f9fc;
 $size-font-tex:13.2px;
+$striped-row:#f4f7f9;
+$size-title:0.95rem;
 
 .body{
   background-color: $backbody;
-  font-family: $color-tex;
+  font-family: $color-text;
 }
 
-.dashboard-link {
+.dashboard-link{
   padding: 0.55rem 1.5rem 0.55rem 3.7rem;
   font-weight: 400;
   color: $link-dash;
   text-decoration: none;
 }
+
 .dashboard-link:hover {
   color: $link-dash-hover;
 }
@@ -41,7 +44,65 @@ $size-font-tex:13.2px;
 
 .form-label{
   font-size: $size-font-tex;
-  color:$color-tex;
+  color:$color-text;
   margin-bottom: 0.25rem;
   margin-top: 1rem;
-  }
+}
+
+.w-15{
+  width: 10%;
+}
+
+.w-35{
+  width: 40%;
+}
+
+.table>tbody>tr:nth-child(odd)>td,
+.table>tbody>tr:nth-child(odd)>th {
+  background-color:$backbody !important; /* Choose your own color here */
+  color: $color-text;
+  font-size: 0.825rem;
+}
+/*filas pares*/
+.table>thead>tr>th,
+.table>tbody>tr:nth-child(even)>td,
+.table>tbody>tr:nth-child(even)>th {
+  background-color:white;/* Choose your own color here */
+  color: $color-text;
+  font-size: 0.825rem;
+}
+
+.table>thead>tr>th {
+  color: $color-subtitle !important;
+  font-weight:600!important;
+}
+
+.btn{
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.625;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-sm{
+  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 0.3rem;
+}
+
+.btn-primary{
+  background-color: #3f80ea;
+  border-color: #3f80ea;
+  color:#ffffff;
+  /*font-weight: 400;*/
+}
+.border-table{
+  border-bottom-width: 0.15rem;
+  border-color: #6c757d;
+}
+
+.font-table{
+  color: $color-text;
+  font-weight: bolder;
+}
