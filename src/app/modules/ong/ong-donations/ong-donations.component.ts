@@ -27,7 +27,7 @@ export class OngDonationsComponent implements OnInit {
   getItemDonations() {
     let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.itemDonationsService.getItemDonations('Ong', obj.id).subscribe(
-      res_itemDonations => { this.itemDonation_list = res_itemDonations }
+      res_itemDonations => { this.itemDonation_list = res_itemDonations.map(i => new ItemDonation(i)) }
     )
   }
 
@@ -58,7 +58,7 @@ export class OngDonationsComponent implements OnInit {
     let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.itemDonation.donatable_type = "Ong";
     this.itemDonation.donatable_id = obj.id;
-    this.itemDonation.period_id = 7;
+   // this.itemDonation.period_id = 7;
     this.itemDonationsService.addItemDonation(this.itemDonation).subscribe(
       res => {
         Swal.fire({
@@ -118,7 +118,7 @@ export class OngDonationsComponent implements OnInit {
   }
 
   setItemDonation(item: ItemDonation) {
-    this.itemDonation = { ...item }
+    this.itemDonation =  new ItemDonation({...item})
   }
 
 }

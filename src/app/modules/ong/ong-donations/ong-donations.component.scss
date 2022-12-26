@@ -1,12 +1,23 @@
-.center {
-  margin-left: auto;
-  margin-right: auto;
+@import 'src/styles.scss';
+
+.content {
+  padding: 2.5rem 2.5rem 1.5rem;
+  flex: 1;
+  direction: ltr;
 }
 
-.float-l {
-  float: left;
+.font2{
+  color: #495057;
+  font-family:$app-font;
+  font-size: 0.825rem;
 }
-  
-.float-r {
-  float: right;
+
+.card-header{
+  background-color: #ffffff;
+  padding: 1rem 1.25rem;
+}
+
+.i-clic{
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
