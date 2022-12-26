@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularTokenService } from 'angular-token';
+import { Router } from '@angular/router';
 import { SearchService } from '../services/search.service';
 import { SharedService } from '../services/shared.service';
 
@@ -10,23 +10,17 @@ import { SharedService } from '../services/shared.service';
 })
 export class InicioComponent implements OnInit {
 
-  response:any;
   init_entities: any[] = [];
 
-  constructor(public tokenService: AngularTokenService,
-              private sharedService: SharedService,
-              private searchService: SearchService) { }
+  constructor(private sharedService: SharedService,
+              private searchService: SearchService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.tokenService.validateToken().subscribe(
-      res =>      {console.log(res)
-                   this.response = res['data']['name'];
-                  },
-      error =>    {console.log(error['statusText']),
-                    this.response = error['statusText']}
-    )
-    this.sharedService.sendReloadEvent(true)
-    this.getInitEntities()
+    this.getInitEntities();
+    if (this.router.url.includes('auth_token')) {
+      this.sharedService.sendReloadEvent(true);
+    }
   }
 
   getInitEntities() {
