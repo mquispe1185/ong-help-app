@@ -31,8 +31,24 @@ export class OngService {
     return this.http.get<Ong>(url);
   }
 
-  updateOng(ong:Ong):Observable<any>{
-    const url= `${this.BASE_URL}/${ong.id}`;
+  updateOng(ong: Ong): Observable<any> {
+    const url = `${this.BASE_URL}/${ong.id}`;
     return this.http.put(url, ong);
   }
+
+  uploadPhotos(photos: File[], ong_id: number): Observable<any> {
+    const formdata: FormData = new FormData();
+    const url = `${this.BASE_URL}/${ong_id}/set_photos`;
+    photos.forEach(
+      photo => formdata.append('photos[]', photo)
+    )
+    formdata.append('id', ong_id.toString());
+    return this.http.put(url, formdata);
+  }
+
+  deletePhoto(photo_id: number, ong: Ong): Observable<any> {
+    const url = `${this.BASE_URL}/${ong.id}/delete_photo?photo_id=${photo_id}`;
+    return this.http.delete(url);
+  }
+
 }
