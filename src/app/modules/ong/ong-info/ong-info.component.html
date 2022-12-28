@@ -1,7 +1,7 @@
 <div class="container" align="center">
   <div class="btn btn-info btn-sm float-left" *ngIf="ong.photos.length < 3">
     <span>Agregar foto</span>
-    <input type="file" style="opacity: 0;" (change)="fileChangeEvent($event)"/>
+    <input type="file" accept="image/*" style="opacity: 0;" (change)="fileChangeEvent($event)"/>
   </div>
 
   <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" format="png"

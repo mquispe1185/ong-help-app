@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./ong-edit.component.scss'],
 })
 export class OngEditComponent implements OnInit {
-  ong: Ong;
+  ong: Ong = new Ong();
   submitted = false;
   cities: any;
   model: any;

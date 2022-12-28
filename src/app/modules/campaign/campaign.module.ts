@@ -12,7 +12,7 @@ import { CampaignDonationListComponent } from './campaign-donation-list/campaign
 import { CampaignEditComponent } from './campaign-edit/campaign-edit.component';
 import { CampaignInfoComponent } from './campaign-info/campaign-info.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     CommonModule,
     CampaignRoutingModule,
     FormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    YouTubePlayerModule
   ],
   exports: []
 })

@@ -11,6 +11,7 @@ import { OngEditComponent } from './ong-edit/ong-edit.component';
 import { OngDonationListComponent } from './ong-donation-list/ong-donation-list.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { OngInfoComponent } from './ong-info/ong-info.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OngInfoComponent } from './ong-info/ong-info.component';
     CommonModule,
     OngRoutingModule,
     FormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    YouTubePlayerModule
   ],
   exports: []
 })

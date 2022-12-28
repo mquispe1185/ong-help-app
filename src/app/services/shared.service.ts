@@ -7,6 +7,8 @@ import { Observable, Subject } from 'rxjs';
 export class SharedService {
 
   private subject = new Subject<any>();
+  private subjectOng = new Subject<any>();
+  private subjectCampaign = new Subject<any>();
 
   constructor() { }
 
@@ -16,6 +18,22 @@ export class SharedService {
 
   getReloadEvent(): Observable<any> {
     return this.subject.asObservable();
+  }
+
+  sendReloadOng() {
+    this.subjectOng.next(true);
+  }
+
+  getReloadOng(): Observable<any>{ 
+    return this.subjectOng.asObservable();
+  }
+
+  sendReloadCampaign() {
+    this.subjectCampaign.next(true);
+  }
+
+  getReloadCampaign(): Observable<any>{ 
+    return this.subjectCampaign.asObservable();
   }
 
 }

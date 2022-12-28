@@ -1,2 +1,175 @@
 <p>ong works!</p>
-<p>{{displayOng()}}</p>
+<p>ong works!</p>
+<h1>{{ong.name}}</h1>
+<div class="row g-2">
+  <div class="col-md">
+    <div class="container" align="right">
+      <youtube-player [videoId]="videoId" [height]="225" [width]="450"> </youtube-player>
+    </div>
+    <div class="container" align="right">
+      <div class="img-wrap mr-2" *ngFor="let photo of ong.photos; index as i">
+        <img class="img-photo" [src]="photo[1]">
+      </div>
+    </div>
+  </div>
+  <div class="col-md">
+    <div class="container" align="center">
+      <button type="button" class="btn btn-facebook btn-icon" (click)="goToLink(ong.facebook)">
+        <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
+        <span class="btn-inner--text">Facebook</span>
+      </button>
+      <button type="button" class="btn btn-twitter btn-icon" (click)="goToLink(ong.twitter)">
+        <span class="btn-inner--icon"><i class="fab fa-twitter"></i></span>
+        <span class="btn-inner--text">Twitter</span>
+      </button>
+      <button type="button" class="btn btn-instagram btn-icon" (click)="goToLink(ong.instagram)">
+        <span class="btn-inner--icon"><i class="fab fa-instagram"></i></span>
+        <span class="btn-inner--text">Instagram</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ul class="nav nav-tabs d-none d-lg-flex" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description-tab-pane"
+      type="button" role="tab" aria-controls="description-tab-pane" aria-selected="true">Descripción</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="fixedcosts-tab" data-bs-toggle="tab" data-bs-target="#fixedcosts-tab-pane"
+      type="button" role="tab" aria-controls="fixedcosts-tab-pane" aria-selected="false">Costos Fijos</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="donations-tab" data-bs-toggle="tab" data-bs-target="#donations-tab-pane" type="button"
+      role="tab" aria-controls="donations-tab-pane" aria-selected="false">Donaciones</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button"
+      role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button"
+      role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+  </li>
+</ul>
+<div class="tab-content accordion" id="myTabContent">
+  <div class="tab-pane fade show active accordion-item" id="description-tab-pane" role="tabpanel"
+    aria-labelledby="description-tab" tabindex="0">
+
+    <h2 class="accordion-header d-lg-none" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+        aria-expanded="true" aria-controls="collapseOne">Accordion Item #1</button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show  d-lg-block" aria-labelledby="headingOne"
+      data-bs-parent="#myTabContent">
+      <div class="accordion-body">
+        {{ong.description}}
+      </div>
+    </div>
+
+  </div>
+  <div class="tab-pane fade accordion-item" id="fixedcosts-tab-pane" role="tabpanel" aria-labelledby="fixedcosts-tab"
+    tabindex="0">
+    <h2 class="accordion-header d-lg-none" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+        aria-expanded="false" aria-controls="collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse d-lg-block" aria-labelledby="headingTwo"
+      data-bs-parent="#myTabContent">
+      <div class="accordion-body">
+        <div>
+          <table class="center">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let fc of fixedcost_list">
+                <th>{{ fc.title }}</th>
+                <td>{{ fc.description }}</td>
+                <td>{{ fc.mount | currency: 'USD' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade accordion-item" id="donations-tab-pane" role="tabpanel" aria-labelledby="donations-tab"
+    tabindex="0">
+    <h2 class="accordion-header d-lg-none" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+        aria-expanded="false" aria-controls="collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse d-lg-block" aria-labelledby="headingTwo"
+      data-bs-parent="#myTabContent">
+      <div class="accordion-body">
+        <div>
+          <table class="center">
+            <thead>
+              <tr>
+                <th>#ID</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of itemDonation_list">
+                <th>{{ item.id }}</th>
+                <td>{{ item.title }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.mount }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade accordion-item" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+    tabindex="0">
+    <h2 class="accordion-header d-lg-none" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+        aria-expanded="false" aria-controls="collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse d-lg-block" aria-labelledby="headingTwo"
+      data-bs-parent="#myTabContent">
+      <div class="accordion-body">
+        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
+        plugin adds the appropriate classes that we use to style each element. These classes control the overall
+        appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+        custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+        within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade accordion-item" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+    tabindex="0">
+    <h2 class="accordion-header d-lg-none" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+        aria-expanded="false" aria-controls="collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse d-lg-block" aria-labelledby="headingThree"
+      data-bs-parent="#myTabContent">
+      <div class="accordion-body">
+        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
+        plugin adds the appropriate classes that we use to style each element. These classes control the overall
+        appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+        custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
+        within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+</div>
