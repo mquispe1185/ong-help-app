@@ -1,17 +1,17 @@
 <div class="container" align="center">
-  <div class="btn btn-info btn-sm float-left" *ngIf="campaign.photos.length < 3">
-    <span>Agregar foto</span>
-    <input type="file" style="opacity: 0;" (change)="fileChangeEvent($event)" />
-  </div>
-
-  <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" format="png"
-    (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
-    (loadImageFailed)="loadImageFailed()" *ngIf="campaign.photos.length < 3">
-  </image-cropper>
-
-  <img [src]="croppedImage" />
-
-  <button type="button" (click)="savePhoto()" *ngIf="photo_added == false">Guardar</button>
+    <div class="btn btn-info btn-sm float-left" *ngIf="campaign.photos.length < 3">
+      <span>Agregar foto</span>
+      <input type="file" accept="image/*" style="opacity: 0;" (change)="fileChangeEvent($event)"/>
+    </div>
+  
+    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" format="png"
+      (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()" *ngIf="campaign.photos.length < 3">
+    </image-cropper>
+  
+    <img [src]="croppedImage" />
+  
+    <button type="button" (click)="savePhoto()" *ngIf="photo_added == false">Guardar</button>
 </div>
 <div class="container" align="center">
   <div class="img-wrap mr-2" *ngFor="let photo of campaign.photos; index as i">

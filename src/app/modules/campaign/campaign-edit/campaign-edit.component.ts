@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./campaign-edit.component.scss']
 })
 export class CampaignEditComponent implements OnInit {
-  campaign:Campaign;
+  campaign: Campaign = new Campaign();
   submitted = false;
   cities: any;
   model: any;
@@ -21,20 +21,20 @@ export class CampaignEditComponent implements OnInit {
 
   constructor(private campaignService: CampaignService,
               private categoriesService: CategoriesService,
-              private sharedService: SharedService) {}
+              private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.getCampaign();
     this.getCategories();
   }
 
-  getCampaign(){
+  getCampaign() {
     let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.campaignService
-        .getCampaign(obj.id)
-        .subscribe((res_campaign) =>{
-          this.campaign = res_campaign;
-        })
+      .getCampaign(obj.id)
+      .subscribe((res_campaign) => {
+        this.campaign = res_campaign;
+      })
   }
 
   getCategories() {
@@ -43,8 +43,8 @@ export class CampaignEditComponent implements OnInit {
     });
   }
 
-  updateCampaign(){
-    this.campaignService.updateCampaign(this.campaign).subscribe((res) =>{
+  updateCampaign() {
+    this.campaignService.updateCampaign(this.campaign).subscribe((res) => {
       this.campaign = res;
       localStorage.setItem('entitySelected', JSON.stringify(this.campaign));
       this.sharedService.sendReloadEvent(true);

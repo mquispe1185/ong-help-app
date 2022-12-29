@@ -112,13 +112,14 @@ export class NavbarComponent implements OnInit {
   formatter = (entity: any) => { return `${entity.name} (${entity.type})` }
 
   redirect(event: any) {
+    localStorage.setItem('entitySelected', JSON.stringify(event.item));
     if (event.item.type == 'Ong') {
       this.router.navigate(['./ong']);
+      this.sharedService.sendReloadOng();
     }
     else if (event.item.type == 'Campaign') {
       this.router.navigate(['./campaign']);
+      this.sharedService.sendReloadCampaign();
     }
-    localStorage.setItem('entitySelected', JSON.stringify(event.item))
-    this.sharedService.sendReloadEvent(false)
   }
 }
