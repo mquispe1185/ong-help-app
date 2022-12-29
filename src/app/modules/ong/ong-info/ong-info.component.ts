@@ -52,7 +52,7 @@ export class OngInfoComponent implements OnInit {
 
   savePhoto() {
     this.addPhoto();
-    this.croppedImage=undefined;
+    this.croppedImage = undefined;
     this.ongSelected = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.ongService.uploadPhotos(this.photos, this.ongSelected.id).subscribe(
       res => {

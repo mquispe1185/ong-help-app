@@ -1,110 +1,101 @@
 <ng-template #create let-modal>
-  <div class="modal-header">
+  <div class="modal-header font2 text-center">
     <h4 class="modal-title" id="modal-basic-title">Formulario de solicitud</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body font2">
     <form (ngSubmit)="onSubmit(itemDonationForm)" #itemDonationForm="ngForm">
-      <div class="form-floating mt-4">
-        <input type="text" class="form-control c1" id="Title" placeholder="Titulo" required
+      <label for="floatingInput" class="form-label">Título</label>
+        <input type="text" class="form-control form-control-sm c1" id="Title" placeholder="Titulo" required
           [(ngModel)]="itemDonation.title" name="title" #title="ngModel">
-        <label for="title">Título</label>
         <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
           Title is required
-        </div>
-      </div><!-- Titulo -->
+        </div> <!-- Titulo -->
 
-      <div class="form-floating mt-4">
-        <textarea [(ngModel)]='itemDonation.description' class="form-control c4" rows="3" placeholder="Descripcion"
+      <label for="description" class="form-label">Descripcion</label>
+        <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm c1" rows="3" placeholder="Descripcion"
           style="height: 100px" name="description">
         </textarea>
-        <label for="description">Descripción</label>
-      </div><!-- Descripcion -->
 
-      <div class="form-floating mt-4">
-        <input type="text" class="form-control c2" id="Mount" placeholder="Monto" required
+      <label for="mount" class="form-label">Monto</label>
+        <input type="text" class="form-control form-control-sm c1" id="Mount" placeholder="Monto" required
           [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel">
-        <label for="mount">Monto</label>
         <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
           Mount is required
-        </div>
-      </div><!-- Monto -->
+        </div><!-- Monto -->
 
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success btn1" [disabled]="!itemDonationForm.form.valid" (click)="modal.close('Save click')">Guardar</button>
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary btn-sm" [disabled]="!itemDonationForm.form.valid"
+          (click)="modal.close('Save click')">Guardar</button>
       </div>
     </form>
-  </div>  
+  </div>
 </ng-template>
 
 <ng-template #edit let-modal>
-  <div class="modal-header">
+  <div class="modal-header font2 ">
     <h4 class="modal-title" id="modal-basic-title">Editar</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body font2">
     <form (ngSubmit)="updateItemDonation()" #itemDonationForm="ngForm">
-      <div class="form-floating mt-4">
-        <input type="text" class="form-control c1" id="Title" placeholder="Titulo" required
-          [(ngModel)]="itemDonation.title" name="title" #title="ngModel">
-        <label for="title">Título</label>
-        <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
-          Title is required
-        </div>
-      </div><!-- Titulo -->
+      <label for="floatingInput" class="form-label">Título</label>
+      <input type="text" class="form-control form-control-sm c1" id="Title" placeholder="Titulo" required
+        [(ngModel)]="itemDonation.title" name="title" #title="ngModel">
+      <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+        Title is required
+      </div> <!-- Titulo -->
 
-      <div class="form-floating mt-4">
-        <textarea [(ngModel)]='itemDonation.description' class="form-control c4" rows="3" placeholder="Descripcion"
-          style="height: 100px" name="description">
+      <label for="description" class="form-label">Descripcion</label>
+        <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm c1" rows="3" placeholder="Descripcion"
+        style="height: 100px" name="description">
         </textarea>
-        <label for="description">Descripción</label>
-      </div><!-- Descripcion -->
 
-      <div class="form-floating mt-4">
-        <input type="text" class="form-control c2" id="Mount" placeholder="Monto" required
-          [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel">
-        <label for="mount">Monto</label>
+      <label for="mount" class="form-label">Monto</label>
+        <input type="text" class="form-control form-control-sm c1" id="Mount" placeholder="Monto" required
+        [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel">
         <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
           Mount is required
-        </div>
-      </div><!-- Monto -->
+        </div><!-- Monto -->
 
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success btn1" [disabled]="!itemDonationForm.form.valid" (click)="modal.close('Save click')">Guardar</button>
+      <div class="text-center mt-3 font2">
+        <button type="submit" class="btn btn-primary btn-sm" [disabled]="!itemDonationForm.form.valid"
+          (click)="modal.close('Save click')">Guardar</button>
       </div>
     </form>
-  </div>  
+  </div>
 </ng-template>
-
-<button class="btn btn-lg btn-outline-primary float-r" (click)="open(create)">Solicitar una donación</button>
-
-<hr />
-
-<pre>{{ closeResult }}</pre>
-
-<div>
-  <h1>Angular 13 HTML Table Example</h1>
-  <table class="center">
-    <thead>
-      <tr>
-        <th>#ID</th>
-        <th>Título</th>
-        <th>Descripción</th>
-        <th>Monto</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of itemDonation_list">
-        <th>{{ item.id }}</th>
-        <td>{{ item.title }}</td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.mount }}</td>
-        <td>
-          <button type="button" (click)="setItemDonation(item); open(edit)" *ngIf="item.editable">Editar</button>
-          <button type="button" (click)="deleteItemDonation(item)" *ngIf="item.editable">Borrar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="border-0 mt-4 font2">
+  <pre>{{ closeResult }}</pre>
+  <div class="row col-12 col-sm-10 col-md-10 col-lg-8 offset-3">
+    <div class="flex-fill w-100 border-0">
+      <div class="d-flex justify-content-end mb-2">
+        <button class="btn btn-primary btn-sm" type="button" (click)="open(create)">Solicitar una donación</button>
+      </div>
+      <div class="card-header">
+        <div class="mb-0 card-title h5 text-center">Lista de Donaciones</div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr class="border-table font-table">
+            <th scope="col">Título</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Monto</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let item of itemDonation_list">
+            <td class="w-25 ps-2">{{ item.getTitle()}}</td>
+            <td class="w-35 ps-2">{{ item.getDescription()}}</td>
+            <td class="w-15">{{ item.mount | currency }}</td>
+            <td class="w-15">
+              <i class="fas fa-edit i-clic" (click)="setItemDonation(item); open(edit)" *ngIf="item.editable">  </i>
+              <i class="fa-regular fa-trash-can i-clic" (click)="deleteItemDonation(item)" *ngIf="item.editable">  </i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

@@ -1,12 +1,17 @@
-.center {
-  margin-left: auto;
-  margin-right: auto;
+@import 'src/styles.scss';
+
+.font2{
+  color: #495057;
+  font-family:$app-font;
+  font-size: 0.825rem;
 }
 
-.float-l {
-  float: left;
+.card-header{
+  background-color: #ffffff;
+  padding: 1rem 1.25rem;
 }
 
-.float-r {
-  float: right;
+.i-clic{
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }

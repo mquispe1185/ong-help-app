@@ -27,7 +27,7 @@ export class CampaignDonationsComponent implements OnInit {
   getItemDonations() {
     let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.itemDonationsService.getItemDonations('Campaign', obj.id).subscribe(
-      res_itemDonations => { this.itemDonation_list = res_itemDonations }
+      res_itemDonations => { this.itemDonation_list = res_itemDonations.map(i => new ItemDonation(i)) }
     )
   }
 
@@ -118,7 +118,7 @@ export class CampaignDonationsComponent implements OnInit {
   }
 
   setItemDonation(item: ItemDonation) {
-    this.itemDonation = { ...item }
+    this.itemDonation =  new ItemDonation({...item})
   }
 
 }

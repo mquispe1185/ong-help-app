@@ -12,11 +12,10 @@
     <img [src]="croppedImage" />
   
     <button type="button" (click)="savePhoto()" *ngIf="photo_added == false">Guardar</button>
+</div>
+<div class="container" align="center">
+  <div class="img-wrap mr-2" *ngFor="let photo of campaign.photos; index as i">
+    <span class="close" (click)="deletePhoto(photo,campaign)">&times;</span>
+    <img class="img-photo" [src]="photo[1]" height="80">
   </div>
-  <div class="container" align="center">
-    <div class="img-wrap mr-2" *ngFor="let photo of campaign.photos; index as i">
-      <span class="close" (click)="deletePhoto(photo,campaign)">&times;</span>
-      <img class="img-photo" [src]="photo[1]" height="80">
-    </div>
-  </div>
-  
+</div>
