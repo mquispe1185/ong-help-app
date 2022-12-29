@@ -32,6 +32,25 @@
         </div>
       </div><!-- Mount -->
 
+      <div class="row g-2">
+        <div class="col-md">
+          <label for="month" class="form-label">Mes</label>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="fixedcost.period.month"
+            name="month" #month="ngModel">
+            <option selected disabled>Seleccione mes</option>
+            <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
+          </select>
+        </div>
+        <div class="col-md">
+          <label for="year" class="form-label">Año</label>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="fixedcost.period.year"
+            name="year" #year="ngModel">
+            <option selected disabled>Seleccione año</option>
+            <option *ngFor="let year of years">{{year}}</option>
+          </select>
+        </div>
+      </div><!-- Period -->
+
       <div class="modal-footer">
         <button type="submit" class="btn btn-success" [disabled]="!fixedcostForm.form.valid"
           (click)="modal.close('Save click')">Guardar</button>
@@ -74,6 +93,25 @@
           Name is required
         </div>
       </div><!-- Mount -->
+
+      <div class="row g-2">
+        <div class="col-md">
+          <label for="month" class="form-label">Mes</label>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="fixedcost.period.month"
+            name="month" #month="ngModel">
+            <option selected disabled>Seleccione mes</option>
+            <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
+          </select>
+        </div>
+        <div class="col-md">
+          <label for="year" class="form-label">Año</label>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="fixedcost.period.year"
+            name="year" #year="ngModel">
+            <option selected disabled>Seleccione año</option>
+            <option *ngFor="let year of years">{{year}}</option>
+          </select>
+        </div>
+      </div><!-- Period -->
 
       <div class="modal-footer">
         <button type="submit" class="btn btn-success" [disabled]="!fixedcostForm.form.valid"

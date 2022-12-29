@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FixedCost } from 'src/app/models/fixed-cost.model';
 import { FixedCostsService } from 'src/app/services/fixed-costs.service';
+import { constants } from 'src/app/utils/periods';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,10 +13,13 @@ import Swal from 'sweetalert2';
 })
 export class CampaignFixedCostsComponent implements OnInit {
 
+  fixedcost = new FixedCost();
   fixedcost_list: FixedCost[] = [];
   closeResult = '';
-  fixedcost = new FixedCost();
   submitted = false;
+
+  months = constants.MONTHS;
+  years = constants.YEARS;
 
   constructor(private fixedcostsService: FixedCostsService,
               private modalService: NgbModal) { }
@@ -29,10 +33,6 @@ export class CampaignFixedCostsComponent implements OnInit {
     this.fixedcostsService.getFixedCosts('Campaign', obj.id).subscribe(
       res_fixedcosts => { this.fixedcost_list = res_fixedcosts }
     )
-  }
-
-  displayFixedCosts() {
-    return JSON.stringify(this.fixedcost_list, null, 4)
   }
 
   open(content: any) {
@@ -58,11 +58,10 @@ export class CampaignFixedCostsComponent implements OnInit {
   }
 
   onSubmit(fixedcostForm: NgForm) {
-    let obj = JSON.parse(localStorage.getItem('entitySelected') ?? "Default");
+    this.submitted = true;
+    let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.fixedcost["chargeable_type"] = "Campaign";
     this.fixedcost["chargeable_id"] = obj.id;
-    this.fixedcost["period_id"] = 234;
-    this.submitted = true;
     this.fixedcostsService.addFixedCost(this.fixedcost).subscribe(
       res => {
         Swal.fire({
