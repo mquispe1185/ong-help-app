@@ -10,20 +10,38 @@
         [(ngModel)]="itemDonation.title" name="title" #title="ngModel">
       <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
         Title is required
-      </div> <!-- Titulo -->
+      </div><!-- Title -->
 
       <label for="description" class="form-label">Descripcion</label>
       <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm c1" rows="3"
         placeholder="Descripcion" style="height: 100px" name="description">
-        </textarea>
+        </textarea><!-- Description -->
 
       <label for="mount" class="form-label">Monto</label>
       <input type="text" class="form-control form-control-sm c1" id="Mount" placeholder="Monto" required
         [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel">
-
       <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
         Mount is required
-      </div><!-- Monto -->
+      </div><!-- Mount -->
+
+      <div class="row g-2">
+        <div class="col-md">
+          <label for="month" class="form-label">Mes</label>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
+            name="month" #month="ngModel">
+            <option selected disabled>Seleccione mes</option>
+            <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
+          </select>
+        </div>
+        <div class="col-md">
+          <label for="year" class="form-label">Año</label>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
+            name="year" #year="ngModel">
+            <option selected disabled>Seleccione año</option>
+            <option *ngFor="let year of years">{{year}}</option>
+          </select>
+        </div>
+      </div><!-- Period -->
 
       <div class="text-center mt-3">
         <button type="submit" class="btn btn-primary btn-sm" [disabled]="!itemDonationForm.form.valid"
@@ -45,20 +63,38 @@
         [(ngModel)]="itemDonation.title" name="title" #title="ngModel">
       <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
         Title is required
-      </div> <!-- Titulo -->
+      </div><!-- Title -->
 
       <label for="description" class="form-label">Descripcion</label>
       <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm c1" rows="3"
         placeholder="Descripcion" style="height: 100px" name="description">
-      </textarea>
+      </textarea><!-- Description -->
 
       <label for="mount" class="form-label">Monto</label>
       <input type="text" class="form-control form-control-sm c1" id="Mount" placeholder="Monto" required
         [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel">
-
       <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
         Mount is required
-      </div><!-- Monto -->
+      </div><!-- Mount -->
+
+      <div class="row g-2">
+        <div class="col-md">
+          <label for="month" class="form-label">Mes</label>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
+            name="month" #month="ngModel">
+            <option selected disabled>Seleccione mes</option>
+            <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
+          </select>
+        </div>
+        <div class="col-md">
+          <label for="year" class="form-label">Año</label>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
+            name="year" #year="ngModel">
+            <option selected disabled>Seleccione año</option>
+            <option *ngFor="let year of years">{{year}}</option>
+          </select>
+        </div>
+      </div><!-- Period -->
 
       <div class="text-center mt-3 font2">
         <button type="submit" class="btn btn-primary btn-sm" [disabled]="!itemDonationForm.form.valid"

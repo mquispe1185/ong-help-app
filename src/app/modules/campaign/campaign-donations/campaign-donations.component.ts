@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemDonation } from 'src/app/models/item-donation.model';
 import { ItemDonationsService } from 'src/app/services/item-donations.service';
+import { constants } from 'src/app/utils/periods';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,6 +17,9 @@ export class CampaignDonationsComponent implements OnInit {
   itemDonation_list: ItemDonation[] = [];
   closeResult = '';
   submitted = false;
+
+  months = constants.MONTHS;
+  years = constants.YEARS;
 
   constructor(private itemDonationsService: ItemDonationsService,
               private modalService: NgbModal) { }
@@ -58,7 +62,6 @@ export class CampaignDonationsComponent implements OnInit {
     let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.itemDonation.donatable_type = "Campaign";
     this.itemDonation.donatable_id = obj.id;
-    this.itemDonation.period_id = 7;
     this.itemDonationsService.addItemDonation(this.itemDonation).subscribe(
       res => {
         Swal.fire({

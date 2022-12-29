@@ -13,7 +13,7 @@ export class ItemDonation {
   donatable_type: string;
   donatable_id: number;
   period_id: number;
-  period: Period;
+  period: Period = new Period();
   //for serializer
   editable: boolean;
 
@@ -22,10 +22,10 @@ export class ItemDonation {
   }
 
   getTitle() {
-    return this.title[0].toUpperCase()+ this.title.slice(1);
+    return this.title[0].toUpperCase() + this.title.slice(1);
   }
 
-getDescription() {
-  return this.description[0].toUpperCase()+ this.description.slice(1);
-}
+  getDescription() {
+    return this.description[0].toUpperCase() + this.description.slice(1);
+  }
 }
