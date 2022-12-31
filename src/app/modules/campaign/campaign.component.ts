@@ -30,7 +30,7 @@ export class CampaignComponent implements OnInit {
               private sharedService: SharedService) {
     this.reloadEventsubscription =
       this.sharedService.getReloadCampaign().subscribe(() => {
-        this.getCampaign()
+        this.ngOnInit();
       })
   }
 
@@ -71,13 +71,13 @@ export class CampaignComponent implements OnInit {
         } else {
           this.videoId = url.split('.be/')[1];
         };
-        if (!this.campaign.facebook.includes('https://')) {
+        if (this.campaign.facebook != "" && !this.campaign.facebook.includes('https://')) {
           this.campaign.facebook = 'https://'.concat(this.campaign.facebook)
         };
-        if (!this.campaign.twitter.includes('https://')) {
+        if (this.campaign.twitter != "" && !this.campaign.twitter.includes('https://')) {
           this.campaign.twitter = 'https://'.concat(this.campaign.twitter)
         };
-        if (!this.campaign.instagram.includes('https://')) {
+        if (this.campaign.instagram != "" && !this.campaign.instagram.includes('https://')) {
           this.campaign.instagram = 'https://'.concat(this.campaign.instagram)
         }
       }

@@ -30,7 +30,7 @@ export class OngComponent implements OnInit {
               private sharedService: SharedService) {
     this.reloadEventsubscription =
       this.sharedService.getReloadOng().subscribe(() => {
-        this.getOng()
+        this.ngOnInit();
       })
   }
 
@@ -71,13 +71,13 @@ export class OngComponent implements OnInit {
         } else {
           this.videoId = url.split('.be/')[1];
         };
-        if (!this.ong.facebook.includes('https://')) {
+        if (this.ong.facebook != "" && !this.ong.facebook.includes('https://')) {
           this.ong.facebook = 'https://'.concat(this.ong.facebook)
         };
-        if (!this.ong.twitter.includes('https://')) {
+        if (this.ong.twitter != "" && !this.ong.twitter.includes('https://')) {
           this.ong.twitter = 'https://'.concat(this.ong.twitter)
         };
-        if (!this.ong.instagram.includes('https://')) {
+        if (this.ong.instagram != "" && !this.ong.instagram.includes('https://')) {
           this.ong.instagram = 'https://'.concat(this.ong.instagram)
         }
       }
