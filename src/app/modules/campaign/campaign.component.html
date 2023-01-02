@@ -14,15 +14,18 @@
   </div>
   <div class="col-md">
     <div class="container" align="center">
-      <button type="button" class="btn btn-facebook btn-icon" (click)="goToLink(campaign.facebook)">
+      <button type="button" class="btn btn-facebook btn-icon" (click)="goToLink(campaign.facebook)"
+        *ngIf="campaign.facebook != ''">
         <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
         <span class="btn-inner--text">Facebook</span>
       </button>
-      <button type="button" class="btn btn-twitter btn-icon" (click)="goToLink(campaign.twitter)">
+      <button type="button" class="btn btn-twitter btn-icon" (click)="goToLink(campaign.twitter)"
+        *ngIf="campaign.twitter != ''">
         <span class="btn-inner--icon"><i class="fab fa-twitter"></i></span>
         <span class="btn-inner--text">Twitter</span>
       </button>
-      <button type="button" class="btn btn-instagram btn-icon" (click)="goToLink(campaign.instagram)">
+      <button type="button" class="btn btn-instagram btn-icon" (click)="goToLink(campaign.instagram)"
+        *ngIf="campaign.instagram != ''">
         <span class="btn-inner--icon"><i class="fab fa-instagram"></i></span>
         <span class="btn-inner--text">Instagram</span>
       </button>
@@ -79,24 +82,35 @@
     <div id="collapseTwo" class="accordion-collapse collapse d-lg-block" aria-labelledby="headingTwo"
       data-bs-parent="#myTabContent">
       <div class="accordion-body">
-        <div>
-          <table class="center">
+        <div *ngIf="fixedcost_list.length != 0; else elseFixedCostBlock">
+          <table width="100%">
             <thead>
               <tr>
                 <th>Título</th>
                 <th>Descripción</th>
                 <th>Monto</th>
+                <th>Progreso</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let fc of fixedcost_list">
-                <th>{{ fc.title }}</th>
-                <td>{{ fc.description }}</td>
-                <td>{{ fc.mount | currency: 'USD' }}</td>
+              <tr *ngFor="let fixedcost of fixedcost_list">
+                <th>{{ fixedcost.title }}</th>
+                <td>{{ fixedcost.description }}</td>
+                <td>{{ fixedcost.mount | currency: 'USD' }}</td>
+                <td>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar"
+                      [ngStyle]="{'width.%': fixedcost.raised * 100 / fixedcost.mount}" aria-valuenow="75"
+                      aria-valuemin="0" aria-valuemax="100">{{fixedcost.raised * 100 / fixedcost.mount}}%</div>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
+        <ng-template #elseFixedCostBlock>
+          <h2>No existen costos fijos.</h2>
+        </ng-template>
       </div>
     </div>
   </div>
@@ -111,14 +125,15 @@
     <div id="collapseTwo" class="accordion-collapse collapse d-lg-block" aria-labelledby="headingTwo"
       data-bs-parent="#myTabContent">
       <div class="accordion-body">
-        <div>
-          <table class="center">
+        <div *ngIf="itemDonation_list.length != 0; else elseItemDonationBlock">
+          <table width="100%">
             <thead>
               <tr>
                 <th>#ID</th>
                 <th>Título</th>
                 <th>Descripción</th>
                 <th>Monto</th>
+                <th>Progreso</th>
               </tr>
             </thead>
             <tbody>
@@ -127,10 +142,19 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.mount }}</td>
+                <td>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': item.raised * 100 / item.mount}"
+                      aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{item.raised * 100 / item.mount}}%</div>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
+        <ng-template #elseItemDonationBlock>
+          <h2>No existen pedidos de donación.</h2>
+        </ng-template>
       </div>
     </div>
   </div>
