@@ -4,7 +4,14 @@
 <div class="row g-2">
   <div class="col-md">
     <div class="container" align="right">
-      <youtube-player [videoId]="videoId" [height]="225" [width]="450"> </youtube-player>
+      <div *ngIf="campaign.video_url != ''; else elseBlock">
+        <youtube-player [videoId]="videoId" [height]="225" [width]="450"> </youtube-player>
+      </div>
+      <ng-template #elseBlock>
+        <img class="img-photo"
+          [src]="campaign && campaign.photos.length > 0 ? campaign.photos[0][1] : '/assets/default/default.jpeg'">
+      </ng-template>
+
     </div>
     <div class="container" align="right">
       <div class="img-wrap mr-2" *ngFor="let photo of campaign.photos; index as i">

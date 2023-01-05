@@ -10,6 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { AuthHandlerInterceptor } from './interceptor/auth-handler.interceptor';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { AuthHandlerInterceptor } from './interceptor/auth-handler.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    YouTubePlayerModule,
     AngularTokenModule.forRoot({
       apiBase:                     environment.API_URL,
          apiPath:                   undefined,

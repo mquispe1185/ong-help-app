@@ -1,5 +1,182 @@
 <div class="container">
   <p>WELCOME</p>
-
-  <p>{{displayJSON()}}</p>
+  <p>WELCOME</p>
+  <p>WELCOME</p>
+  <div class="card">
+    <div class="card-header">
+      <div class="mb-0 card-title h5" role="button" (click)="redirect(init_entities[0])">{{init_entities[0]?.name}}</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <div *ngIf="init_entities[0]?.video_url != ''; else elseBlock">
+              <youtube-player [videoId]="videoId" [height]="250" [width]="500"> </youtube-player>
+            </div>
+            <ng-template #elseBlock>
+              <img class="img-photo"
+                [src]="init_entities[0] && init_entities[0]?.photos.length > 0 ? init_entities[0]?.photos[0][1] : '/assets/default/default.jpeg'">
+            </ng-template>
+          </div>
+          <div class="col-12 col-sm-6">
+            <span class="my-2 badge bg-warning">In progress</span>
+            <p>{{init_entities[0]?.description}}</p>
+            <button type="button" class="btn btn-facebook btn-icon" (click)="goToLink(init_entities[0].facebook)"
+              *ngIf="init_entities[0]?.facebook != ''">
+              <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
+              <span class="btn-inner--text">Facebook</span>
+            </button>
+            <button type="button" class="btn btn-twitter btn-icon" (click)="goToLink(init_entities[0].twitter)"
+              *ngIf="init_entities[0]?.twitter != ''">
+              <span class="btn-inner--icon"><i class="fab fa-twitter"></i></span>
+              <span class="btn-inner--text">Twitter</span>
+            </button>
+            <button type="button" class="btn btn-instagram btn-icon" (click)="goToLink(init_entities[0].instagram)"
+              *ngIf="init_entities[0]?.instagram != ''">
+              <span class="btn-inner--icon"><i class="fab fa-instagram"></i></span>
+              <span class="btn-inner--text">Instagram</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="card">
+          <img class="card-img"
+            [src]="init_entities[1] && init_entities[1]?.photos.length > 0 ? init_entities[1]?.photos[0][1] : '/assets/default/default.jpeg'"
+            alt="Card image cap">
+          <div class="px-4 pt-4 card-header">
+            <div class="mb-0 card-title h5" role="button" (click)="redirect(init_entities[1])">
+              {{init_entities[1]?.name}}</div>
+            <span class="my-2 badge bg-warning">In progress</span>
+          </div>
+          <div class="px-4 pt-2 card-body">
+            <p>{{init_entities[1]?.description}}</p>
+            <!-- Facebook -->
+            <button type="button" class="btn btn-facebook btn-icon" (click)="goToLink(init_entities[1].facebook)"
+              *ngIf="init_entities[1]?.facebook != ''">
+              <i class="fab fa-facebook-f fa-2x" style="color: #3b5998;"></i>
+            </button>
+            <!-- Twitter -->
+            <button type="button" class="btn btn-twitter btn-icon" (click)="goToLink(init_entities[1].twitter)"
+              *ngIf="init_entities[1]?.twitter != ''">
+              <i class="fab fa-twitter fa-2x" style="color: #55acee;"></i>
+            </button>
+            <!-- Instagram -->
+            <button type="button" class="btn btn-instagram btn-icon" (click)="goToLink(init_entities[1].instagram)"
+              *ngIf="init_entities[1]?.instagram != ''">
+              <i class="fab fa-instagram fa-2x" style="color: #ac2bac;"></i>
+            </button>
+          </div>
+          <div class="list-group list-group-flush">
+            <div class="px-4 pb-4 list-group-item">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card">
+          <img class="card-img"
+            [src]="init_entities[2] && init_entities[2]?.photos.length > 0 ? init_entities[2]?.photos[0][1] : '/assets/default/default.jpeg'"
+            alt="Card image cap">
+          <div class="px-4 pt-4 card-header">
+            <div class="mb-0 card-title h5" role="button" (click)="redirect(init_entities[2])">
+              {{init_entities[2]?.name}}</div>
+            <span class="my-2 badge bg-warning">In progress</span>
+          </div>
+          <div class="px-4 pt-2 card-body">
+            <p>{{init_entities[2]?.description}}</p>
+            <!-- Facebook -->
+            <button type="button" class="btn btn-facebook btn-icon" (click)="goToLink(init_entities[2].facebook)"
+              *ngIf="init_entities[2]?.facebook != ''">
+              <i class="fab fa-facebook-f fa-2x" style="color: #3b5998;"></i>
+            </button>
+            <!-- Twitter -->
+            <button type="button" class="btn btn-twitter btn-icon" (click)="goToLink(init_entities[2].twitter)"
+              *ngIf="init_entities[2]?.twitter != ''">
+              <i class="fab fa-twitter fa-2x" style="color: #55acee;"></i>
+            </button>
+            <!-- Instagram -->
+            <button type="button" class="btn btn-instagram btn-icon" (click)="goToLink(init_entities[2].instagram)"
+              *ngIf="init_entities[2]?.instagram != ''">
+              <i class="fab fa-instagram fa-2x" style="color: #ac2bac;"></i>
+            </button>
+          </div>
+          <div class="list-group list-group-flush">
+            <div class="px-4 pb-4 list-group-item">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card">
+          <img class="card-img"
+            [src]="init_entities[3] && init_entities[3]?.photos.length > 0 ? init_entities[3]?.photos[0][1] : '/assets/default/default.jpeg'"
+            alt="Card image cap">
+          <div class="px-4 pt-4 card-header">
+            <div class="mb-0 card-title h5" role="button" (click)="redirect(init_entities[3])">
+              {{init_entities[3]?.name}}</div>
+            <span class="my-2 badge bg-warning">In progress</span>
+          </div>
+          <div class="px-4 pt-2 card-body">
+            <p>{{init_entities[3]?.description}}</p>
+            <!-- Facebook -->
+            <button type="button" class="btn btn-facebook btn-icon" (click)="goToLink(init_entities[3].facebook)"
+              *ngIf="init_entities[3]?.facebook != ''">
+              <i class="fab fa-facebook-f fa-2x" style="color: #3b5998;"></i>
+            </button>
+            <!-- Twitter -->
+            <button type="button" class="btn btn-twitter btn-icon" (click)="goToLink(init_entities[3].twitter)"
+              *ngIf="init_entities[3]?.twitter != ''">
+              <i class="fab fa-twitter fa-2x" style="color: #55acee;"></i>
+            </button>
+            <!-- Instagram -->
+            <button type="button" class="btn btn-instagram btn-icon" (click)="goToLink(init_entities[3].instagram)"
+              *ngIf="init_entities[3]?.instagram != ''">
+              <i class="fab fa-instagram fa-2x" style="color: #ac2bac;"></i>
+            </button>
+          </div>
+          <div class="list-group list-group-flush">
+            <div class="px-4 pb-4 list-group-item">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card">
+          <img class="card-img"
+            [src]="init_entities[4] && init_entities[4]?.photos.length > 0 ? init_entities[4]?.photos[0][1] : '/assets/default/default.jpeg'"
+            alt="Card image cap">
+          <div class="px-4 pt-4 card-header">
+            <div class="mb-0 card-title h5" role="button" (click)="redirect(init_entities[4])">
+              {{init_entities[4]?.name}}</div>
+            <span class="my-2 badge bg-warning">In progress</span>
+          </div>
+          <div class="px-4 pt-2 card-body">
+            <p>{{init_entities[4]?.description}}</p>
+            <!-- Facebook -->
+            <button type="button" class="btn btn-facebook btn-icon" (click)="goToLink(init_entities[4].facebook)"
+              *ngIf="init_entities[4]?.facebook != ''">
+              <i class="fab fa-facebook-f fa-2x" style="color: #3b5998;"></i>
+            </button>
+            <!-- Twitter -->
+            <button type="button" class="btn btn-twitter btn-icon" (click)="goToLink(init_entities[4].twitter)"
+              *ngIf="init_entities[4]?.twitter != ''">
+              <i class="fab fa-twitter fa-2x" style="color: #55acee;"></i>
+            </button>
+            <!-- Instagram -->
+            <button type="button" class="btn btn-instagram btn-icon" (click)="goToLink(init_entities[4].instagram)"
+              *ngIf="init_entities[4]?.instagram != ''">
+              <i class="fab fa-instagram fa-2x" style="color: #ac2bac;"></i>
+            </button>
+          </div>
+          <div class="list-group list-group-flush">
+            <div class="px-4 pb-4 list-group-item">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
