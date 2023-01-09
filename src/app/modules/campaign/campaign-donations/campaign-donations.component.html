@@ -27,7 +27,7 @@
       <div class="row g-2">
         <div class="col-md">
           <label for="month" class="form-label">Mes</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
+          <select class="form-select form-select-sm c1" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
             name="month" #month="ngModel">
             <option selected disabled>Seleccione mes</option>
             <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-md">
           <label for="year" class="form-label">Año</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
+          <select class="form-select form-select-sm c1" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
             name="year" #year="ngModel">
             <option selected disabled>Seleccione año</option>
             <option *ngFor="let year of years">{{year}}</option>
@@ -80,7 +80,7 @@
       <div class="row g-2">
         <div class="col-md">
           <label for="month" class="form-label">Mes</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
+          <select class="form-select form-select-sm c1" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
             name="month" #month="ngModel">
             <option selected disabled>Seleccione mes</option>
             <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
@@ -88,7 +88,7 @@
         </div>
         <div class="col-md">
           <label for="year" class="form-label">Año</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
+          <select class="form-select form-select-sm c1" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
             name="year" #year="ngModel">
             <option selected disabled>Seleccione año</option>
             <option *ngFor="let year of years">{{year}}</option>
