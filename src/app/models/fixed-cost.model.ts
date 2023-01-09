@@ -20,4 +20,12 @@ export class FixedCost {
   constructor(data?: any) {
     Object.assign(this, data);
   }
+
+  getTitle() {
+    return this.title[0].toUpperCase() + this.title.slice(1);
+  }
+
+  getDescription() {
+    return this.description[0].toUpperCase() + this.description.slice(1);
+  }
 }
