@@ -17,6 +17,7 @@ import { CampaignDonationListComponent } from './modules/campaign/campaign-donat
 import { OngInfoComponent } from './modules/ong/ong-info/ong-info.component';
 import { CampaignEditComponent } from './modules/campaign/campaign-edit/campaign-edit.component';
 import { CampaignInfoComponent } from './modules/campaign/campaign-info/campaign-info.component';
+import { EntityLinksComponent } from './modules/shared/entity-links/entity-links.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -46,7 +47,8 @@ const routes: Routes = [
       { path: 'solicitar-donaciones', component: OngDonationsComponent, outlet: 'ong' },
       { path: 'ver-donaciones', component: OngDonationListComponent, outlet: 'ong' },
       { path: 'editar', component: OngEditComponent, outlet: 'ong' },
-      { path: 'info', component: OngInfoComponent, outlet: 'ong' }
+      { path: 'info', component: OngInfoComponent, outlet: 'ong' },
+      { path: 'entity-links', component: EntityLinksComponent, outlet: 'ong' }
     ]
   },
   {
@@ -59,7 +61,8 @@ const routes: Routes = [
       { path: 'solicitar-donaciones', component: CampaignDonationsComponent, outlet: 'campaign' },
       { path: 'ver-donaciones', component: CampaignDonationListComponent, outlet: 'campaign' },
       { path: 'editar', component: CampaignEditComponent, outlet: 'campaign' },
-      { path: 'info', component: CampaignInfoComponent, outlet: 'campaign' }
+      { path: 'info', component: CampaignInfoComponent, outlet: 'campaign' },
+      { path: 'entity-links', component: EntityLinksComponent, outlet: 'campaign' }
     ]
   }
 ];
