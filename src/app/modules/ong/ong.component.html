@@ -1,3 +1,11 @@
+<body>
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+</body>
+
+<script>
+  const mp = new MercadoPago(" ");
+</script>
+
 <p>ong works!</p>
 <p>ong works!</p>
 <h1>{{ong.name}}</h1>
@@ -95,6 +103,7 @@
                 <th>Descripción</th>
                 <th>Monto</th>
                 <th>Progreso</th>
+                <th>Colaborar</th>
               </tr>
             </thead>
             <tbody>
@@ -108,7 +117,8 @@
                       [ngStyle]="{'width.%': fixedcost.raised * 100 / fixedcost.mount}" aria-valuenow="75"
                       aria-valuemin="0" aria-valuemax="100">{{fixedcost.raised * 100 / fixedcost.mount}}%</div>
                   </div>
-                </td>
+                </td> 
+                <td><button type="button" class="btn btn-primary" id="chekcout-button-{{fixedcost.id}}">Colaborar</button></td>
               </tr>
             </tbody>
           </table>
