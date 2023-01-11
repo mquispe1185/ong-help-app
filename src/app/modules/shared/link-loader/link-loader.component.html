@@ -1,0 +1,12 @@
+<div *ngIf="entity == 'Ong'; else elseBlock">
+  <a href="#" class="dashboard-link px-3 py-4 d-block"
+    [routerLink]="['/ong-dashboard', {outlets: {ong: ['entity-links']}}]" routerLinkActive="active">
+    <i></i>Noticias
+  </a>
+</div>
+<ng-template #elseBlock>
+  <a href="#" class="dashboard-link px-3 py-4 d-block"
+    [routerLink]="['/campaign-dashboard', {outlets: {campaign: ['entity-links']}}]" routerLinkActive="active">
+    <i></i>Noticias
+  </a>
+</ng-template>
