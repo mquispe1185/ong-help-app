@@ -6,21 +6,21 @@
   <div class="modal-body font2">
     <form (ngSubmit)="onSubmit(fixedcostForm)" #fixedcostForm="ngForm">
       <label for="floatingInput" class="form-label">Título</label>
-      <input type="text" class="form-control form-control-sm c1" id="title" placeholder="Titulo" required
+      <input type="text" class="form-control form-control-sm" id="title" placeholder="Titulo" required
         [(ngModel)]="fixedcost.title" name="title" #title="ngModel">
       <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
         Title is required
       </div><!-- Title -->
 
       <label class="description" class="form-label">Descripción</label>
-      <input type="text" class="form-control form-control-sm c1" id="description" placeholder="Description" required
+      <input type="text" class="form-control form-control-sm" id="description" placeholder="Description" required
         [(ngModel)]="fixedcost.description" name="description" #description="ngModel">
       <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
         Name is required
       </div><!-- Description -->
 
       <label class="form-label" for="mount">Monto</label>
-      <input type="text" class="form-control form-control-sm c1" id="mount" placeholder="Monto" required
+      <input type="text" class="form-control form-control-sm" id="mount" placeholder="Monto" required
         [(ngModel)]="fixedcost.mount" name="mount" #mount="ngModel">
       <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
         Mount is required
@@ -29,7 +29,7 @@
       <div class="row g-2">
         <div class="col-md">
           <label for="month" class="form-label">Mes</label>
-          <select class="form-select form-select-sm c1" aria-label="Default select example" [(ngModel)]="fixedcost.period.month"
+          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="fixedcost.period.month"
             name="month" #month="ngModel">
             <option selected disabled>Seleccione mes</option>
             <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
@@ -37,7 +37,7 @@
         </div>
         <div class="col-md">
           <label for="year" class="form-label">Año</label>
-          <select class="form-select form-select-sm c1" aria-label="Default select example" [(ngModel)]="fixedcost.period.year"
+          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="fixedcost.period.year"
             name="year" #year="ngModel">
             <option selected disabled>Seleccione año</option>
             <option *ngFor="let year of years">{{year}}</option>
@@ -55,25 +55,25 @@
 
 <ng-template #editFixedCost let-modal>
   <div class="modal-header font2">
-    <h4 class="modal-title" id="modal-basic-title">Costo fijo</h4>
+    <h4 class="modal-title" id="modal-basic-title">Editar Costo fijo</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body font2">
     <form (ngSubmit)="updateFixedCost()" #fixedcostForm="ngForm">
       <label class="form-label" for="floatingInput">Título</label>
-      <input type="text" class="form-control form-control-sm c1" id="title" placeholder="Titulo" required
+      <input type="text" class="form-control form-control-sm" id="title" placeholder="Titulo" required
         [(ngModel)]="fixedcost.title" name="title" #title="ngModel">
       <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
         Title is required
       </div><!-- Title -->
 
       <label class="form-label" for="floatingInput">Descripción</label>
-      <textarea [(ngModel)]='fixedcost.description' class="form-control form-control-sm c1" rows="3"
+      <textarea [(ngModel)]='fixedcost.description' class="form-control form-control-sm" rows="3"
         placeholder="Descripcion" style="height: 100px" name="description">
         </textarea><!-- Description -->
 
       <label class="form-label" for="floatingInput">Monto</label>
-      <input type="text" class="form-control form-control-sm c1" id="mount" placeholder="Monto" required
+      <input type="text" class="form-control form-control-sm" id="mount" placeholder="Monto" required
         [(ngModel)]="fixedcost.mount" name="mount" #mount="ngModel">
       <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
         Mount is required
@@ -82,7 +82,7 @@
       <div class="row g-2">
         <div class="col-md">
           <label for="month" class="form-label">Mes</label>
-          <select class="form-select form-select-sm c1" aria-label="Default select example" [(ngModel)]="fixedcost.period.month"
+          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="fixedcost.period.month"
             name="month" #month="ngModel">
             <option selected disabled>Seleccione mes</option>
             <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
@@ -90,7 +90,7 @@
         </div>
         <div class="col-md">
           <label for="year" class="form-label">Año</label>
-          <select class="form-select form-select-sm c1" aria-label="Default select example" [(ngModel)]="fixedcost.period.year"
+          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="fixedcost.period.year"
             name="year" #year="ngModel">
             <option selected disabled>Seleccione año</option>
             <option *ngFor="let year of years">{{year}}</option>
