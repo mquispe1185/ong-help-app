@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { EntityLink } from 'src/app/models/entity-link.model';
 import { FixedCost } from 'src/app/models/fixed-cost.model';
 import { ItemDonation } from 'src/app/models/item-donation.model';
 import { Ong } from 'src/app/models/ong.model';
+import { EntityLinkService } from 'src/app/services/entity-link.service';
 import { FixedCostsService } from 'src/app/services/fixed-costs.service';
 import { ItemDonationsService } from 'src/app/services/item-donations.service';
 import { OngService } from 'src/app/services/ong.service';
@@ -23,10 +25,15 @@ export class OngComponent implements OnInit {
 
   fixedcost_list: FixedCost[] = [];
   itemDonation_list: ItemDonation[] = [];
+  entityLink_list: EntityLink[] = [];
+  metadata_list: any[] = [];
+
+  metadata: any;
 
   constructor(private ongService: OngService,
               private fixedcostsService: FixedCostsService,
               private itemDonationsService: ItemDonationsService,
+              private entityLinksService: EntityLinkService,
               private sharedService: SharedService) {
     this.reloadEventsubscription =
       this.sharedService.getReloadOng().subscribe(() => {
@@ -38,6 +45,7 @@ export class OngComponent implements OnInit {
     this.getOng();
     this.getFixedCosts();
     this.getItemDonations();
+    this.getEntityLinks();
     if (!this.apiLoaded) {
       const tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
@@ -57,6 +65,26 @@ export class OngComponent implements OnInit {
     let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.itemDonationsService.getItemDonations('Ong', obj.id).subscribe(
       res_itemDonations => { this.itemDonation_list = res_itemDonations }
+    )
+  }
+
+  getEntityLinks() {
+    let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
+    this.entityLinksService.getEntityLinks('Ong', obj.id).subscribe(
+      res_entityLinks => {
+        this.entityLink_list = res_entityLinks;
+        this.entityLink_list.forEach(entitylink => {
+          this.entityLinksService.getMetadata(entitylink.id).subscribe(
+            res => {
+              this.metadata = res;
+              this.metadata.dbId = entitylink.id;
+              this.metadata.dbCreated_at = entitylink.created_at;
+              this.metadata_list.push(this.metadata);
+              this.metadata_list.sort((a, b) => (a.dbId < b.dbId) ? 1 : -1)
+            }
+          )
+        });
+      }
     )
   }
 

@@ -13,6 +13,7 @@ import { CampaignEditComponent } from './campaign-edit/campaign-edit.component';
 import { CampaignInfoComponent } from './campaign-info/campaign-info.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     CampaignRoutingModule,
     FormsModule,
     ImageCropperModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    SharedModule
   ],
   exports: []
 })
