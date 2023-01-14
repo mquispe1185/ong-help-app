@@ -32,4 +32,9 @@ export class FixedCostsService {
     return this.http.delete<FixedCost>(url);
   }
 
+  donationPayment(donationData: any): Observable<any>{
+    const url = `${environment.API_URL}/mercadopago/checkout`;
+    return this.http.post<any>(url, donationData);
+  }
+
 }
