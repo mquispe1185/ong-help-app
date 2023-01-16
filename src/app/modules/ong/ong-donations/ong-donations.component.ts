@@ -123,5 +123,4 @@ export class OngDonationsComponent implements OnInit {
   setItemDonation(item: ItemDonation) {
     this.itemDonation =  new ItemDonation({...item})
   }
-
 }

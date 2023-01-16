@@ -31,7 +31,7 @@ export class OngFixedCostsComponent implements OnInit {
   getFixedCosts() {
     let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
     this.fixedcostsService.getFixedCosts('Ong', obj.id).subscribe(
-      res_fixedcosts => { this.fixedcost_list = res_fixedcosts }
+      res_fixedcosts => { this.fixedcost_list = res_fixedcosts.map(i => new FixedCost(i)) }
     )
   }
 
@@ -57,6 +57,10 @@ export class OngFixedCostsComponent implements OnInit {
     }
   }
 
+  newFixedCost() {
+    this.fixedcost = new FixedCost();
+  }
+
   onSubmit(fixedcostForm: NgForm) {
     this.submitted = true;
     let obj = JSON.parse(localStorage.getItem('entitySelected') || '{}');
@@ -78,12 +82,8 @@ export class OngFixedCostsComponent implements OnInit {
     );
   }
 
-  newFixedCost() {
-    this.fixedcost = new FixedCost();
-  }
-
   setFixedCost(fc: FixedCost) {
-    this.fixedcost = { ...fc };
+    this.fixedcost = new FixedCost({ ...fc });
   }
 
   updateFixedCost() {

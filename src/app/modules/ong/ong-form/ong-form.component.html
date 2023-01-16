@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row justify-content-md-center">
-    <div class="col col-md-10 col-xl-8 card p-4 mx-2 my-4 shadow font1">
+    <div class="col col-md-10 col-xl-8 card p-4 mx-2 my-4 shadow ">
       <h1 class="formtittle2">Nueva ONG</h1>
       <form (ngSubmit)="onSubmit(ongForm)" #ongForm="ngForm">
         <div class="form-floating mt-4">
-          <input type="text" class="form-control c1" id="Nombre" placeholder="Nombre" required [(ngModel)]="ong.name"
+          <input type="text" class="form-control" id="Nombre" placeholder="Nombre" required [(ngModel)]="ong.name"
             name="name" #name="ngModel">
           <label class="form-label" for="floatingInput">Nombre</label>
           <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
@@ -15,7 +15,7 @@
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control c2" id="Email" placeholder="name@example.com" required
+              <input type="text" class="form-control" id="Email" placeholder="name@example.com" required
                 [(ngModel)]="ong.email" name="email" #email="ngModel">
               <label for="floatingEmail">Email</label>
               <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
@@ -26,7 +26,7 @@
           </div>
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control c2" id="Phone" placeholder="Telefono" required
+              <input type="text" class="form-control" id="Phone" placeholder="Telefono" required
                 [(ngModel)]="ong.phone" name="phone" #phone="ngModel">
               <label for="floatingPhone">Telefono</label>
               <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
@@ -39,7 +39,7 @@
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating mt-4">
-              <select class="form-control c2" id="category" placeholder="Categoria" required
+              <select class="form-control" id="category" placeholder="Categoria" required
                 [(ngModel)]="ong.category_id" name="category" #category="ngModel">
                 <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
               </select>
@@ -51,7 +51,7 @@
           </div>
           <div class="col-md">
             <div class="form-floating mt-4">
-              <select class="form-control c2" id="city" required [(ngModel)]="ong.city_id" name="city"
+              <select class="form-control" id="city" required [(ngModel)]="ong.city_id" name="city"
                 #city="ngModel">
                 <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
               </select>
@@ -66,14 +66,14 @@
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control c3" id="facebook" placeholder="Facebook" required
+              <input type="text" class="form-control" id="facebook" placeholder="Facebook" required
                 [(ngModel)]="ong.facebook" name="facebook" #facebook="ngModel">
               <label for="floatingFacebook">Facebook</label>
             </div><!-- Facebook -->
           </div>
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control c3" id="instagram" placeholder="Instagram" required
+              <input type="text" class="form-control" id="instagram" placeholder="Instagram" required
                 [(ngModel)]="ong.instagram" name="instagram" #instagram="ngModel">
               <label for="instagram">Instagram</label>
             </div><!-- Instagram -->
@@ -83,14 +83,14 @@
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control c3" id="twitter" placeholder="Twitter" required
+              <input type="text" class="form-control" id="twitter" placeholder="Twitter" required
                 [(ngModel)]="ong.twitter" name="twitter" #twitter="ngModel">
               <label for="twitter">Twitter</label>
             </div><!-- Twitter -->
           </div>
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control c3" id="video_url" placeholder="VideoURL"
+              <input type="text" class="form-control" id="video_url" placeholder="VideoURL"
                 [(ngModel)]="ong.video_url" name="video_url">
               <label for="video_url">Video URL</label>
             </div><!-- Video URL -->
@@ -98,21 +98,21 @@
         </div>
 
         <div class="form-floating mt-4">
-          <textarea [(ngModel)]='ong.description' class="form-control c4" rows="3" placeholder="Descripcion"
+          <textarea [(ngModel)]='ong.description' class="form-control" rows="3" placeholder="Descripcion"
             style="height: 100px" name="description">
           </textarea>
           <label for="description" class="form-label">Descripcion</label>
         </div><!-- Descripcion -->
 
         <div class="form-floating mt-4">
-          <textarea [(ngModel)]='ong.tags' class="form-control c4" rows="3" placeholder="Tags" style="height: 100px"
+          <textarea [(ngModel)]='ong.tags' class="form-control" rows="3" placeholder="Tags" style="height: 100px"
             name="tags">
                   </textarea>
           <label for="tags" class="form-label">Tags</label>
         </div><!-- Tags -->
 
         <div class="form-group mt-4">
-          <button type="submit" class="btn btn-success btn1" [disabled]="!ongForm.form.valid">Enviar</button>
+          <button type="submit" class="btn btn-success" [disabled]="!ongForm.form.valid">Enviar</button>
         </div><!-- botones -->
       </form>
     </div>

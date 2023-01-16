@@ -1,24 +1,24 @@
 <ng-template #create let-modal>
   <div class="modal-header font2 text-center">
-    <h4 class="modal-title" id="modal-basic-title">Formulario de solicitud</h4>
+    <h4 class="modal-title" id="modal-basic-title">Formulario de Donación</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body font2">
     <form (ngSubmit)="onSubmit(itemDonationForm)" #itemDonationForm="ngForm">
       <label for="floatingInput" class="form-label">Título</label>
-      <input type="text" class="form-control form-control-sm c1" id="Title" placeholder="Titulo" required
+      <input type="text" class="form-control form-control-sm" id="Title" placeholder="Titulo" required
         [(ngModel)]="itemDonation.title" name="title" #title="ngModel">
       <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
         Title is required
       </div><!-- Title -->
 
-      <label for="description" class="form-label">Descripcion</label>
-      <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm c1" rows="3"
+      <label for="description" class="form-label">Descripción</label>
+      <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm" rows="3"
         placeholder="Descripcion" style="height: 100px" name="description">
         </textarea><!-- Description -->
 
       <label for="mount" class="form-label">Monto</label>
-      <input type="text" class="form-control form-control-sm c1" id="Mount" placeholder="Monto" required
+      <input type="text" class="form-control form-control-sm" id="Mount" placeholder="Monto" required
         [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel">
       <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
         Mount is required
@@ -27,7 +27,7 @@
       <div class="row g-2">
         <div class="col-md">
           <label for="month" class="form-label">Mes</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
+          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
             name="month" #month="ngModel">
             <option selected disabled>Seleccione mes</option>
             <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-md">
           <label for="year" class="form-label">Año</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
+          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
             name="year" #year="ngModel">
             <option selected disabled>Seleccione año</option>
             <option *ngFor="let year of years">{{year}}</option>
@@ -53,25 +53,25 @@
 
 <ng-template #edit let-modal>
   <div class="modal-header font2 ">
-    <h4 class="modal-title" id="modal-basic-title">Editar</h4>
+    <h4 class="modal-title" id="modal-basic-title">Editar Formulario de Donación</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body font2">
     <form (ngSubmit)="updateItemDonation()" #itemDonationForm="ngForm">
       <label for="floatingInput" class="form-label">Título</label>
-      <input type="text" class="form-control form-control-sm c1" id="Title" placeholder="Titulo" required
+      <input type="text" class="form-control form-control-sm" id="Title" placeholder="Titulo" required
         [(ngModel)]="itemDonation.title" name="title" #title="ngModel">
       <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
         Title is required
       </div><!-- Title -->
 
-      <label for="description" class="form-label">Descripcion</label>
-      <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm c1" rows="3"
+      <label for="description" class="form-label">Descripción</label>
+      <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm" rows="3"
         placeholder="Descripcion" style="height: 100px" name="description">
         </textarea><!-- Description -->
 
       <label for="mount" class="form-label">Monto</label>
-      <input type="text" class="form-control form-control-sm c1" id="Mount" placeholder="Monto" required
+      <input type="text" class="form-control form-control-sm" id="Mount" placeholder="Monto" required
         [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel">
       <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
         Mount is required
@@ -80,7 +80,7 @@
       <div class="row g-2">
         <div class="col-md">
           <label for="month" class="form-label">Mes</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
+          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
             name="month" #month="ngModel">
             <option selected disabled>Seleccione mes</option>
             <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
@@ -88,7 +88,7 @@
         </div>
         <div class="col-md">
           <label for="year" class="form-label">Año</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
+          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
             name="year" #year="ngModel">
             <option selected disabled>Seleccione año</option>
             <option *ngFor="let year of years">{{year}}</option>

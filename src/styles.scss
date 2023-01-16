@@ -21,6 +21,17 @@ $size-font-tex:13.2px;
 $striped-row:#f4f7f9;
 $size-title:0.95rem;
 
+.font-edit{
+  color: $color-ti;
+  font-family:$app-font;
+}
+
+.font2{
+  color: #495057;
+  font-family:$app-font;
+  font-size: 0.825rem;
+}
+
 .body{
   background-color: $backbody;
   font-family: $color-text;
