@@ -54,8 +54,8 @@
       role="tab" aria-controls="donations-tab-pane" aria-selected="false">Donaciones</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button"
-      role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+    <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-tab-pane" type="button"
+      role="tab" aria-controls="news-tab-pane" aria-selected="false">Noticias</button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button"
@@ -165,7 +165,7 @@
       </div>
     </div>
   </div>
-  <div class="tab-pane fade accordion-item" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+  <div class="tab-pane fade accordion-item" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab"
     tabindex="0">
     <h2 class="accordion-header d-lg-none" id="headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
@@ -176,11 +176,20 @@
     <div id="collapseTwo" class="accordion-collapse collapse d-lg-block" aria-labelledby="headingTwo"
       data-bs-parent="#myTabContent">
       <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
-        plugin adds the appropriate classes that we use to style each element. These classes control the overall
-        appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
-        custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go
-        within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <div class="card mb-3" style="max-width: 540px;" *ngFor="let obj of metadata_list">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img [src]="obj?.image_url" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title" role="button" (click)="goToLink(obj?.canonical_url)">{{obj?.title}}</h5>
+                <p class="card-text">{{obj?.description}}</p>
+                <p class="card-text"><small class="text-muted">Cargado en fecha {{obj?.dbCreated_at | date: 'dd/MM/yyyy'}}</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
