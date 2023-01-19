@@ -108,7 +108,7 @@
                       [ngStyle]="{'width.%': fixedcost.raised * 100 / fixedcost.mount}" aria-valuenow="75"
                       aria-valuemin="0" aria-valuemax="100">{{fixedcost.raised * 100 / fixedcost.mount}}%</div>
                   </div>
-                </td> 
+                </td>
                 <td>
                   <div class="input-group mb-1">
                     <input type="number" id="donate-input" class="form-control" placeholder="Monto a donar" aria-label="Monto a donar" aria-describedby="donate-button" #amount>
@@ -124,7 +124,7 @@
                       <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cancelar</button>
                         <!-- <form id="form-id" method="GET"></form> -->
-                        <div class="cho-container"></div>
+                        <div id="checkout" class="cho-container"></div>
                       </div>
                     </ng-template>
                     <!-- <button class="btn btn-lg btn-outline-primary" (click)="pagar(fixedcost, amount.value)">Pagar</button> -->

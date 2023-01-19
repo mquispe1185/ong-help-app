@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Subscription } from 'rxjs';
 import { EntityLink } from 'src/app/models/entity-link.model';
@@ -35,7 +35,6 @@ export class OngComponent implements OnInit{
   preference_id: string;
   script: any;
   metadata: any;
-
   constructor(private ongService: OngService,
               private fixedcostsService: FixedCostsService,
               private itemDonationsService: ItemDonationsService,
@@ -184,11 +183,12 @@ export class OngComponent implements OnInit{
     this.fixedcostsService.donationPayment(donationData).subscribe(
       res => {
         console.log('preference_id', res['preference_id']);
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "https://sdk.mercadopago.com/js/v2";
-        document.body.appendChild(script);
-        script.addEventListener('load', this.createCheckout);
+        this.createCheckoutButton(res['preference_id']); // metodo creado por mi, esta mas abajo
+        // const script = document.createElement("script");
+        // script.type = "text/javascript";
+        // script.src = "https://sdk.mercadopago.com/js/v2";
+        // document.body.appendChild(script);
+        // script.addEventListener('load', this.createCheckout);
       }
     )
 	}
@@ -209,7 +209,17 @@ export class OngComponent implements OnInit{
       }
     });
   }
-
+  // uso el metodo similar al de meta, con algunas acutalizaciones minimas
+  createCheckoutButton(preference:any) {
+    var script = document.createElement("script");
+    localStorage.setItem('preference_id', preference);
+    script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+    script.type = "text/javascript";
+    script.dataset['preferenceId'] = preference;
+    let divButton = document.getElementById("checkout");
+    divButton!.innerHTML = "";
+    divButton!.appendChild(script);
+  }
   // function for testing payment button outside the fixed_costs table
   // pagar(fc: FixedCost, amount: string) {
   //   let donationData = {amount: amount, fixed_cost_id: fc.id};
