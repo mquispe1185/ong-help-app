@@ -11,14 +11,16 @@ import { FixedCostsService } from 'src/app/services/fixed-costs.service';
 import { ItemDonationsService } from 'src/app/services/item-donations.service';
 import { OngService } from 'src/app/services/ong.service';
 import { SharedService } from 'src/app/services/shared.service';
-import Swal from 'sweetalert2';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ong',
   templateUrl: './ong.component.html',
-  styleUrls: ['./ong.component.scss']
+  styleUrls: ['./ong.component.scss'],
+	providers: [NgbModalConfig, NgbModal],
 })
-export class OngComponent implements OnInit, AfterViewInit {
+
+export class OngComponent implements OnInit{
 
   ong: Ong = new Ong();
   reloadEventsubscription: Subscription;
@@ -32,7 +34,6 @@ export class OngComponent implements OnInit, AfterViewInit {
   metadata_list: any[] = [];
   preference_id: string;
   script: any;
-
   metadata: any;
 
   constructor(private ongService: OngService,
@@ -40,19 +41,15 @@ export class OngComponent implements OnInit, AfterViewInit {
               private itemDonationsService: ItemDonationsService,
               private entityLinksService: EntityLinkService,
               private sharedService: SharedService,
-              public tokenService: AngularTokenService) {
+              public tokenService: AngularTokenService,
+              config: NgbModalConfig,
+              private modalService: NgbModal) {
     this.reloadEventsubscription =
       this.sharedService.getReloadOng().subscribe(() => {
         this.ngOnInit();
       })
-  }
-  ngAfterViewInit(): void {
-    this.script = document.createElement("script");
-    this.script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-    this.script.type = "text/javascript";
-    //script.dataset['preferenceId'] = this.preference_id;
-    document.getElementById("chispita")!.innerHTML = "";
-    document.querySelector("#chispita")!.appendChild(this.script);
+      config.backdrop = 'static';
+      config.keyboard = false;
   }
 
   ngOnInit(): void {
@@ -130,47 +127,44 @@ export class OngComponent implements OnInit, AfterViewInit {
     window.open(url, "_blank");
   }
 
-  saveDonation(fc: FixedCost, amount: string) {
-    let userData = this.tokenService.currentUserData;
-    console.log(amount, fc.id, fc.title, userData.id, userData.name);
+  // old function to save donation
+  // saveDonation(fc: FixedCost, amount: string) {
+  //   let userData = this.tokenService.currentUserData;
+  //   console.log(amount, fc.id, fc.title, userData.id, userData.name);
 
-    let donationData = {amount: amount, fixed_cost_id: fc.id};
-    this.fixedcostsService.donationPayment(donationData).subscribe(
-      res => {
-        this.preference_id = res['preference_id'];
-        Swal.fire({
-          title: 'Realizar Donación?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'SÍ!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // var script = document.createElement("script");
-            // //script.src = "https://sdk.mercadopago.com/js/v2";
-            // script.type = "text/javascript";
-            this.script.dataset['preferenceId'] = this.preference_id;
-            // document.getElementById("chispita")!.innerHTML = "";
-            // document.querySelector("#chispita")!.appendChild(script);
-          }
-        })
-        //this.displayCheckout(res['preference_id']);
-        console.log('preference_id', res['preference_id']);
-      }
-    )
-  }
+  //   let donationData = {amount: amount, fixed_cost_id: fc.id};
+  //   this.fixedcostsService.donationPayment(donationData).subscribe(
+  //     res => {
+  //       console.log('preference_id', res['preference_id']);
+  //       const script = document.createElement("script");
+  //       script.type = "text/javascript";
+  //       script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+  //       script.setAttribute('preferenceId', this.preference_id);
+  //       const form = document.getElementById("form-id");
+  //       form?.appendChild(script);
+  //       this.displayCheckout(res['preference_id']);
 
+  //       // const mp = new mercadopago('TEST-ad21e05e-710f-4fde-a1f4-dd749f8848cf', {
+  //       //   locale: 'es-AR'
+  //       // });
+  //       // mp.checkout({
+  //       //   preference: {
+  //       //     id: this.preference_id
+  //       //   },
+  //       //   render: {
+  //       //     container: '.cho-container',
+  //       //     label: 'Pagar',
+  //       //   }
+  //       // });
+  //     }
+  //   )
+  // }
+
+  // old function to create checkout
   // displayCheckout(preference_id: string) {
-  //   //var script = document.createElement("script");
-  //   //script.src = "https://sdk.mercadopago.com/js/v2";
-  //   //script.type = "text/javascript";
-
   //   const mp = new MercadoPago('TEST-ad21e05e-710f-4fde-a1f4-dd749f8848cf', {
-  //     locale: 'es-AR'
+  //      locale: 'es-AR'
   //   });
-  
   //   mp.checkout({
   //     preference: {
   //       id: preference_id
@@ -180,5 +174,54 @@ export class OngComponent implements OnInit, AfterViewInit {
   //       label: 'Pagar',
   //     }
   //   });
+  // }
+
+  // opens the modal to confirm the payment
+  open(content: any, fc: FixedCost, amount: string) {
+		this.modalService.open(content);
+
+    let donationData = {amount: amount, fixed_cost_id: fc.id};
+    this.fixedcostsService.donationPayment(donationData).subscribe(
+      res => {
+        console.log('preference_id', res['preference_id']);
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://sdk.mercadopago.com/js/v2";
+        document.body.appendChild(script);
+        script.addEventListener('load', this.createCheckout);
+      }
+    )
+	}
+
+  // creates checkout button "Pagar" inside the modal
+  createCheckout() {
+    const mp = new window.MercadoPago('SECRET_KEY', {
+       locale: 'es-AR'
+    });
+    console.log(`mp`, mp)
+    mp.checkout({
+      preference: {
+        id: this.preference_id
+      },
+      render: {
+        container: '.cho-container',
+        label: 'Pagar',
+      }
+    });
+  }
+
+  // function for testing payment button outside the fixed_costs table
+  // pagar(fc: FixedCost, amount: string) {
+  //   let donationData = {amount: amount, fixed_cost_id: fc.id};
+  //   this.fixedcostsService.donationPayment(donationData).subscribe(
+  //     res => {
+  //       console.log('preference_id', res['preference_id']);
+  //       const script = document.createElement("script");
+  //       script.type = "text/javascript";
+  //       script.src = "https://sdk.mercadopago.com/js/v2";
+  //       document.body.appendChild(script);
+  //       script.addEventListener('load', this.createCheckout);
+  //     }
+  //   )
   // }
 }
