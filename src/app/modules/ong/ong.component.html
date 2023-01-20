@@ -85,7 +85,6 @@
     <div id="collapseTwo" class="accordion-collapse collapse d-lg-block" aria-labelledby="headingTwo"
       data-bs-parent="#myTabContent">
       <div class="accordion-body">
-        <!-- <div class="cho-container"></div> -->
         <div *ngIf="fixedcost_list.length != 0; else elseFixedCostBlock">
           <table width="100%">
             <thead>
@@ -112,7 +111,6 @@
                 <td>
                   <div class="input-group mb-1">
                     <input type="number" id="donate-input" class="form-control" placeholder="Monto a donar" aria-label="Monto a donar" aria-describedby="donate-button" #amount>
-                    <!-- <button class="btn btn-outline-secondary" type="button" id="donate-button" (click)="saveDonation(fixedcost, amount.value)">Donar</button> -->
                     <ng-template #content let-c="close" let-d="dismiss">
                       <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Confirmar Donación</h4>
@@ -123,13 +121,10 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cancelar</button>
-                        <!-- <form id="form-id" method="GET"></form> -->
                         <div id="checkout" class="cho-container"></div>
                       </div>
                     </ng-template>
-                    <!-- <button class="btn btn-lg btn-outline-primary" (click)="pagar(fixedcost, amount.value)">Pagar</button> -->
                     <button class="btn btn-lg btn-outline-primary" (click)="open(content, fixedcost, amount.value)">Donar</button>
-                    <!-- <form id="form-id" method="GET"></form> -->
                   </div>
                 </td>
               </tr>

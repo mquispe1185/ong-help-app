@@ -126,90 +126,19 @@ export class OngComponent implements OnInit{
     window.open(url, "_blank");
   }
 
-  // old function to save donation
-  // saveDonation(fc: FixedCost, amount: string) {
-  //   let userData = this.tokenService.currentUserData;
-  //   console.log(amount, fc.id, fc.title, userData.id, userData.name);
-
-  //   let donationData = {amount: amount, fixed_cost_id: fc.id};
-  //   this.fixedcostsService.donationPayment(donationData).subscribe(
-  //     res => {
-  //       console.log('preference_id', res['preference_id']);
-  //       const script = document.createElement("script");
-  //       script.type = "text/javascript";
-  //       script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-  //       script.setAttribute('preferenceId', this.preference_id);
-  //       const form = document.getElementById("form-id");
-  //       form?.appendChild(script);
-  //       this.displayCheckout(res['preference_id']);
-
-  //       // const mp = new mercadopago('TEST-ad21e05e-710f-4fde-a1f4-dd749f8848cf', {
-  //       //   locale: 'es-AR'
-  //       // });
-  //       // mp.checkout({
-  //       //   preference: {
-  //       //     id: this.preference_id
-  //       //   },
-  //       //   render: {
-  //       //     container: '.cho-container',
-  //       //     label: 'Pagar',
-  //       //   }
-  //       // });
-  //     }
-  //   )
-  // }
-
-  // old function to create checkout
-  // displayCheckout(preference_id: string) {
-  //   const mp = new MercadoPago('TEST-ad21e05e-710f-4fde-a1f4-dd749f8848cf', {
-  //      locale: 'es-AR'
-  //   });
-  //   mp.checkout({
-  //     preference: {
-  //       id: preference_id
-  //     },
-  //     render: {
-  //       container: '.cho-container',
-  //       label: 'Pagar',
-  //     }
-  //   });
-  // }
-
   // opens the modal to confirm the payment
   open(content: any, fc: FixedCost, amount: string) {
 		this.modalService.open(content);
-
     let donationData = {amount: amount, fixed_cost_id: fc.id};
     this.fixedcostsService.donationPayment(donationData).subscribe(
       res => {
         console.log('preference_id', res['preference_id']);
-        this.createCheckoutButton(res['preference_id']); // metodo creado por mi, esta mas abajo
-        // const script = document.createElement("script");
-        // script.type = "text/javascript";
-        // script.src = "https://sdk.mercadopago.com/js/v2";
-        // document.body.appendChild(script);
-        // script.addEventListener('load', this.createCheckout);
+        this.createCheckoutButton(res['preference_id']);
       }
     )
 	}
 
-  // creates checkout button "Pagar" inside the modal
-  createCheckout() {
-    const mp = new window.MercadoPago('SECRET_KEY', {
-       locale: 'es-AR'
-    });
-    console.log(`mp`, mp)
-    mp.checkout({
-      preference: {
-        id: this.preference_id
-      },
-      render: {
-        container: '.cho-container',
-        label: 'Pagar',
-      }
-    });
-  }
-  // uso el metodo similar al de meta, con algunas acutalizaciones minimas
+  // creates checkout button using v1 web-payment-checkout
   createCheckoutButton(preference:any) {
     var script = document.createElement("script");
     localStorage.setItem('preference_id', preference);
@@ -220,18 +149,4 @@ export class OngComponent implements OnInit{
     divButton!.innerHTML = "";
     divButton!.appendChild(script);
   }
-  // function for testing payment button outside the fixed_costs table
-  // pagar(fc: FixedCost, amount: string) {
-  //   let donationData = {amount: amount, fixed_cost_id: fc.id};
-  //   this.fixedcostsService.donationPayment(donationData).subscribe(
-  //     res => {
-  //       console.log('preference_id', res['preference_id']);
-  //       const script = document.createElement("script");
-  //       script.type = "text/javascript";
-  //       script.src = "https://sdk.mercadopago.com/js/v2";
-  //       document.body.appendChild(script);
-  //       script.addEventListener('load', this.createCheckout);
-  //     }
-  //   )
-  // }
 }
