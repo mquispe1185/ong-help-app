@@ -35,7 +35,8 @@ export class OngEditComponent implements OnInit {
     this.ongService
       .getOng(obj.id)
       .subscribe((res_ong) => {
-        this.ong = res_ong;
+        Object.assign(this.ong, res_ong);
+        this.ong.splitTags();
       });
   }
 
@@ -46,8 +47,9 @@ export class OngEditComponent implements OnInit {
   }
 
   updateOng() {
+    this.ong.concatTags();
     this.ongService.updateOng(this.ong).subscribe((res) => {
-      this.ong = res;
+      Object.assign(this.ong, res);
       localStorage.setItem('entitySelected', JSON.stringify(this.ong));
       this.sharedService.sendReloadEvent(true);
       Swal.fire({

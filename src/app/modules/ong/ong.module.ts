@@ -13,6 +13,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { OngInfoComponent } from './ong-info/ong-info.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SharedModule } from '../shared/shared.module';
+import { TagInputModule } from 'ngx-chips';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ImageCropperModule,
     YouTubePlayerModule,
-    SharedModule
+    SharedModule,
+    TagInputModule,
   ],
   exports: []
 })

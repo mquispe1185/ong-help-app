@@ -33,7 +33,8 @@ export class CampaignEditComponent implements OnInit {
     this.campaignService
       .getCampaign(obj.id)
       .subscribe((res_campaign) => {
-        this.campaign = res_campaign;
+        Object.assign(this.campaign, res_campaign);
+        this.campaign.splitTags();
       })
   }
 
@@ -44,8 +45,9 @@ export class CampaignEditComponent implements OnInit {
   }
 
   updateCampaign() {
+    this.campaign.concatTags();
     this.campaignService.updateCampaign(this.campaign).subscribe((res) => {
-      this.campaign = res;
+      Object.assign(this.campaign, res);
       localStorage.setItem('entitySelected', JSON.stringify(this.campaign));
       this.sharedService.sendReloadEvent(true);
       Swal.fire({

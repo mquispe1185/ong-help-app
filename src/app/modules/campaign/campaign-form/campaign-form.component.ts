@@ -44,6 +44,7 @@ export class CampaignFormComponent implements OnInit {
     if (city) {
       this.campaign.province_id = city.province.id
     }
+    this.campaign.concatTags();
     this.campaignService.addCampaign(this.campaign).subscribe(
       res => {
         campaignForm.reset();
@@ -53,10 +54,6 @@ export class CampaignFormComponent implements OnInit {
       },
       error => { console.log(error) }
     );
-  }
-
-  newCampaign() {
-    this.campaign = new Campaign();
   }
 
   getCategories() {

@@ -78,9 +78,9 @@
         <!-- Descripcion -->
 
         <label for="tags" class="form-label">Tags</label>
-        <textarea [(ngModel)]='ong.tags' class="form-control form-control-sm" rows="3" placeholder="Tags"
-          style="height: 100px" name="tags">
-          </textarea>
+        <tag-input [(ngModel)]="ong.new_tags" name="newTags" #newTags="ngModel" [modelAsStrings]="true"
+            [separatorKeyCodes]="[32, 188]" [secondaryPlaceholder]="'Ingrese una nueva etiqueta'">
+          </tag-input>
         <!-- Tags -->
 
         <div class="text-center mt-3">
