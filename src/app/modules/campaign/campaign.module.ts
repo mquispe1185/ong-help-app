@@ -14,6 +14,8 @@ import { CampaignInfoComponent } from './campaign-info/campaign-info.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SharedModule } from '../shared/shared.module';
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ImageCropperModule,
     YouTubePlayerModule,
-    SharedModule
+    SharedModule,
+    TagInputModule,
+    BrowserAnimationsModule
   ],
   exports: []
 })

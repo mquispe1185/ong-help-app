@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { AuthHandlerInterceptor } from './interceptor/auth-handler.interceptor';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+
 @NgModule({
   declarations: [
     AppComponent,

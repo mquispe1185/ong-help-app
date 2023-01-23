@@ -30,9 +30,18 @@ export class Ong {
   category: Category;
 
   photos: string[];
+  new_tags: string[] = [];
 
   constructor(data?: any) {
     Object.assign(this, data);
+  }
+
+  concatTags() {
+    this.tags = this.new_tags.join(' ');
+  }
+
+  splitTags() {
+    this.new_tags = this.tags.split(' ');
   }
 
 }

@@ -44,6 +44,7 @@ export class OngFormComponent implements OnInit {
     if (city) {
       this.ong.province_id = city.province.id
     }
+    this.ong.concatTags();
     this.ongService.addOng(this.ong).subscribe(
       res => {
         ongForm.reset();
@@ -53,10 +54,6 @@ export class OngFormComponent implements OnInit {
       },
       error => { console.log(error) }
     );
-  }
-
-  newOng() {
-    this.ong = new Ong();
   }
 
   getCategories() {

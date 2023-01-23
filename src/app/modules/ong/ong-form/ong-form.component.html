@@ -2,114 +2,185 @@
   <div class="row justify-content-md-center">
     <div class="col col-md-10 col-xl-8 card p-4 mx-2 my-4 shadow ">
       <h1 class="formtittle2">Nueva ONG</h1>
-      <form (ngSubmit)="onSubmit(ongForm)" #ongForm="ngForm">
+      <form (ngSubmit)="onSubmit(ongForm)" #ongForm="ngForm" novalidate>
+
         <div class="form-floating mt-4">
-          <input type="text" class="form-control" id="Nombre" placeholder="Nombre" required [(ngModel)]="ong.name"
-            name="name" #name="ngModel">
-          <label class="form-label" for="floatingInput">Nombre</label>
-          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-            Name is required
-          </div>
-        </div><!-- Nombre -->
+          <input type="text" class="form-control" id="floatingName" placeholder="name" required [(ngModel)]="ong.name"
+            name="name" #name="ngModel" pattern=".{2,}" [class.is-valid]="name.valid && (name.dirty || name.touched)"
+            [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+
+          <div class="form-control-feedback" *ngIf="name.errors && (name.dirty || name.touched)">
+            <p *ngIf="name.errors.required">El nombre es obligatorio</p>
+            <p *ngIf="name.errors.pattern">
+              El nombre debe tener 2 o más caracteres.
+            </p>
+          </div><!-- message -->
+
+          <label for="floatingName">Nombre</label>
+        </div><!-- name -->
 
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control" id="Email" placeholder="name@example.com" required
-                [(ngModel)]="ong.email" name="email" #email="ngModel">
-              <label for="floatingEmail">Email</label>
-              <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-                Email is required
-              </div>
-            </div><!-- Email -->
+              <input type="text" class="form-control" id="floatingEmail" placeholder="name@example.com" required
+                [(ngModel)]="ong.email" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                [class.is-valid]="email.valid && (email.dirty || email.touched)"
+                [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
 
+              <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+                <p *ngIf="email.errors.required">El correo es obligatorio</p>
+                <p *ngIf="email.errors.pattern">
+                  El correo no es válido.
+                </p>
+              </div><!-- message -->
+
+              <label for="floatingEmail">Email</label>
+            </div><!-- email -->
           </div>
+
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control" id="Phone" placeholder="Telefono" required
-                [(ngModel)]="ong.phone" name="phone" #phone="ngModel">
-              <label for="floatingPhone">Telefono</label>
-              <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
-                Phone is required
-              </div>
-            </div><!-- Telefono -->
+              <input type="text" class="form-control" id="floatingPhone" placeholder="phone" required
+                [(ngModel)]="ong.phone" name="phone" #phone="ngModel" pattern="^((\\+91-?)|0)?[0-9]{10}$"
+                [class.is-valid]="phone.valid && (phone.dirty || phone.touched)"
+                [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched)">
+
+              <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+                <p *ngIf="phone.errors.required">El teléfono es obligatorio</p>
+                <p *ngIf="phone.errors.pattern">
+                  El número de teléfono no es válido.
+                </p>
+              </div><!-- message -->
+
+              <label for="floatingPhone">Teléfono</label>
+            </div><!-- phone -->
           </div>
         </div>
 
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating mt-4">
-              <select class="form-control" id="category" placeholder="Categoria" required
-                [(ngModel)]="ong.category_id" name="category" #category="ngModel">
+              <select class="form-control" id="floatingCategory" placeholder="category" required
+                [(ngModel)]="ong.category_id" name="category" #category="ngModel"
+                [class.is-invalid]="category.invalid && (category.dirty || category.touched)">
                 <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
               </select>
-              <label for="category">Categoria</label>
-              <div [hidden]="category.valid || category.pristine" class="alert alert-danger">
-                Category is required
-              </div>
-            </div><!-- Categoria -->
+
+              <div class="form-control-feedback" *ngIf="category.errors && (category.dirty || category.touched)">
+                <p *ngIf="category.errors.required">Por favor seleccione una categoría</p>
+              </div><!-- message -->
+
+              <label for="floatingCategory">Categoría</label>
+            </div><!-- category -->
           </div>
+
           <div class="col-md">
             <div class="form-floating mt-4">
-              <select class="form-control" id="city" required [(ngModel)]="ong.city_id" name="city"
-                #city="ngModel">
+              <select class="form-control" id="floatingCity" placeholder="city" required [(ngModel)]="ong.city_id"
+                name="city" #city="ngModel" [class.is-invalid]="city.invalid && (city.dirty || city.touched)">
                 <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
               </select>
-              <label for="category">Ciudad</label>
-              <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
-                City is required
-              </div>
-            </div><!-- Ciudad -->
+
+              <div class="form-control-feedback" *ngIf="city.errors && (city.dirty || city.touched)">
+                <p *ngIf="city.errors.required">Por favor seleccione una ciudad</p>
+              </div><!-- message -->
+
+              <label for="floatingCity">Ciudad</label>
+            </div><!-- city -->
           </div>
         </div>
 
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control" id="facebook" placeholder="Facebook" required
-                [(ngModel)]="ong.facebook" name="facebook" #facebook="ngModel">
+              <input type="text" class="form-control" id="floatingFacebook"
+                placeholder="Ingrese una URL de Perfil de Facebook" [(ngModel)]="ong.facebook" name="facebook"
+                #facebook="ngModel" pattern="https://www.facebook.com/.+"
+                [class.is-invalid]="facebook.invalid && (facebook.dirty || facebook.touched)">
+
+              <div class="form-control-feedback" *ngIf="facebook.errors && (facebook.dirty || facebook.touched)">
+                <p *ngIf="facebook.errors.pattern">
+                  Ingrese una URL de Perfil de Facebook válida.
+                </p>
+              </div><!-- message -->
+
               <label for="floatingFacebook">Facebook</label>
-            </div><!-- Facebook -->
+            </div><!-- facebook -->
           </div>
+
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control" id="instagram" placeholder="Instagram" required
-                [(ngModel)]="ong.instagram" name="instagram" #instagram="ngModel">
-              <label for="instagram">Instagram</label>
-            </div><!-- Instagram -->
+              <input type="text" class="form-control" id="floatingInstagram"
+                placeholder="Ingrese una URL de Perfil de Instagram" [(ngModel)]="ong.instagram" name="instagram"
+                #instagram="ngModel" pattern="https://www.instagram.com/.+"
+                [class.is-invalid]="instagram.invalid && (instagram.dirty || instagram.touched)">
+
+              <div class="form-control-feedback" *ngIf="instagram.errors && (instagram.dirty || instagram.touched)">
+                <p *ngIf="instagram.errors.pattern">
+                  Ingrese una URL de Perfil de Instagram válida.
+                </p>
+              </div><!-- message -->
+
+              <label for="floatingInstagram">Instagram</label>
+            </div><!-- instagram -->
           </div>
         </div>
 
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control" id="twitter" placeholder="Twitter" required
-                [(ngModel)]="ong.twitter" name="twitter" #twitter="ngModel">
-              <label for="twitter">Twitter</label>
-            </div><!-- Twitter -->
+              <input type="text" class="form-control" id="floatingTwitter"
+                placeholder="Ingrese una URL de Perfil de Twitter" [(ngModel)]="ong.twitter" name="twitter"
+                #twitter="ngModel" pattern="https://twitter.com/.+"
+                [class.is-invalid]="twitter.invalid && (twitter.dirty || twitter.touched)">
+
+              <div class="form-control-feedback" *ngIf="twitter.errors && (twitter.dirty || twitter.touched)">
+                <p *ngIf="twitter.errors.pattern">
+                  Ingrese una URL de Perfil de Twitter válida.
+                </p>
+              </div><!-- message -->
+
+              <label for="floatingTwitter">Twitter</label>
+            </div><!-- twitter -->
           </div>
+
           <div class="col-md">
             <div class="form-floating mt-4">
-              <input type="text" class="form-control" id="video_url" placeholder="VideoURL"
-                [(ngModel)]="ong.video_url" name="video_url">
-              <label for="video_url">Video URL</label>
-            </div><!-- Video URL -->
+              <input type="text" class="form-control" id="floatingVideoURL" placeholder="VideoURL"
+                [(ngModel)]="ong.video_url" name="videoURL" #videoURL="ngModel" pattern="https://.+"
+                [class.is-invalid]="videoURL.invalid && (videoURL.dirty || videoURL.touched)">
+
+              <div class="form-control-feedback" *ngIf="videoURL.errors && (videoURL.dirty || videoURL.touched)">
+                <p *ngIf="videoURL.errors.pattern">
+                  La URL debe comenzar con https://
+                </p>
+              </div><!-- message -->
+
+              <label for="floatingVideoURL">Youtube Video URL</label>
+            </div><!-- video URL -->
           </div>
         </div>
 
         <div class="form-floating mt-4">
-          <textarea [(ngModel)]='ong.description' class="form-control" rows="3" placeholder="Descripcion"
-            style="height: 100px" name="description">
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+            [(ngModel)]="ong.description" style="height: 100px" name="description" #description="ngModel"
+            pattern=".{0,280}" [class.is-invalid]="description.invalid && (description.dirty || description.touched)">
           </textarea>
-          <label for="description" class="form-label">Descripcion</label>
-        </div><!-- Descripcion -->
+
+          <div class="form-control-feedback" *ngIf="description.errors && (description.dirty || description.touched)">
+            <p *ngIf="description.errors.pattern">
+              El campo "Descripción" es opcional y puede tener un máximo de 280 caracteres.
+            </p>
+          </div><!-- message -->
+
+          <label for="floatingTextarea">Descripción</label>
+        </div><!-- description -->
 
         <div class="form-floating mt-4">
-          <textarea [(ngModel)]='ong.tags' class="form-control" rows="3" placeholder="Tags" style="height: 100px"
-            name="tags">
-                  </textarea>
-          <label for="tags" class="form-label">Tags</label>
-        </div><!-- Tags -->
+          <tag-input [(ngModel)]="ong.new_tags" name="newTags" #newTags="ngModel" [modelAsStrings]="true"
+            [separatorKeyCodes]="[32, 188]" [secondaryPlaceholder]="'Ingrese una nueva etiqueta'">
+          </tag-input>
+        </div><!-- tags -->
 
         <div class="form-group mt-4">
           <button type="submit" class="btn btn-success" [disabled]="!ongForm.form.valid">Enviar</button>
