@@ -4,6 +4,7 @@ export class Contribution {
 
     id: number;
     mount: number;
+    item_donation_id: number;
     status: number;
     code: string;
     created_at: string;
