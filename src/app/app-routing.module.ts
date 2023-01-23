@@ -18,6 +18,7 @@ import { OngInfoComponent } from './modules/ong/ong-info/ong-info.component';
 import { CampaignEditComponent } from './modules/campaign/campaign-edit/campaign-edit.component';
 import { CampaignInfoComponent } from './modules/campaign/campaign-info/campaign-info.component';
 import { EntityLinksComponent } from './modules/shared/entity-links/entity-links.component';
+import { MyDonationsComponent } from './modules/donor/my-donations/my-donations.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -64,6 +65,11 @@ const routes: Routes = [
       { path: 'info', component: CampaignInfoComponent, outlet: 'campaign' },
       { path: 'entity-links', component: EntityLinksComponent, outlet: 'campaign' }
     ]
+  },
+  { path: 'donor', loadChildren: () => import('./modules/donor/donor.module').then(m => m.DonorModule) },
+  {
+    path: 'my-donations',
+    component: MyDonationsComponent
   }
 ];
 

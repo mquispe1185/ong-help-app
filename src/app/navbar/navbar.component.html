@@ -37,26 +37,24 @@
             {{tokenService.currentUserData.name}}
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li class="dropdown-submenu">
+            <li class="dropdown-submenu" *ngIf="user?.role === 'ong_owner' || user?.role === 'multi_owner'">
               <span class="dropdown-item fw-bold ml-2">ONGs</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let ong of ong_list">
-                  <a class="dropdown-item" role="button"
-                    (click)="reloadSidebarOng(ong)">{{ong.name}}</a>
+                  <a class="dropdown-item" role="button" (click)="reloadSidebarOng(ong)">{{ong.name}}</a>
                 </li>
               </ul>
             </li>
-            <li class="dropdown-submenu">
+            <li class="dropdown-submenu" *ngIf="user?.role === 'campaign_owner' || user?.role === 'multi_owner'">
               <span class="dropdown-item fw-bold ml-2">Campañas</span>
               <ul class="dropdown-submenu">
                 <li *ngFor="let campaign of campaign_list">
-                  <a class="dropdown-item" role="button"
-                    (click)="reloadSidebarCampaign(campaign)">{{campaign.name}}</a>
+                  <a class="dropdown-item" role="button" (click)="reloadSidebarCampaign(campaign)">{{campaign.name}}</a>
                 </li>
               </ul>
             </li>
-            <li *ngIf="tokenService.currentUserData != undefined"><a class="dropdown-item" (click)="logout()"
-                href="#">Cerrar Sesión</a></li>
+            <li><a class="dropdown-item" routerLink="/my-donations">Mis donaciones</a></li>
+            <li><a class="dropdown-item" (click)="logout()" href="#">Cerrar Sesión</a></li>
           </ul>
         </div>
       </ul>

@@ -18,4 +18,9 @@ export class ContributionsService {
     return this.http.get<Contribution[]>(url);
   }
 
+  myContributions(): Observable<Contribution[]> {
+    let url = `${this.BASE_URL}/user_contributions`;
+    return this.http.get<Contribution[]>(url);
+  }
+
 }
