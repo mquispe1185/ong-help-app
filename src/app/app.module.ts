@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { AuthHandlerInterceptor } from './interceptor/auth-handler.interceptor';
 import { YouTubePlayerModule } from '@angular/youtube-player';
-import { TagInputModule } from 'ngx-chips';
 
 @NgModule({
   declarations: [
@@ -22,14 +20,12 @@ import { TagInputModule } from 'ngx-chips';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     YouTubePlayerModule,
-    TagInputModule,
     AngularTokenModule.forRoot({
       apiBase:                     environment.API_URL,
          apiPath:                   undefined,

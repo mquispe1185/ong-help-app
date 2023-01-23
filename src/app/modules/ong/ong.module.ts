@@ -14,6 +14,7 @@ import { OngInfoComponent } from './ong-info/ong-info.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SharedModule } from '../shared/shared.module';
 import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TagInputModule } from 'ngx-chips';
     YouTubePlayerModule,
     SharedModule,
     TagInputModule,
+    BrowserAnimationsModule
   ],
   exports: []
 })
