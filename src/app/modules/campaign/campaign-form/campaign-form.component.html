@@ -10,8 +10,8 @@
             [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
 
           <div class="form-control-feedback" *ngIf="name.errors && (name.dirty || name.touched)">
-            <p *ngIf="name.errors.required">El nombre es obligatorio</p>
-            <p *ngIf="name.errors.pattern">
+            <p class="text-danger" *ngIf="name.errors.required">El nombre es obligatorio</p>
+            <p class="text-danger" *ngIf="name.errors.pattern">
               El nombre debe tener 2 o más caracteres.
             </p>
           </div><!-- message -->
@@ -28,8 +28,8 @@
                 [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
 
               <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
-                <p *ngIf="email.errors.required">El correo es obligatorio</p>
-                <p *ngIf="email.errors.pattern">
+                <p class="text-danger" *ngIf="email.errors.required">El correo es obligatorio</p>
+                <p class="text-danger" *ngIf="email.errors.pattern">
                   El correo no es válido.
                 </p>
               </div><!-- message -->
@@ -46,8 +46,8 @@
                 [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched)">
 
               <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched)">
-                <p *ngIf="phone.errors.required">El teléfono es obligatorio</p>
-                <p *ngIf="phone.errors.pattern">
+                <p class="text-danger" *ngIf="phone.errors.required">El teléfono es obligatorio</p>
+                <p class="text-danger" *ngIf="phone.errors.pattern">
                   El número de teléfono no es válido.
                 </p>
               </div><!-- message -->
@@ -67,7 +67,7 @@
               </select>
 
               <div class="form-control-feedback" *ngIf="category.errors && (category.dirty || category.touched)">
-                <p *ngIf="category.errors.required">Por favor seleccione una categoría</p>
+                <p class="text-danger" *ngIf="category.errors.required">Por favor seleccione una categoría</p>
               </div><!-- message -->
 
               <label for="floatingCategory">Categoría</label>
@@ -82,7 +82,7 @@
               </select>
 
               <div class="form-control-feedback" *ngIf="city.errors && (city.dirty || city.touched)">
-                <p *ngIf="city.errors.required">Por favor seleccione una ciudad</p>
+                <p class="text-danger" *ngIf="city.errors.required">Por favor seleccione una ciudad</p>
               </div><!-- message -->
 
               <label for="floatingCity">Ciudad</label>
@@ -99,7 +99,7 @@
                 [class.is-invalid]="facebook.invalid && (facebook.dirty || facebook.touched)">
 
               <div class="form-control-feedback" *ngIf="facebook.errors && (facebook.dirty || facebook.touched)">
-                <p *ngIf="facebook.errors.pattern">
+                <p class="text-danger" *ngIf="facebook.errors.pattern">
                   Ingrese una URL de Perfil de Facebook válida.
                 </p>
               </div><!-- message -->
@@ -116,7 +116,7 @@
                 [class.is-invalid]="instagram.invalid && (instagram.dirty || instagram.touched)">
 
               <div class="form-control-feedback" *ngIf="instagram.errors && (instagram.dirty || instagram.touched)">
-                <p *ngIf="instagram.errors.pattern">
+                <p class="text-danger" *ngIf="instagram.errors.pattern">
                   Ingrese una URL de Perfil de Instagram válida.
                 </p>
               </div><!-- message -->
@@ -135,7 +135,7 @@
                 [class.is-invalid]="twitter.invalid && (twitter.dirty || twitter.touched)">
 
               <div class="form-control-feedback" *ngIf="twitter.errors && (twitter.dirty || twitter.touched)">
-                <p *ngIf="twitter.errors.pattern">
+                <p class="text-danger" *ngIf="twitter.errors.pattern">
                   Ingrese una URL de Perfil de Twitter válida.
                 </p>
               </div><!-- message -->
@@ -151,7 +151,7 @@
                 [class.is-invalid]="videoURL.invalid && (videoURL.dirty || videoURL.touched)">
 
               <div class="form-control-feedback" *ngIf="videoURL.errors && (videoURL.dirty || videoURL.touched)">
-                <p *ngIf="videoURL.errors.pattern">
+                <p class="text-danger" *ngIf="videoURL.errors.pattern">
                   La URL debe comenzar con https://
                 </p>
               </div><!-- message -->
@@ -168,7 +168,7 @@
           </textarea>
 
           <div class="form-control-feedback" *ngIf="description.errors && (description.dirty || description.touched)">
-            <p *ngIf="description.errors.pattern">
+            <p class="text-danger" *ngIf="description.errors.pattern">
               El campo "Descripción" es opcional y puede tener un máximo de 280 caracteres.
             </p>
           </div><!-- message -->

@@ -48,6 +48,7 @@ export class CampaignEditComponent implements OnInit {
     this.campaign.concatTags();
     this.campaignService.updateCampaign(this.campaign).subscribe((res) => {
       this.campaign = new Campaign(res);
+      this.campaign.splitTags();
       localStorage.setItem('entitySelected', JSON.stringify(this.campaign));
       this.sharedService.sendReloadEvent(true);
       Swal.fire({

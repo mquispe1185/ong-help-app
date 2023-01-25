@@ -1,90 +1,163 @@
-<div class="container" >
+<div class="container">
   <div class="row col-12 col-sm-10 col-md-10 col-lg-8 offset-lg-3 ">
     <div class="  card p-4 mx-2 my-4 shadow font-edit">
       <h4 class="text-center" id="title">Editar</h4>
       <form (ngSubmit)="updateCampaign()" #campaignForm="ngForm">
-        <label for="floatingInput" class="form-label">Nombre</label>
-          <input type="text" class="form-control form-control-sm" id="Nombre" placeholder="Nombre" required [(ngModel)]="campaign.name"
-            name="name" #name="ngModel">
-          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-            Name is required
-          </div><!-- Nombre -->
+
+        <!-- name -->
+        <label for="floatingName" class="form-label">Nombre</label>
+        <input type="text" class="form-control form-control-sm" id="floatingName" placeholder="Ingrese un nombre"
+          required [(ngModel)]="campaign.name" name="name" #name="ngModel" pattern=".{2,}"
+          [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+
+        <div class="form-control-feedback" *ngIf="name.errors && (name.dirty || name.touched)">
+          <p class="text-danger" *ngIf="name.errors.required">El nombre es obligatorio</p>
+          <p class="text-danger" *ngIf="name.errors.pattern">
+            El nombre debe tener 2 o más caracteres.
+          </p>
+        </div><!-- message -->
 
         <div class="row g-2">
+          <!-- email -->
           <div class="col-md">
             <label for="floatingEmail" class="form-label">Email</label>
-              <input type="text" class="form-control form-control-sm" id="Email" placeholder="name@example.com" required
-                [(ngModel)]="campaign.email" name="email" #email="ngModel">
-              <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-                Email is required
-              </div>
-          </div><!-- Email -->
+            <input type="text" class="form-control form-control-sm" id="floatingEmail" placeholder="name@example.com"
+              required [(ngModel)]="campaign.email" name="email" #email="ngModel"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
 
+            <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+              <p class="text-danger" *ngIf="email.errors.required">El correo es obligatorio</p>
+              <p class="text-danger" *ngIf="email.errors.pattern">
+                El correo no es válido.
+              </p>
+            </div><!-- message -->
+          </div>
+
+          <!-- phone -->
           <div class="col-md">
-              <label for="floatingPhone" class="form-label">Telefono</label>
-              <input type="text" class="form-control form-control-sm" id="Phone" placeholder="Telefono" required
-                [(ngModel)]="campaign.phone" name="phone" #phone="ngModel">
-              <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
-                Phone is required
-              </div>
-          </div><!-- Telefono -->
+            <label for="floatingPhone" class="form-label">Teléfono</label>
+            <input type="text" class="form-control form-control-sm" id="floatingPhone" placeholder="Ingrese un teléfono"
+              required [(ngModel)]="campaign.phone" name="phone" #phone="ngModel" pattern="^((\\+91-?)|0)?[0-9]{10}$"
+              [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched)">
+
+            <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+              <p class="text-danger" *ngIf="phone.errors.required">El teléfono es obligatorio</p>
+              <p class="text-danger" *ngIf="phone.errors.pattern">
+                El número de teléfono no es válido.
+              </p>
+            </div><!-- message -->
+          </div>
+
         </div>
 
         <div class="row g-2">
+          <!-- category -->
           <div class="col-md">
-            <label for="category" class="form-label">Categoria</label>
-            <select class="form-select form-select-sm" id="category" placeholder="Categoria" required
-                [(ngModel)]="campaign.category_id" name="category" #category="ngModel">
+            <label for="floatingCategory" class="form-label">Categoría</label>
+            <select class="form-select form-select-sm" id="floatingCategory" placeholder="Categoria" required
+              [(ngModel)]="campaign.category_id" name="category" #category="ngModel">
               <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>
-              <div [hidden]="category.valid || category.pristine" class="alert alert-danger">
-                Category is required
-              </div>
-          </div> <!-- Categoria -->
+          </div>
+
+          <!-- city -->
+          <div class="col-md">
+            <label for="floatingCity" class="form-label">Ciudad</label>
+            <input type="text" disabled class="form-control form-control-sm" [value]="campaign.city.name">
+          </div>
+
+        </div>
+
+
+        <div class="row g-2">
+          <!-- facebook -->
+          <div class="col-md">
+            <label for="floatingFacebook" class="form-label">Facebook</label>
+            <input type="text" class="form-control form-control-sm" id="floatingFacebook"
+              placeholder="Ingrese una URL de Perfil de Facebook" [(ngModel)]="campaign.facebook" name="facebook"
+              #facebook="ngModel" pattern="https://www.facebook.com/.+"
+              [class.is-invalid]="facebook.invalid && (facebook.dirty || facebook.touched)">
+
+            <div class="form-control-feedback" *ngIf="facebook.errors && (facebook.dirty || facebook.touched)">
+              <p class="text-danger" *ngIf="facebook.errors.pattern">
+                Ingrese una URL de Perfil de Facebook válida.
+              </p>
+            </div><!-- message -->
+          </div>
+
+          <!-- instagram -->
+          <div class="col-md">
+            <label for="floatingInstagram" class="form-label">Instagram</label>
+            <input type="text" class="form-control form-control-sm" id="floatingInstagram"
+              placeholder="Ingrese una URL de Perfil de Instagram" [(ngModel)]="campaign.instagram" name="instagram"
+              #instagram="ngModel" pattern="https://www.instagram.com/.+"
+              [class.is-invalid]="instagram.invalid && (instagram.dirty || instagram.touched)">
+
+            <div class="form-control-feedback" *ngIf="instagram.errors && (instagram.dirty || instagram.touched)">
+              <p class="text-danger" *ngIf="instagram.errors.pattern">
+                Ingrese una URL de Perfil de Instagram válida.
+              </p>
+            </div><!-- message -->
+          </div>
 
         </div>
 
         <div class="row g-2">
+          <!-- twitter -->
           <div class="col-md">
-            <label for="Facebook" class="form-label">Facebook</label>
-            <input type="text" class="form-control form-control-sm" id="facebook" placeholder="Facebook"
-                [(ngModel)]="campaign.facebook" name="facebook" #facebook="ngModel">
-          </div><!-- Facebook -->
-          <div class="col-md">
-            <label for="instagram" class="form-label">Instagram</label>
-            <input type="text" class="form-control form-control-sm" id="instagram" placeholder="Instagram"
-                [(ngModel)]="campaign.instagram" name="instagram" #instagram="ngModel">
-            </div>
+            <label for="floatingTwitter" class="form-label">Twitter</label>
+            <input type="text" class="form-control form-control-sm" id="floatingTwitter"
+              placeholder="Ingrese una URL de Perfil de Twitter" [(ngModel)]="campaign.twitter" name="twitter"
+              #twitter="ngModel" pattern="https://twitter.com/.+"
+              [class.is-invalid]="twitter.invalid && (twitter.dirty || twitter.touched)">
+
+            <div class="form-control-feedback" *ngIf="twitter.errors && (twitter.dirty || twitter.touched)">
+              <p class="text-danger" *ngIf="twitter.errors.pattern">
+                Ingrese una URL de Perfil de Twitter válida.
+              </p>
+            </div><!-- message -->
           </div>
-          <!-- Instagram -->
 
-        <div class="row g-2">
+          <!-- video URL -->
           <div class="col-md">
-            <label for="twitter" class="form-label">Twitter</label>
-            <input type="text" class="form-control form-control-sm" id="twitter" placeholder="Twitter"
-                [(ngModel)]="campaign.twitter" name="twitter" #twitter="ngModel">
-          </div><!-- Twitter -->
-          <div class="col-md">
-            <label for="video_url" class="form-label">Video URL</label>
-            <input type="text" class="form-control form-control-sm" id="video_url" placeholder="VideoURL"
-                [(ngModel)]="campaign.video_url" name="video_url" #video_url="ngModel">
+            <label for="floatingVideoURL" class="form-label">Video URL</label>
+            <input type="text" class="form-control form-control-sm" id="floatingVideoURL"
+              placeholder="Ingrese una URL de Youtube" [(ngModel)]="campaign.video_url" name="videoURL"
+              #videoURL="ngModel" pattern="https://.+"
+              [class.is-invalid]="videoURL.invalid && (videoURL.dirty || videoURL.touched)">
+
+            <div class="form-control-feedback" *ngIf="videoURL.errors && (videoURL.dirty || videoURL.touched)">
+              <p class="text-danger" *ngIf="videoURL.errors.pattern">
+                La URL debe comenzar con https://
+              </p>
+            </div><!-- message -->
           </div>
-        </div><!-- Video URL -->
 
-        <label for="description" class="form-label">Descripcion</label>
-        <textarea [(ngModel)]='campaign.description' class="form-control form-control-sm" rows="3" placeholder="Descripcion"
-            style="height: 100px" name="description">
-          </textarea>
-        <!-- Descripcion -->
+        </div>
 
+        <!-- description -->
+        <label for="floatingTextarea" class="form-label">Descripción</label>
+        <textarea class="form-control form-control-sm" placeholder="Leave a comment here" id="floatingTextarea"
+          [(ngModel)]="campaign.description" style="height: 100px" name="description" #description="ngModel"
+          pattern=".{0,280}" [class.is-invalid]="description.invalid && (description.dirty || description.touched)">
+        </textarea>
+
+        <div class="form-control-feedback" *ngIf="description.errors && (description.dirty || description.touched)">
+          <p class="text-danger" *ngIf="description.errors.pattern">
+            El campo "Descripción" es opcional y puede tener un máximo de 280 caracteres.
+          </p>
+        </div><!-- message -->
+
+        <!-- tags -->
         <label for="tags" class="form-label">Tags</label>
         <tag-input [(ngModel)]="campaign.new_tags" name="newTags" #newTags="ngModel" [modelAsStrings]="true"
-            [separatorKeyCodes]="[32, 188]" [secondaryPlaceholder]="'Ingrese una nueva etiqueta'">
-          </tag-input>
-      <!-- Tags -->
+          [separatorKeyCodes]="[32, 188]" [secondaryPlaceholder]="'Ingrese una nueva etiqueta'">
+        </tag-input>
+
 
         <div class="text-center mt-3">
-          <button type="submit" class="btn btn-primary btn-sm" [disabled]="!campaignForm.form.valid" >Enviar</button>
+          <button type="submit" class="btn btn-primary btn-sm" [disabled]="!campaignForm.form.valid">Enviar</button>
         </div><!-- botones -->
       </form>
     </div>
