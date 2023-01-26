@@ -1,45 +1,70 @@
 <ng-template #create let-modal>
-  <div class="modal-header font2">
-    <h4 class="modal-title text-center" id="modal-basic-title">Formulario de Donación</h4>
+  <div class="modal-header font2 text-center">
+    <h4 class="modal-title" id="modal-basic-title">Formulario de Donación</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body font2">
     <form (ngSubmit)="onSubmit(itemDonationForm)" #itemDonationForm="ngForm">
-      <label for="floatingInput" class="form-label">Título</label>
-      <input type="text" class="form-control form-control-sm" id="Title" placeholder="Titulo" required
-        [(ngModel)]="itemDonation.title" name="title" #title="ngModel">
-      <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
-        Title is required
-      </div><!-- Title -->
 
+      <!-- title -->
+      <label for="title" class="form-label">Título</label>
+      <input type="text" class="form-control form-control-sm" id="title" placeholder="Ingrese un título" required
+        [(ngModel)]="itemDonation.title" name="title" #title="ngModel"
+        [class.is-invalid]="title.invalid && (title.dirty || title.touched)">
+      <div class="form-control-feedback" *ngIf="title.errors && (title.dirty || title.touched)">
+        <p class="text-danger" *ngIf="title.errors.required">El título es obligatorio</p>
+      </div><!-- message -->
+
+      <!-- description -->
       <label for="description" class="form-label">Descripción</label>
-      <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm" rows="3"
-        placeholder="Descripcion" style="height: 100px" name="description">
-        </textarea><!-- Description -->
+      <textarea class="form-control form-control-sm" placeholder="Leave a comment here" id="description" required
+        [(ngModel)]='itemDonation.description' style="height: 50px" name="description" #description="ngModel"
+        pattern=".{0,80}" [class.is-invalid]="description.invalid && (description.dirty || description.touched)">
+      </textarea>
+      <div class="form-control-feedback" *ngIf="description.errors && (description.dirty || description.touched)">
+        <p class="text-danger" *ngIf="description.errors.required">La descripción es obligatoria</p>
+        <p class="text-danger" *ngIf="description.errors.pattern">
+          El campo "Descripción" puede tener un máximo de 80 caracteres.
+        </p>
+      </div><!-- message -->
 
+      <!-- mount -->
       <label for="mount" class="form-label">Monto</label>
-      <input type="text" class="form-control form-control-sm" id="Mount" placeholder="Monto" required
-        [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel">
-      <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
-        Mount is required
-      </div><!-- Mount -->
+      <input type="text" class="form-control form-control-sm" id="mount" placeholder="Ingrese monto" required
+        [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel" pattern="[0-9]+"
+        [class.is-invalid]="mount.invalid && (mount.dirty || mount.touched)">
+      <div class="form-control-feedback" *ngIf="mount.errors && (mount.dirty || mount.touched)">
+        <p class="text-danger" *ngIf="mount.errors.required">El monto es obligatorio</p>
+        <p class="text-danger" *ngIf="mount.errors.pattern">
+          El campo "Monto" solo acepta dígitos.
+        </p>
+      </div><!-- message -->
 
       <div class="row g-2">
         <div class="col-md">
           <label for="month" class="form-label">Mes</label>
-          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
-            name="month" #month="ngModel">
+          <select class="form-select form-select-sm" id="month" name="month" #month="ngModel"
+            [(ngModel)]="itemDonation.period.month" required
+            [class.is-invalid]="month.invalid && (month.dirty || month.touched)">
             <option selected disabled>Seleccione mes</option>
             <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
           </select>
+          <div class="form-control-feedback" *ngIf="month.errors && (month.dirty || month.touched)">
+            <p class="text-danger" *ngIf="month.errors.required">Por favor seleccione mes</p>
+          </div><!-- message -->
         </div>
+
         <div class="col-md">
           <label for="year" class="form-label">Año</label>
-          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
-            name="year" #year="ngModel">
+          <select class="form-select form-select-sm" id="year" name="year" #year="ngModel"
+            [(ngModel)]="itemDonation.period.year" required
+            [class.is-invalid]="year.invalid && (year.dirty || year.touched)">
             <option selected disabled>Seleccione año</option>
             <option *ngFor="let year of years">{{year}}</option>
           </select>
+          <div class="form-control-feedback" *ngIf="year.errors && (year.dirty || year.touched)">
+            <p class="text-danger" *ngIf="year.errors.required">Por favor seleccione año</p>
+          </div><!-- message -->
         </div>
       </div><!-- Period -->
 
@@ -52,47 +77,72 @@
 </ng-template>
 
 <ng-template #edit let-modal>
-  <div class="modal-header font2 text-center">
-    <h4 class="modal-title" id="modal-basic-title">Editar Formulario de Donación</h4>
+  <div class="modal-header font2 ">
+    <h4 class="modal-title" id="modal-basic-title">Editar Donación</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body font2">
     <form (ngSubmit)="updateItemDonation()" #itemDonationForm="ngForm">
-      <label for="floatingInput" class="form-label">Título</label>
-      <input type="text" class="form-control form-control-sm" id="Title" placeholder="Titulo" required
-        [(ngModel)]="itemDonation.title" name="title" #title="ngModel">
-      <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
-        Title is required
-      </div><!-- Title -->
 
+      <!-- title -->
+      <label for="title" class="form-label">Título</label>
+      <input type="text" class="form-control form-control-sm" id="title" placeholder="Ingrese un título" required
+        [(ngModel)]="itemDonation.title" name="title" #title="ngModel"
+        [class.is-invalid]="title.invalid && (title.dirty || title.touched)">
+      <div class="form-control-feedback" *ngIf="title.errors && (title.dirty || title.touched)">
+        <p class="text-danger" *ngIf="title.errors.required">El título es obligatorio</p>
+      </div><!-- message -->
+
+      <!-- description -->
       <label for="description" class="form-label">Descripción</label>
-      <textarea [(ngModel)]='itemDonation.description' class="form-control form-control-sm" rows="3"
-        placeholder="Descripcion" style="height: 100px" name="description">
-      </textarea><!-- Description -->
+      <textarea class="form-control form-control-sm" placeholder="Leave a comment here" id="description" required
+        [(ngModel)]='itemDonation.description' style="height: 50px" name="description" #description="ngModel"
+        pattern=".{0,80}" [class.is-invalid]="description.invalid && (description.dirty || description.touched)">
+      </textarea>
+      <div class="form-control-feedback" *ngIf="description.errors && (description.dirty || description.touched)">
+        <p class="text-danger" *ngIf="description.errors.required">La descripción es obligatoria</p>
+        <p class="text-danger" *ngIf="description.errors.pattern">
+          El campo "Descripción" puede tener un máximo de 80 caracteres.
+        </p>
+      </div><!-- message -->
 
+      <!-- mount -->
       <label for="mount" class="form-label">Monto</label>
-      <input type="text" class="form-control form-control-sm" id="Mount" placeholder="Monto" required
-        [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel">
-      <div [hidden]="mount.valid || mount.pristine" class="alert alert-danger">
-        Mount is required
-      </div><!-- Mount -->
+      <input type="text" class="form-control form-control-sm" id="mount" placeholder="Ingrese monto" required
+        [(ngModel)]="itemDonation.mount" name="mount" #mount="ngModel" pattern="[0-9]+"
+        [class.is-invalid]="mount.invalid && (mount.dirty || mount.touched)">
+      <div class="form-control-feedback" *ngIf="mount.errors && (mount.dirty || mount.touched)">
+        <p class="text-danger" *ngIf="mount.errors.required">El monto es obligatorio</p>
+        <p class="text-danger" *ngIf="mount.errors.pattern">
+          El campo "Monto" solo acepta dígitos.
+        </p>
+      </div><!-- message -->
 
       <div class="row g-2">
         <div class="col-md">
           <label for="month" class="form-label">Mes</label>
-          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="itemDonation.period.month"
-            name="month" #month="ngModel">
+          <select class="form-select form-select-sm" id="month" name="month" #month="ngModel"
+            [(ngModel)]="itemDonation.period.month" required
+            [class.is-invalid]="month.invalid && (month.dirty || month.touched)">
             <option selected disabled>Seleccione mes</option>
             <option *ngFor="let month of months" [value]="month.id">{{month.name}}</option>
           </select>
+          <div class="form-control-feedback" *ngIf="month.errors && (month.dirty || month.touched)">
+            <p class="text-danger" *ngIf="month.errors.required">Por favor seleccione mes</p>
+          </div><!-- message -->
         </div>
+
         <div class="col-md">
           <label for="year" class="form-label">Año</label>
-          <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="itemDonation.period.year"
-            name="year" #year="ngModel">
+          <select class="form-select form-select-sm" id="year" name="year" #year="ngModel"
+            [(ngModel)]="itemDonation.period.year" required
+            [class.is-invalid]="year.invalid && (year.dirty || year.touched)">
             <option selected disabled>Seleccione año</option>
             <option *ngFor="let year of years">{{year}}</option>
           </select>
+          <div class="form-control-feedback" *ngIf="year.errors && (year.dirty || year.touched)">
+            <p class="text-danger" *ngIf="year.errors.required">Por favor seleccione año</p>
+          </div><!-- message -->
         </div>
       </div><!-- Period -->
 
@@ -104,32 +154,33 @@
   </div>
 </ng-template>
 <div class="border-0 mt-4 font2">
-  <pre>{{ closeResult }}</pre>
-  <div class="row col-12 col-sm-10 col-md-10 col-lg-8 offset-3 font2">
+  <div class="row col-12 col-sm-10 col-md-10 col-lg-8 offset-3">
     <div class="flex-fill w-100 border-0">
       <div class="d-flex justify-content-end mb-2">
-        <button class="btn btn-primary btn-sm" type="button" (click)="open(create)">Solicitar una donación</button>
+        <button class="btn btn-primary btn-sm" type="button" (click)="open(create)">Solicitar una Donación</button>
       </div>
-      <div class="card-header shadow-sm">
-        <div class="mb-0 card-title h5 text-center">Lista de Campañas</div>
+      <div class="card-header">
+        <div class="mb-0 card-title h5 text-center">Lista de Donaciones</div>
       </div>
       <table class="table">
         <thead>
           <tr class="border-table font-table">
-            <th scope="col">Título</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Monto</th>
-            <th scope="col">Action</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Período</th>
+            <th>Monto</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of itemDonation_list">
-            <td class="w-25 ps-2">{{ item.getTitle() }}</td>
-            <td class="w-35 ps-2">{{ item.getDescription() }}</td>
-            <td class="w-15">{{ item.mount | currency }}</td>
-            <td class="w-15">
-              <i class="fas fa-edit i-clic" (click)="setItemDonation(item); open(edit)" *ngIf="item.editable"></i>
-              <i class="fa-regular fa-trash-can i-clic" (click)="deleteItemDonation(item)" *ngIf="item.editable"></i>
+            <td>{{ item.getTitle() }}</td>
+            <td>{{ item.getDescription() }}</td>
+            <td>{{ months[item.period.month - 1].name + ' ' + item.period.year }}</td>
+            <td>{{ item.mount }}</td>
+            <td>
+              <i class="fas fa-edit i-clic" (click)="setItemDonation(item); open(edit)" *ngIf="item.editable"> </i>
+              <i class="fa-regular fa-trash-can i-clic" (click)="deleteItemDonation(item)" *ngIf="item.editable"> </i>
             </td>
           </tr>
         </tbody>
