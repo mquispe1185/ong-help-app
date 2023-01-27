@@ -126,19 +126,37 @@ export class OngComponent implements OnInit{
     window.open(url, "_blank");
   }
 
-  // opens the modal to confirm the payment
+  // validates value of amount and opens the modal for payment confirmation
   open(content: any, fc: FixedCost, amount: string) {
-		this.modalService.open(content);
-    let donationData = {amount: amount, fixed_cost_id: fc.id};
-    this.fixedcostsService.donationPayment(donationData).subscribe(
-      res => {
-        console.log('preference_id', res['preference_id']);
-        this.createCheckoutButton(res['preference_id']);
+    
+    function getValue(a: string): any {
+      if (amount == '') {
+        return 1;
+      } 
+      else if (parseFloat(amount) < 10 || parseFloat(amount) > fc.mount) {
+        return 2;
       }
-    )
+    }
+    switch (getValue(amount)) {
+      case 1:
+        alert('Ingrese un monto válido a donar');
+        break;
+      case 2:
+        alert(`Ingrese un monto a donar entre $10 y $${fc.mount}`);
+        break;
+      default:
+        this.modalService.open(content);
+        let donationData = {amount: amount, fixed_cost_id: fc.id};
+        this.fixedcostsService.donationPayment(donationData).subscribe(
+          res => {
+            this.createCheckoutButton(res['preference_id']);
+          }
+        )
+        break;
+    }
 	}
 
-  // creates checkout button using v1 web-payment-checkout
+  // creates checkout button using web-payment-checkout v1
   createCheckoutButton(preference:any) {
     var script = document.createElement("script");
     localStorage.setItem('preference_id', preference);
