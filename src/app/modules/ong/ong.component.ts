@@ -35,6 +35,7 @@ export class OngComponent implements OnInit{
   preference_id: string;
   script: any;
   metadata: any;
+
   constructor(private ongService: OngService,
               private fixedcostsService: FixedCostsService,
               private itemDonationsService: ItemDonationsService,
@@ -128,7 +129,6 @@ export class OngComponent implements OnInit{
 
   // validates value of amount and opens the modal for payment confirmation
   open(content: any, fc: FixedCost, amount: string) {
-    
     function getValue(a: string): any {
       if (amount == '') {
         return 1;
@@ -156,7 +156,7 @@ export class OngComponent implements OnInit{
     }
 	}
 
-  // creates checkout button using web-payment-checkout v1
+  // creates mercadopago checkout button using web-payment-checkout v1
   createCheckoutButton(preference:any) {
     var script = document.createElement("script");
     localStorage.setItem('preference_id', preference);
@@ -164,7 +164,32 @@ export class OngComponent implements OnInit{
     script.type = "text/javascript";
     script.dataset['preferenceId'] = preference;
     let divButton = document.getElementById("checkout");
+    let loader = document.getElementById("loader");
+    let modal_payment = document.getElementById("modal-payment");
     divButton!.innerHTML = "";
     divButton!.appendChild(script);
+    function waitForElm(button:any) {
+      return new Promise(resolve => {
+          if (document.querySelector(button)) {
+              return resolve(document.querySelector(button));
+          }
+          const observer = new MutationObserver(mutations => {
+              if (document.querySelector(button)) {
+                  resolve(document.querySelector(button));
+                  observer.disconnect();
+              }
+          });
+          observer.observe(document.body, {
+              childList: true,
+              subtree: true
+          });
+      });
+    }
+    waitForElm('.mercadopago-button').then((elm) => {
+      loader?.classList.add('d-none');
+      loader?.classList.remove('d-flex');
+      modal_payment?.classList.add('d-block');
+      modal_payment?.classList.remove('d-none');
+    });
   }
 }
