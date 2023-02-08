@@ -109,6 +109,33 @@
                       aria-valuemin="0" aria-valuemax="100">{{fixedcost.raised * 100 / fixedcost.mount}}%</div>
                   </div>
                 </td>
+                <td>
+                  <div class="input-group mb-1 w-50">
+                    <span class="input-group-text">$</span>
+                    <input type="number" id="donate-input" class="form-control" placeholder="Monto a donar" aria-label="Monto a donar" aria-describedby="donate-button" onfocus="this.value=''" #amount>
+                    <ng-template #content let-c="close" let-d="dismiss">
+                      <div id="loader" class="d-flex justify-content-center modal-dialog modal-dialog-centered">
+                        <div class="spinner-border" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                      <div id="modal-payment" class="d-none">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="modal-basic-title">Confirmar Donación</h4>
+                          <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Usted donará ${{ amount.value }} para colaborar con: {{ fixedcost.title }}</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cancelar</button>
+                          <div id="checkout" class="cho-container"></div>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <button class="btn btn-lg btn-outline-primary" (click)="open(content, fixedcost, amount.value)">Donar</button>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
