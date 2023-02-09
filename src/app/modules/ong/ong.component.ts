@@ -9,13 +9,16 @@ import { FixedCostsService } from 'src/app/services/fixed-costs.service';
 import { ItemDonationsService } from 'src/app/services/item-donations.service';
 import { OngService } from 'src/app/services/ong.service';
 import { SharedService } from 'src/app/services/shared.service';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ong',
   templateUrl: './ong.component.html',
-  styleUrls: ['./ong.component.scss']
+  styleUrls: ['./ong.component.scss'],
+	providers: [NgbModalConfig, NgbModal],
 })
-export class OngComponent implements OnInit {
+
+export class OngComponent implements OnInit{
 
   ong: Ong = new Ong();
   reloadEventsubscription: Subscription;
@@ -27,18 +30,23 @@ export class OngComponent implements OnInit {
   itemDonation_list: ItemDonation[] = [];
   entityLink_list: EntityLink[] = [];
   metadata_list: any[] = [];
-
+  preference_id: string;
+  script: any;
   metadata: any;
 
   constructor(private ongService: OngService,
               private fixedcostsService: FixedCostsService,
               private itemDonationsService: ItemDonationsService,
               private entityLinksService: EntityLinkService,
-              private sharedService: SharedService) {
+              private sharedService: SharedService,
+              config: NgbModalConfig,
+              private modalService: NgbModal) {
     this.reloadEventsubscription =
       this.sharedService.getReloadOng().subscribe(() => {
         this.ngOnInit();
       })
+      config.backdrop = 'static';
+      config.keyboard = false;
   }
 
   ngOnInit(): void {
