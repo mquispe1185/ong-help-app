@@ -33,7 +33,7 @@
         </li>
         <div class="nav-item dropdown" *ngIf="tokenService.currentUserData != undefined">
           <a id="user-menu" class="nav-link dropdown-toggle" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img class="avatar img-fluid rounded-circle me-1" [src]="user.image" alt="">
+            <img class="avatar img-fluid rounded-circle me-1" [src]="user?.image" alt="">
             <span class="text-dark">{{tokenService.currentUserData.name}}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" drop="end" aria-labelledby="user-menu" data-bs-popper="static">
