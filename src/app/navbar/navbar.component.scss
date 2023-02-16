@@ -27,3 +27,178 @@
     padding: 0.35rem 0.75rem;
     align-items: stretch;
 }
+
+.avatar {
+    margin-top: -15px;
+    margin-bottom: -15px;
+    width: 40px;
+    height: 40px;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.me-1 {
+    margin-right: 0.25rem !important;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.dropdown {
+    position: relative;
+    font-family: "Poppins";
+}
+
+.dropdown .dropdown-menu.show {
+    -webkit-animation-name: dropdownAnimation;
+    animation-name: dropdownAnimation;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.navbar-expand .navbar-nav .dropdown-menu {
+    position: absolute;
+}
+
+.navbar-nav .dropdown-menu {
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.05);
+}
+
+.navbar-nav .dropdown-menu {
+    position: static;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu-end[data-bs-popper] {
+    right: 0;
+    left: auto;
+}
+
+.dropdown-menu[data-bs-popper] {
+    top: 100%;
+    margin-top: 0.125rem;
+}
+
+.dropdown-menu {
+    top: auto;
+}
+
+.dropdown-menu-end {
+    --bs-position: end;
+}
+
+.dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    margin-top: 0px;
+    font-size: 0.825rem;
+    color: #6c757d;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.2rem;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+.dropdown-item {
+    transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.35rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #495057;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+[role="button"] {
+    cursor: pointer;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    color: #3F80EA;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.dropdown-toggle {
+    white-space: nowrap;
+}
+
+a {
+    cursor: pointer;
+}
+
+.btn {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.no-bullets {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.text-dark {
+    --bs-text-opacity: 1;
+    --bs-dark-rgb: 41, 48, 66;
+    font-family: "Poppins";
+    font-size: 0.825rem;
+    font-weight: 400;
+}
+
+.dropdown-toggle::after {
+    border: solid;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(45deg);
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.55);
+}

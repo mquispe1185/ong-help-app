@@ -31,28 +31,30 @@
         <li class="nav-item" *ngIf="tokenService.currentUserData != undefined">
           <a class="nav-link" routerLink="/campaign-form">Nueva Campaña</a>
         </li>
-        <div class="dropdown" *ngIf="tokenService.currentUserData != undefined">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            {{tokenService.currentUserData.name}}
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
+        <div class="nav-item dropdown" *ngIf="tokenService.currentUserData != undefined">
+          <a id="user-menu" class="nav-link dropdown-toggle" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img class="avatar img-fluid rounded-circle me-1" [src]="user?.image" alt="">
+            <span class="text-dark">{{tokenService.currentUserData.name}}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" drop="end" aria-labelledby="user-menu" data-bs-popper="static">
             <li class="dropdown-submenu" *ngIf="user?.role === 'ong_owner' || user?.role === 'multi_owner'">
               <span class="dropdown-item fw-bold ml-2">ONGs</span>
-              <ul class="dropdown-submenu">
+              <ul class="dropdown-submenu no-bullets">
                 <li *ngFor="let ong of ong_list">
                   <a class="dropdown-item" role="button" (click)="reloadSidebarOng(ong)">{{ong.name}}</a>
                 </li>
               </ul>
             </li>
+            <hr class="dropdown-divider" role="separator">
             <li class="dropdown-submenu" *ngIf="user?.role === 'campaign_owner' || user?.role === 'multi_owner'">
               <span class="dropdown-item fw-bold ml-2">Campañas</span>
-              <ul class="dropdown-submenu">
+              <ul class="dropdown-submenu no-bullets">
                 <li *ngFor="let campaign of campaign_list">
                   <a class="dropdown-item" role="button" (click)="reloadSidebarCampaign(campaign)">{{campaign.name}}</a>
                 </li>
               </ul>
             </li>
+            <hr class="dropdown-divider" role="separator">
             <li><a class="dropdown-item" routerLink="/my-donations">Mis donaciones</a></li>
             <li><a class="dropdown-item" (click)="logout()" href="#">Cerrar Sesión</a></li>
           </ul>
