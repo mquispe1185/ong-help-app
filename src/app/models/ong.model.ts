@@ -26,7 +26,7 @@ export class Ong {
 
   user: User;
   province: Province;
-  city: City;
+  city: City = new City();
   category: Category;
 
   photos: string[];

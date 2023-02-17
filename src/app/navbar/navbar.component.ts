@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularTokenService } from 'angular-token';
 import { catchError, debounce, debounceTime, distinctUntilChanged, map, Observable, of, OperatorFunction, Subscription, switchMap, tap } from 'rxjs';
@@ -16,6 +16,7 @@ import { SharedService } from '../services/shared.service';
 })
 export class NavbarComponent implements OnInit {
 
+  @ViewChild('menu') menu: ElementRef<HTMLInputElement>;
   reloadEventsubscription: Subscription;
   user: any;
   ong_list: Ong[] = [];
@@ -62,7 +63,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.tokenService.signOut().subscribe(
       res => { this.router.navigate(['inicio']); }
-    );    
+    );
   }
 
   getOngs() {
@@ -83,14 +84,16 @@ export class NavbarComponent implements OnInit {
 
   reloadSidebarOng(ong: Ong) {
     localStorage.setItem('entitySelected', JSON.stringify(ong))
-    this.router.navigate(['./ong-dashboard']);    
-    this.sharedService.sendReloadEvent(false)
+    this.router.navigate(['ong-dashboard']);
+    this.sharedService.sendReloadEvent(false);
+    this.hideNavMenu();
   }
 
   reloadSidebarCampaign(campaign: Campaign) {
     localStorage.setItem('entitySelected', JSON.stringify(campaign))
-    this.router.navigate(['./campaign-dashboard']);    
-    this.sharedService.sendReloadEvent(false)
+    this.router.navigate(['./campaign-dashboard']);
+    this.sharedService.sendReloadEvent(false);
+    this.hideNavMenu();
   }
 
   search = (text$: Observable<string>) =>
@@ -120,6 +123,12 @@ export class NavbarComponent implements OnInit {
     else if (event.item.type == 'Campaign') {
       this.router.navigate(['./campaign']);
       this.sharedService.sendReloadCampaign();
+    }
+  }
+
+  hideNavMenu(){
+    if (this.menu.nativeElement.classList.contains('show')) {
+      this.menu.nativeElement.classList.remove('show');
     }
   }
 }

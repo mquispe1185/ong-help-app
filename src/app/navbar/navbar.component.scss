@@ -5,9 +5,9 @@
     box-shadow: 0 0 2rem 0 rgb(41 48 66 / 10%);
     align-items: center;
     padding-top: 0.875rem;
-    padding-right: 1.25rem;
+    padding-right: 0px;
     padding-bottom: 0.875rem;
-    padding-left: 1.25rem;
+    padding-left: 0px;
 }
 
 .bor {
@@ -201,4 +201,25 @@ a {
 
 .navbar-light .navbar-nav .nav-link {
     color: rgba(0, 0, 0, 0.55);
+}
+
+.search-form{
+  width: 70%;
+}
+
+@include media-breakpoint-up(lg) {
+
+  .nav-bg {
+    background: #fff;
+    box-shadow: 0 0 2rem 0 rgb(41 48 66 / 10%);
+    align-items: center;
+    padding-top: 0.875rem;
+    padding-right: 1.25rem;
+    padding-bottom: 0.875rem;
+    padding-left: 1.25rem;
+  }
+
+  .search-form{
+    width: 30%;
+  }
 }

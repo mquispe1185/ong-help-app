@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light nav-bg fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/inicio">
-      <i class="fas fa-home-lg-alt"></i>
-    </a>
     <button class="navbar-toggler bor" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="far fa-cog"></i>
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <form inline="true" class="d-sm-inline-block">
+    <a class="navbar-brand" routerLink="/inicio" (click)="hideNavMenu()">
+      <i class="fas fa-home-lg-alt"></i>
+    </a>
+    <form class="d-sm-inline-block search-form">
       <div class="nav-item">
         <input id="typeahead-basic" type="text" class="form-control format" placeholder="Buscar ONG"
           [(ngModel)]="entitySelected" [ngbTypeahead]="search" [inputFormatter]="formatter" name="entitySelected"
@@ -16,7 +16,7 @@
         <div class="invalid-feedback" *ngIf="isFailedSearch">Sorry, suggestions could not be loaded.</div>
       </div>
     </form>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div #menu class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item" *ngIf="tokenService.currentUserData == undefined">
           <img
@@ -26,10 +26,10 @@
               class="arrow"></i></button>
         </li>
         <li class="nav-item" *ngIf="tokenService.currentUserData != undefined">
-          <a class="nav-link" routerLink="/ong-form">Nueva Ong</a>
+          <a class="nav-link" routerLink="/ong-dashboard/ong-form" (click)="hideNavMenu()">Nueva Ong</a>
         </li>
         <li class="nav-item" *ngIf="tokenService.currentUserData != undefined">
-          <a class="nav-link" routerLink="/campaign-form">Nueva Campaña</a>
+          <a class="nav-link" routerLink="/campaign-form" (click)="hideNavMenu()">Nueva Campaña</a>
         </li>
         <div class="nav-item dropdown" *ngIf="tokenService.currentUserData != undefined">
           <a id="user-menu" class="nav-link dropdown-toggle" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -117,3 +117,10 @@ $size-title:0.95rem;
   color: $color-text;
   font-weight: bolder;
 }
+
+.menu-dash{
+  position: absolute;
+  top: 68px;
+  z-index: 999;
+  color: $backg-dash;
+}
