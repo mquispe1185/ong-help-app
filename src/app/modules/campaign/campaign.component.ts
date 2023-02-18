@@ -9,11 +9,13 @@ import { EntityLinkService } from 'src/app/services/entity-link.service';
 import { FixedCostsService } from 'src/app/services/fixed-costs.service';
 import { ItemDonationsService } from 'src/app/services/item-donations.service';
 import { SharedService } from 'src/app/services/shared.service';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-campaign',
   templateUrl: './campaign.component.html',
-  styleUrls: ['./campaign.component.scss']
+  styleUrls: ['./campaign.component.scss'],
+  providers: [NgbModalConfig, NgbModal],
 })
 export class CampaignComponent implements OnInit {
 
@@ -27,18 +29,23 @@ export class CampaignComponent implements OnInit {
   itemDonation_list: ItemDonation[] = [];
   entityLink_list: EntityLink[] = [];
   metadata_list: any[] = [];
-
+  preference_id: string;
+  script: any;
   metadata: any;
 
   constructor(private campaignService: CampaignService,
               private fixedcostsService: FixedCostsService,
               private itemDonationsService: ItemDonationsService,
               private entityLinksService: EntityLinkService,
-              private sharedService: SharedService) {
+              private sharedService: SharedService,
+              config: NgbModalConfig,
+              private modalService: NgbModal) {
     this.reloadEventsubscription =
       this.sharedService.getReloadCampaign().subscribe(() => {
         this.ngOnInit();
       })
+      config.backdrop = 'static';
+      config.keyboard = false;
   }
 
   ngOnInit(): void {
@@ -107,4 +114,69 @@ export class CampaignComponent implements OnInit {
     window.open(url, "_blank");
   }
 
+  // validates value of amount and opens the modal for payment confirmation
+  open(content: any, fc: FixedCost, amount: string) {
+    function getValue(a: string): any {
+      if (amount == '') {
+        return 1;
+      } 
+      else if (parseFloat(amount) < 10 || parseFloat(amount) > fc.mount) {
+        return 2;
+      }
+    }
+    switch (getValue(amount)) {
+      case 1:
+        alert('Ingrese un monto válido a donar');
+        break;
+      case 2:
+        alert(`Ingrese un monto a donar entre $10 y $${fc.mount}`);
+        break;
+      default:
+        this.modalService.open(content);
+        let donationData = {amount: amount, fixed_cost_id: fc.id};
+        this.fixedcostsService.donationPayment(donationData).subscribe(
+          res => {
+            this.createCheckoutButton(res['preference_id']);
+          }
+        )
+        break;
+    }
+	}
+
+  // creates mercadopago checkout button using web-payment-checkout v1
+  createCheckoutButton(preference:any) {
+    var script = document.createElement("script");
+    localStorage.setItem('preference_id', preference);
+    script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+    script.type = "text/javascript";
+    script.dataset['preferenceId'] = preference;
+    let divButton = document.getElementById("checkout");
+    let loader = document.getElementById("loader");
+    let modal_payment = document.getElementById("modal-payment");
+    divButton!.innerHTML = "";
+    divButton!.appendChild(script);
+    function waitForElm(button:any) {
+      return new Promise(resolve => {
+          if (document.querySelector(button)) {
+              return resolve(document.querySelector(button));
+          }
+          const observer = new MutationObserver(mutations => {
+              if (document.querySelector(button)) {
+                  resolve(document.querySelector(button));
+                  observer.disconnect();
+              }
+          });
+          observer.observe(document.body, {
+              childList: true,
+              subtree: true
+          });
+      });
+    }
+    waitForElm('.mercadopago-button').then((elm) => {
+      loader?.classList.add('d-none');
+      loader?.classList.remove('d-flex');
+      modal_payment?.classList.add('d-block');
+      modal_payment?.classList.remove('d-none');
+    });
+  }
 }
