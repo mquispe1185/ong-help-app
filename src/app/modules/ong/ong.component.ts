@@ -10,6 +10,7 @@ import { ItemDonationsService } from 'src/app/services/item-donations.service';
 import { OngService } from 'src/app/services/ong.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ong',
@@ -127,10 +128,18 @@ export class OngComponent implements OnInit{
     }
     switch (getValue(amount)) {
       case 1:
-        alert('Ingrese un monto válido a donar');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '¡Ingrese un monto válido a donar!'
+        })
         break;
       case 2:
-        alert(`Ingrese un monto a donar entre $10 y $${fc.mount}`);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `Ingrese un monto a donar entre $10 y $${fc.mount}`
+        })
         break;
       default:
         this.modalService.open(content);

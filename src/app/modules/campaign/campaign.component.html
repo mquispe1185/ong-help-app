@@ -90,18 +90,19 @@
       data-bs-parent="#myTabContent">
       <div class="accordion-body">
         <div *ngIf="fixedcost_list.length != 0; else elseFixedCostBlock">
-          <table width="100%">
+          <table class="table">
             <thead>
-              <tr>
+              <tr class="border-table font-table">
                 <th>Título</th>
                 <th>Descripción</th>
                 <th>Monto</th>
                 <th>Progreso</th>
+                <th width="200px">Acción</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let fixedcost of fixedcost_list">
-                <th>{{ fixedcost.title }}</th>
+                <td>{{ fixedcost.title }}</td>
                 <td>{{ fixedcost.description }}</td>
                 <td>{{ fixedcost.mount | currency: 'USD' }}</td>
                 <td>
@@ -112,9 +113,9 @@
                   </div>
                 </td>
                 <td>
-                  <div class="input-group mb-1 w-50">
+                  <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text">$</span>
-                    <input type="number" id="donate-input" class="form-control" placeholder="Monto a donar" aria-label="Monto a donar" aria-describedby="donate-button" onfocus="this.value=''" #amount>
+                    <input type="number" id="donate-input" class="form-control" placeholder="Monto" aria-label="Monto a donar" aria-describedby="donate-button" onfocus="this.value=''" #amount>
                     <ng-template #content let-c="close" let-d="dismiss">
                       <div id="loader" class="d-flex justify-content-center modal-dialog modal-dialog-centered">
                         <div class="spinner-border" role="status">
@@ -135,7 +136,7 @@
                         </div>
                       </div>
                     </ng-template>
-                    <button class="btn btn-lg btn-outline-primary" (click)="open(content, fixedcost, amount.value)">Donar</button>
+                    <button class="btn btn-primary" (click)="open(content, fixedcost, amount.value)">Donar</button>
                   </div>
                 </td>
               </tr>
@@ -160,10 +161,9 @@
       data-bs-parent="#myTabContent">
       <div class="accordion-body">
         <div *ngIf="itemDonation_list.length != 0; else elseItemDonationBlock">
-          <table width="100%">
+          <table class="table">
             <thead>
-              <tr>
-                <th>#ID</th>
+              <tr class="border-table font-table">
                 <th>Título</th>
                 <th>Descripción</th>
                 <th>Monto</th>
@@ -172,7 +172,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of itemDonation_list">
-                <th>{{ item.id }}</th>
                 <td>{{ item.title }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.mount }}</td>
